@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Automation Assessment Quiz | Aura Automation</title>
+  <meta name="description" content="5-minute automation assessment quiz to find the best workflow tier for your business." />
+  <meta name="author" content="AuraSamuraiHub" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13;
+      --bg-2: #0f1520;
+      --surface: #121a26;
+      --surface-2: #141f2f;
+      --card: #101826;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e7eef6;
+      --muted: #a9b7c7;
+      --accent: #c8a866;
+      --accent-2: #f0d79b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --glow: 0 0 40px rgba(200, 168, 102, 0.18);
+      --max: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #111b2c 0%, var(--bg) 45%, #07090d 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: -200px -100px auto -100px;
+      height: 420px;
+      background: radial-gradient(60% 60% at 50% 50%, rgba(200, 168, 102, 0.18), transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: auto -150px -140px -150px;
+      height: 340px;
+      background: radial-gradient(60% 60% at 50% 50%, rgba(240, 215, 155, 0.12), transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(10, 14, 19, 0.92), rgba(10, 14, 19, 0.65));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(200, 168, 102, 0.35), rgba(240, 215, 155, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--glow);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .cta {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0b0c0f;
+      font-weight: 700;
+      box-shadow: 0 12px 30px rgba(200, 168, 102, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(200, 168, 102, 0.35);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px 24px 110px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 28px;
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 720px;
+    }
+
+    .quiz-shell {
+      margin-top: 32px;
+      background: linear-gradient(160deg, rgba(18, 26, 38, 0.98), rgba(14, 20, 31, 0.92));
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .progress-wrap {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.4s ease;
+    }
+
+    .question-card {
+      min-height: 240px;
+      display: grid;
+      gap: 20px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .question-card.is-exiting {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .question-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option-btn {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(10, 14, 19, 0.8);
+      color: var(--text);
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .option-btn:hover {
+      border-color: rgba(200, 168, 102, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(200, 168, 102, 0.12);
+    }
+
+    .results {
+      display: none;
+      gap: 18px;
+    }
+
+    .results.active {
+      display: grid;
+    }
+
+    .result-tier {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 168, 102, 0.35);
+      background: rgba(200, 168, 102, 0.1);
+      font-size: 0.85rem;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .result-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .result-card {
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .result-card h4 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .result-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .email-form {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(8, 12, 18, 0.9);
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    .secondary-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: border 0.2s ease, transform 0.2s ease;
+    }
+
+    .secondary-btn:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+      }
+      .quiz-shell {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-mark">⟁</div>
+          <span>Aura Automation</span>
+        </div>
+        <div class="nav-links">
+          <a href="index.html">Landing</a>
+          <a href="calculator.html">ROI Calculator</a>
+          <a href="validator.html">Workflow Validator</a>
+        </div>
+        <a class="cta" href="index.html#contact">Book a Call</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container">
+        <div class="hero">
+          <span class="result-tier">Automation Assessment · 5 Questions</span>
+          <h1>Find the right automation tier in 3 minutes</h1>
+          <p>Answer a few quick questions and get a tailored recommendation, estimated savings, and next steps. No fluff, just clarity.</p>
+        </div>
+
+        <div class="quiz-shell">
+          <div class="progress-wrap">
+            <div class="progress-header">
+              <span id="progressLabel">Question 1 of 5</span>
+              <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <div class="question-card" id="questionCard">
+            <div class="question-title" id="questionTitle"></div>
+            <div class="options" id="options"></div>
+          </div>
+
+          <div class="results" id="results">
+            <span class="result-tier" id="tierBadge"></span>
+            <h2 id="tierTitle"></h2>
+            <p id="tierSummary" class="note"></p>
+
+            <div class="result-grid">
+              <div class="result-card">
+                <h4>Estimated time savings</h4>
+                <p id="timeSavings"></p>
+              </div>
+              <div class="result-card">
+                <h4>Estimated monthly value</h4>
+                <p id="valueSavings"></p>
+              </div>
+              <div class="result-card">
+                <h4>Recommended focus</h4>
+                <p id="focusRecommendation"></p>
+              </div>
+            </div>
+
+            <div class="email-form">
+              <input type="email" id="leadEmail" placeholder="Your email for the full plan" required />
+              <button class="cta" id="emailCta" type="button">Email My Results</button>
+              <button class="secondary-btn" id="retakeBtn" type="button">Retake Quiz</button>
+              <p class="note">We only use your email to follow up on this automation plan.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "How many hours per week does your team spend on repetitive tasks?",
+        options: [
+          { label: "1-5", score: 1, hours: 3 },
+          { label: "5-15", score: 2, hours: 10 },
+          { label: "15-30", score: 3, hours: 22 },
+          { label: "30+", score: 4, hours: 35 }
+        ]
+      },
+      {
+        text: "What's your biggest bottleneck?",
+        options: [
+          { label: "Data entry", score: 1 },
+          { label: "Customer communication", score: 2 },
+          { label: "Lead management", score: 3 },
+          { label: "Reporting", score: 2 },
+          { label: "Other", score: 1 }
+        ]
+      },
+      {
+        text: "How many tools/apps does your team use daily?",
+        options: [
+          { label: "1-3", score: 1 },
+          { label: "4-7", score: 2 },
+          { label: "8-15", score: 3 },
+          { label: "15+", score: 4 }
+        ]
+      },
+      {
+        text: "Have you tried automation before?",
+        options: [
+          { label: "No never", score: 1 },
+          { label: "Yes but failed", score: 2 },
+          { label: "Yes with some success", score: 3 },
+          { label: "We're advanced", score: 4 }
+        ]
+      },
+      {
+        text: "What's your monthly budget for automation?",
+        options: [
+          { label: "Under $100", score: 1 },
+          { label: "$100-500", score: 2 },
+          { label: "$500-2000", score: 3 },
+          { label: "$2000+", score: 4 }
+        ]
+      }
+    ];
+
+    const tiers = [
+      {
+        name: "Starter",
+        price: "$99",
+        summary: "Simple automations, 1-2 workflows. Perfect for quick wins without heavy infrastructure.",
+        focus: "Automate one repeatable task to save immediate hours."
+      },
+      {
+        name: "Business",
+        price: "$249",
+        summary: "Multi-step workflows, API integrations, 3-5 workflows. Built for growing teams.",
+        focus: "Connect your tools and build multi-step automation with visibility."
+      },
+      {
+        name: "AI Agent",
+        price: "$599",
+        summary: "Full AI-powered automation, custom agents, unlimited support.",
+        focus: "Design an AI-first system that handles ops end-to-end."
+      }
+    ];
+
+    const questionCard = document.getElementById("questionCard");
+    const questionTitle = document.getElementById("questionTitle");
+    const optionsEl = document.getElementById("options");
+    const progressFill = document.getElementById("progressFill");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressPercent = document.getElementById("progressPercent");
+    const resultsEl = document.getElementById("results");
+    const tierBadge = document.getElementById("tierBadge");
+    const tierTitle = document.getElementById("tierTitle");
+    const tierSummary = document.getElementById("tierSummary");
+    const timeSavings = document.getElementById("timeSavings");
+    const valueSavings = document.getElementById("valueSavings");
+    const focusRecommendation = document.getElementById("focusRecommendation");
+    const leadEmail = document.getElementById("leadEmail");
+    const emailCta = document.getElementById("emailCta");
+    const retakeBtn = document.getElementById("retakeBtn");
+
+    let currentIndex = 0;
+    const answers = [];
+
+    function updateProgress() {
+      const progress = Math.round((currentIndex / questions.length) * 100);
+      progressFill.style.width = `${progress}%`;
+      progressLabel.textContent = `Question ${Math.min(currentIndex + 1, questions.length)} of ${questions.length}`;
+      progressPercent.textContent = `${progress}%`;
+    }
+
+    function renderQuestion() {
+      updateProgress();
+      const current = questions[currentIndex];
+      questionTitle.textContent = current.text;
+      optionsEl.innerHTML = "";
+
+      current.options.forEach((option) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.type = "button";
+        btn.textContent = option.label;
+        btn.addEventListener("click", () => handleAnswer(option));
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(option) {
+      answers[currentIndex] = option;
+      questionCard.classList.add("is-exiting");
+
+      setTimeout(() => {
+        questionCard.classList.remove("is-exiting");
+        currentIndex += 1;
+        if (currentIndex < questions.length) {
+          renderQuestion();
+        } else {
+          showResults();
+        }
+      }, 280);
+    }
+
+    function calculateTier() {
+      const score = answers.reduce((sum, answer) => sum + (answer?.score || 0), 0);
+      if (score <= 8) return 0;
+      if (score <= 14) return 1;
+      return 2;
+    }
+
+    function showResults() {
+      const tierIndex = calculateTier();
+      const tier = tiers[tierIndex];
+      const hoursPerWeek = answers[0]?.hours || 3;
+      const hoursPerMonth = Math.round(hoursPerWeek * 4.3 * 0.6);
+      const hourlyRate = 35;
+      const value = hoursPerMonth * hourlyRate;
+
+      progressFill.style.width = "100%";
+      progressLabel.textContent = "Results";
+      progressPercent.textContent = "100%";
+
+      questionCard.style.display = "none";
+      resultsEl.classList.add("active");
+
+      tierBadge.textContent = `${tier.name} Tier`;
+      tierTitle.textContent = `${tier.name} (${tier.price})`;
+      tierSummary.textContent = tier.summary;
+      timeSavings.textContent = `${hoursPerMonth} hours/month (estimate)`;
+      valueSavings.textContent = `$${value.toLocaleString()} / month (based on $${hourlyRate}/hr)`;
+      focusRecommendation.textContent = tier.focus;
+    }
+
+    function buildMailto() {
+      const userEmail = leadEmail.value.trim();
+      if (!userEmail) {
+        leadEmail.focus();
+        return;
+      }
+
+      const tierIndex = calculateTier();
+      const tier = tiers[tierIndex];
+      const hoursPerWeek = answers[0]?.hours || 3;
+      const hoursPerMonth = Math.round(hoursPerWeek * 4.3 * 0.6);
+      const hourlyRate = 35;
+      const value = hoursPerMonth * hourlyRate;
+
+      const responseLines = questions.map((q, i) => `${i + 1}. ${q.text} -> ${answers[i]?.label || ""}`);
+      const subject = encodeURIComponent("Automation Quiz Results");
+      const body = encodeURIComponent(
+        `Email: ${userEmail}\n` +
+        `Recommended Tier: ${tier.name} (${tier.price})\n` +
+        `Estimated Savings: ${hoursPerMonth} hrs/month (~$${value}/mo)\n\n` +
+        `Responses:\n${responseLines.join("\n")}`
+      );
+
+      window.location.href = `mailto:aurasamuraihub@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    function resetQuiz() {
+      currentIndex = 0;
+      answers.length = 0;
+      leadEmail.value = "";
+      questionCard.style.display = "grid";
+      resultsEl.classList.remove("active");
+      renderQuestion();
+    }
+
+    emailCta.addEventListener("click", buildMailto);
+    retakeBtn.addEventListener("click", resetQuiz);
+
+    renderQuestion();
+  </script>
+</body>
+</html>
