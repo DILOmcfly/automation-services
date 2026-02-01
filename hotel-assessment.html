@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hotel Automation Assessment | AuraHub</title>
+  <meta name="description" content="Free hotel automation assessment. Discover how much time and money your hotel can save with smart automation — personalized results in 3 minutes." />
+  <meta name="keywords" content="hotel automation, hospitality automation, hotel technology, PMS automation, revenue management, hotel efficiency" />
+  <meta name="author" content="AuraSamuraiHub" />
+  <meta property="og:title" content="Hotel Automation Assessment | AuraHub" />
+  <meta property="og:description" content="Free hotel automation assessment. Discover your automation score, estimated savings, and top 3 recommended automations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dilomcfly.github.io/automation-services/hotel-assessment.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hotel Automation Assessment | AuraHub" />
+  <meta name="twitter:description" content="Free hotel automation assessment for hospitality businesses. Get your personalized automation score and savings estimate." />
+  <link rel="canonical" href="https://dilomcfly.github.io/automation-services/hotel-assessment.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Hotel Automation Assessment",
+    "description": "Interactive assessment tool for hotels to discover automation opportunities, estimated savings, and recommended solutions.",
+    "url": "https://dilomcfly.github.io/automation-services/hotel-assessment.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "AuraHub - AI Automation Services",
+      "url": "https://dilomcfly.github.io/automation-services/"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13;
+      --bg-2: #0f1520;
+      --surface: #121a26;
+      --surface-2: #141f2f;
+      --card: #101826;
+      --border: rgba(255,255,255,0.08);
+      --text: #e7eef6;
+      --muted: #a9b7c7;
+      --accent: #c8a866;
+      --accent-2: #f0d79b;
+      --accent-dim: rgba(200,168,102,0.15);
+      --green: #23d18b;
+      --blue: #38e8ff;
+      --red: #ff6b6b;
+      --orange: #ffa94d;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --glow: 0 0 40px rgba(200,168,102,0.18);
+      --max: 980px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Manrope",system-ui,-apple-system,sans-serif;background:radial-gradient(circle at top,#111b2c 0%,var(--bg) 45%,#07090d 100%);color:var(--text);min-height:100vh;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+
+    /* Page chrome */
+    .page{position:relative;overflow:hidden;min-height:100vh}
+    .page::before{content:"";position:absolute;inset:-200px -100px auto -100px;height:420px;background:radial-gradient(60% 60% at 50% 50%,rgba(200,168,102,0.18),transparent 70%);z-index:0;pointer-events:none}
+    .page::after{content:"";position:absolute;inset:auto -150px -140px -150px;height:340px;background:radial-gradient(60% 60% at 50% 50%,rgba(240,215,155,0.12),transparent 70%);z-index:0;pointer-events:none}
+
+    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:linear-gradient(180deg,rgba(10,14,19,0.92),rgba(10,14,19,0.65));border-bottom:1px solid var(--border)}
+    .nav{max-width:var(--max);margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:.4px}
+    .brand-mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,rgba(200,168,102,0.35),rgba(240,215,155,0.2));border:1px solid rgba(255,255,255,0.15);display:grid;place-items:center;box-shadow:var(--glow);font-size:18px}
+    .nav-links{display:flex;gap:18px;font-size:14px;color:var(--muted)}
+    .nav-links a:hover{color:var(--text)}
+    .cta{display:inline-block;padding:10px 18px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b0c0f;font-weight:700;box-shadow:0 12px 30px rgba(200,168,102,0.25);transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;font-family:inherit;font-size:inherit}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(200,168,102,0.35)}
+
+    main{position:relative;z-index:1}
+    .container{max-width:var(--max);margin:0 auto;padding:72px 24px 110px}
+
+    /* Hero */
+    .hero{display:grid;gap:28px}
+    .hero h1{font-family:"Space Grotesk",system-ui,sans-serif;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.1}
+    .hero h1 .gold{color:var(--accent)}
+    .hero p{color:var(--muted);font-size:1.05rem;max-width:720px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid rgba(200,168,102,0.35);background:rgba(200,168,102,0.1);font-size:.85rem;letter-spacing:1.4px;text-transform:uppercase;font-weight:700}
+
+    /* Shell */
+    .shell{margin-top:32px;background:linear-gradient(160deg,rgba(18,26,38,0.98),rgba(14,20,31,0.92));border-radius:24px;border:1px solid var(--border);padding:28px;box-shadow:var(--shadow)}
+
+    /* Stepper */
+    .stepper{display:flex;gap:0;margin-bottom:28px;position:relative}
+    .step-indicator{flex:1;text-align:center;padding:12px 8px;font-size:.85rem;font-weight:600;color:var(--muted);position:relative;cursor:default;transition:color .3s}
+    .step-indicator.active{color:var(--accent)}
+    .step-indicator.done{color:var(--green)}
+    .step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:2px solid var(--border);margin-bottom:4px;font-size:.8rem;transition:all .3s}
+    .step-indicator.active .step-num{border-color:var(--accent);background:rgba(200,168,102,0.15);color:var(--accent)}
+    .step-indicator.done .step-num{border-color:var(--green);background:rgba(35,209,139,0.15);color:var(--green)}
+    .step-connector{position:absolute;top:18px;left:calc(50% + 20px);right:calc(-50% + 20px);height:2px;background:var(--border);z-index:0}
+    .step-indicator:last-child .step-connector{display:none}
+    .step-indicator.done .step-connector{background:var(--green)}
+
+    /* Step panels */
+    .step-panel{display:none;animation:fadeIn .4s ease}
+    .step-panel.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Form elements */
+    .form-group{margin-bottom:18px}
+    .form-group label{display:block;font-weight:600;margin-bottom:6px;font-size:.95rem}
+    .form-group .hint{color:var(--muted);font-size:.82rem;margin-bottom:6px}
+    input[type="text"],input[type="number"],select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(8,12,18,0.9);color:var(--text);font-family:inherit;font-size:.95rem;transition:border .2s}
+    input:focus,select:focus{outline:none;border-color:rgba(200,168,102,0.5)}
+    select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a9b7c7' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    /* Checkboxes */
+    .checkbox-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+    .check-item{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(10,14,19,0.8);cursor:pointer;transition:border .2s,transform .2s}
+    .check-item:hover{border-color:rgba(200,168,102,0.4);transform:translateY(-1px)}
+    .check-item.checked{border-color:var(--accent);background:rgba(200,168,102,0.08)}
+    .check-item input{display:none}
+    .check-box{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);display:grid;place-items:center;flex-shrink:0;transition:all .2s}
+    .check-item.checked .check-box{border-color:var(--accent);background:var(--accent)}
+    .check-item.checked .check-box::after{content:"✓";font-size:11px;color:#0b0c0f;font-weight:700}
+
+    /* Rating sliders */
+    .rating-card{padding:16px;border-radius:16px;border:1px solid var(--border);background:rgba(10,14,19,0.6);margin-bottom:12px;transition:border .2s}
+    .rating-card:hover{border-color:rgba(200,168,102,0.3)}
+    .rating-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .rating-title{font-weight:600;font-size:.95rem}
+    .rating-value{font-size:1.1rem;font-weight:700;color:var(--accent);min-width:24px;text-align:center}
+    .rating-bar{display:flex;gap:6px}
+    .rating-dot{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,0.06);cursor:pointer;transition:background .2s,transform .15s}
+    .rating-dot:hover{transform:scaleY(1.6)}
+    .rating-dot.filled{background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .rating-labels{display:flex;justify-content:space-between;margin-top:4px;font-size:.72rem;color:var(--muted)}
+
+    /* Navigation buttons */
+    .nav-buttons{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
+    .btn-secondary{padding:10px 22px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);font-weight:600;cursor:pointer;font-family:inherit;font-size:.95rem;transition:border .2s,transform .2s}
+    .btn-secondary:hover{border-color:rgba(255,255,255,0.2);transform:translateY(-2px)}
+    .btn-secondary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+    /* ─── Results Dashboard ─── */
+    .score-ring{width:180px;height:180px;margin:0 auto 24px;position:relative}
+    .score-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+    .score-ring circle{fill:none;stroke-width:10}
+    .score-bg{stroke:rgba(255,255,255,0.06)}
+    .score-fg{stroke:url(#goldGrad);stroke-linecap:round;transition:stroke-dashoffset 1.5s ease}
+    .score-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .score-number{font-family:"Space Grotesk",system-ui,sans-serif;font-size:2.8rem;font-weight:700;line-height:1}
+    .score-sub{font-size:.8rem;color:var(--muted);margin-top:2px}
+
+    .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+    .metric-card{padding:20px;border-radius:16px;background:var(--surface);border:1px solid var(--border);text-align:center}
+    .metric-icon{font-size:1.6rem;margin-bottom:8px}
+    .metric-value{font-family:"Space Grotesk",system-ui,sans-serif;font-size:1.8rem;font-weight:700;color:var(--accent)}
+    .metric-label{font-size:.85rem;color:var(--muted);margin-top:4px}
+
+    /* Recommendations */
+    .rec-section{margin-bottom:28px}
+    .rec-title{font-family:"Space Grotesk",system-ui,sans-serif;font-size:1.3rem;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .rec-card{padding:20px;border-radius:16px;border:1px solid var(--border);background:rgba(10,14,19,0.6);margin-bottom:12px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+    .rec-rank{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b0c0f;font-weight:800;display:grid;place-items:center;font-size:.95rem;flex-shrink:0}
+    .rec-info h4{font-size:1rem;margin-bottom:4px}
+    .rec-info p{font-size:.85rem;color:var(--muted)}
+    .rec-roi{text-align:right}
+    .rec-roi .roi-value{font-family:"Space Grotesk",system-ui,sans-serif;font-size:1.2rem;font-weight:700;color:var(--green)}
+    .rec-roi .roi-label{font-size:.75rem;color:var(--muted)}
+
+    /* Priority Matrix */
+    .matrix{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+    .matrix-cell{padding:16px;border-radius:14px;border:1px solid var(--border);background:rgba(10,14,19,0.6)}
+    .matrix-cell h5{font-size:.82rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+    .matrix-cell ul{list-style:none;font-size:.88rem;color:var(--muted)}
+    .matrix-cell li{padding:3px 0}
+    .matrix-cell li::before{content:"▹";margin-right:6px;color:var(--accent)}
+    .qw h5{color:var(--green)}
+    .si h5{color:var(--blue)}
+    .mp h5{color:var(--orange)}
+    .lt h5{color:var(--accent)}
+
+    /* CTA section */
+    .cta-section{margin-top:32px;padding:28px;border-radius:20px;background:linear-gradient(135deg,rgba(200,168,102,0.08),rgba(240,215,155,0.04));border:1px solid rgba(200,168,102,0.25);text-align:center}
+    .cta-section h3{font-family:"Space Grotesk",system-ui,sans-serif;font-size:1.4rem;margin-bottom:8px}
+    .cta-section p{color:var(--muted);font-size:.95rem;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
+    .cta-section .cta{font-size:1.05rem;padding:14px 32px}
+    .cta-section .note{font-size:.8rem;color:var(--muted);margin-top:12px}
+
+    .restart-wrap{text-align:center;margin-top:20px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border);padding:28px;color:var(--muted);position:relative;z-index:1}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
+
+    /* Responsive */
+    @media(max-width:720px){
+      .nav{flex-direction:column;align-items:flex-start}
+      .nav-links{flex-wrap:wrap}
+      .shell{padding:20px}
+      .form-row{grid-template-columns:1fr}
+      .rec-card{grid-template-columns:auto 1fr;gap:12px}
+      .rec-roi{grid-column:1/-1;text-align:left}
+      .matrix{grid-template-columns:1fr}
+      .stepper{gap:0}
+      .step-indicator{font-size:.75rem;padding:10px 4px}
+    }
+
+    @media(max-width:480px){
+      .metrics-grid{grid-template-columns:1fr}
+      .checkbox-grid{grid-template-columns:1fr}
+    }
+
+    /* Animations */
+    .animate-in{animation:fadeIn .5s ease forwards}
+    .score-ring{animation:fadeIn .8s ease}
+    @keyframes countUp{from{opacity:0}to{opacity:1}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <a href="index.html" class="brand">
+          <div class="brand-mark">⟁</div>
+          <span>Aura Automation</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Landing</a>
+          <a href="calculator.html">ROI Calculator</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="chatbot.html">AI Chatbot</a>
+        </div>
+        <a class="cta" href="index.html#contact">Book a Call</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container">
+        <div class="hero">
+          <span class="badge">🏨 Hospitality · 3-Minute Assessment</span>
+          <h1>How Much Can Your <span class="gold">Hotel Automate</span>?</h1>
+          <p>Complete this quick assessment to discover your automation score, estimated savings in CHF, and the top automations that will deliver the highest ROI for your property.</p>
+        </div>
+
+        <div class="shell">
+          <!-- Stepper -->
+          <div class="stepper">
+            <div class="step-indicator active" id="stepInd1">
+              <div class="step-num">1</div><br>Hotel Profile
+              <div class="step-connector"></div>
+            </div>
+            <div class="step-indicator" id="stepInd2">
+              <div class="step-num">2</div><br>Pain Points
+              <div class="step-connector"></div>
+            </div>
+            <div class="step-indicator" id="stepInd3">
+              <div class="step-num">3</div><br>Results
+            </div>
+          </div>
+
+          <!-- ═══ STEP 1: Hotel Profile ═══ -->
+          <div class="step-panel active" id="panel1">
+            <div class="form-group">
+              <label for="hotelName">Hotel Name</label>
+              <input type="text" id="hotelName" placeholder="e.g. Grand Palace Zurich" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="roomCount">Number of Rooms</label>
+                <input type="number" id="roomCount" placeholder="e.g. 120" min="1" max="5000" />
+              </div>
+              <div class="form-group">
+                <label for="staffSize">Staff Size</label>
+                <input type="number" id="staffSize" placeholder="e.g. 45" min="1" max="5000" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hotelType">Hotel Type</label>
+              <select id="hotelType">
+                <option value="" disabled selected>Select your property type</option>
+                <option value="boutique">Boutique Hotel</option>
+                <option value="resort">Resort & Spa</option>
+                <option value="business">Business Hotel</option>
+                <option value="chain">Hotel Chain / Group</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Current Technology Stack</label>
+              <p class="hint">Select all systems you currently use</p>
+              <div class="checkbox-grid" id="techStack">
+                <label class="check-item" data-value="PMS">
+                  <input type="checkbox" /><div class="check-box"></div>
+                  <span>PMS</span>
+                </label>
+                <label class="check-item" data-value="Channel Manager">
+                  <input type="checkbox" /><div class="check-box"></div>
+                  <span>Channel Manager</span>
+                </label>
+                <label class="check-item" data-value="Revenue Mgmt">
+                  <input type="checkbox" /><div class="check-box"></div>
+                  <span>Revenue Management</span>
+                </label>
+                <label class="check-item" data-value="CRM">
+                  <input type="checkbox" /><div class="check-box"></div>
+                  <span>CRM</span>
+                </label>
+                <label class="check-item" data-value="Email Marketing">
+                  <input type="checkbox" /><div class="check-box"></div>
+                  <span>Email Marketing</span>
+                </label>
+                <label class="check-item" data-value="None">
+                  <input type="checkbox" /><div class="check-box"></div>
+                  <span>None of the above</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="nav-buttons">
+              <div></div>
+              <button class="cta" onclick="goToStep(2)">Continue → Pain Points</button>
+            </div>
+          </div>
+
+          <!-- ═══ STEP 2: Pain Points ═══ -->
+          <div class="step-panel" id="panel2">
+            <p style="color:var(--muted);margin-bottom:18px;font-size:.95rem">Rate how much each area impacts your daily operations (1 = minimal, 5 = critical pain point)</p>
+
+            <div id="ratingsContainer"></div>
+
+            <div class="nav-buttons">
+              <button class="btn-secondary" onclick="goToStep(1)">← Back</button>
+              <button class="cta" onclick="calculateResults()">Get My Results →</button>
+            </div>
+          </div>
+
+          <!-- ═══ STEP 3: Results ═══ -->
+          <div class="step-panel" id="panel3">
+            <!-- Score Ring -->
+            <div class="score-ring">
+              <svg viewBox="0 0 200 200">
+                <defs>
+                  <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#c8a866" />
+                    <stop offset="100%" stop-color="#f0d79b" />
+                  </linearGradient>
+                </defs>
+                <circle class="score-bg" cx="100" cy="100" r="85" />
+                <circle class="score-fg" id="scoreCircle" cx="100" cy="100" r="85"
+                  stroke-dasharray="534" stroke-dashoffset="534" />
+              </svg>
+              <div class="score-label">
+                <div class="score-number" id="scoreNumber">0</div>
+                <div class="score-sub">Automation Score</div>
+              </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-icon">⏱️</div>
+                <div class="metric-value" id="hoursSaved">0</div>
+                <div class="metric-label">Hours saved / week</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-icon">💰</div>
+                <div class="metric-value" id="costSavings">CHF 0</div>
+                <div class="metric-label">Estimated savings / month</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-icon">📊</div>
+                <div class="metric-value" id="automationPotential">0%</div>
+                <div class="metric-label">Automation potential</div>
+              </div>
+            </div>
+
+            <!-- Top 3 Recommendations -->
+            <div class="rec-section">
+              <div class="rec-title">🏆 Top 3 Recommended Automations</div>
+              <div id="recommendations"></div>
+            </div>
+
+            <!-- Priority Matrix -->
+            <div class="rec-section">
+              <div class="rec-title">📋 Priority Matrix</div>
+              <div class="matrix" id="priorityMatrix">
+                <div class="matrix-cell qw">
+                  <h5>⚡ Quick Wins</h5>
+                  <ul id="matrixQW"></ul>
+                </div>
+                <div class="matrix-cell si">
+                  <h5>🎯 Strategic Investments</h5>
+                  <ul id="matrixSI"></ul>
+                </div>
+                <div class="matrix-cell mp">
+                  <h5>🔧 Minor Projects</h5>
+                  <ul id="matrixMP"></ul>
+                </div>
+                <div class="matrix-cell lt">
+                  <h5>🏗️ Long-Term Transformations</h5>
+                  <ul id="matrixLT"></ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+              <h3>Ready to Automate Your Hotel?</h3>
+              <p>Get a custom automation plan tailored to your property, with implementation timeline and exact ROI projections.</p>
+              <button class="cta" id="ctaEmail">Get Your Custom Automation Plan →</button>
+              <p class="note">We'll review your assessment and reply with a detailed proposal within 24 hours.</p>
+            </div>
+
+            <div class="restart-wrap">
+              <button class="btn-secondary" onclick="restart()" style="margin-top:16px">↺ Retake Assessment</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 Aura Automation · Hospitality Division</span>
+        <span><a href="mailto:aurasamuraihub@gmail.com">aurasamuraihub@gmail.com</a></span>
+      </div>
+    </footer>
+  </div>
+
+<script>
+// ─── Pain Point Definitions ───
+const painPoints = [
+  { id: "booking",       label: "Manual Booking Management",       icon: "📅", desc: "OTA syncing, manual entries, overbooking risk" },
+  { id: "communication", label: "Guest Communication Delays",      icon: "💬", desc: "Slow responses, missed requests, language barriers" },
+  { id: "revenue",       label: "Revenue & Pricing Optimization",  icon: "📈", desc: "Static rates, no demand-based pricing, revenue leakage" },
+  { id: "scheduling",    label: "Staff Scheduling Complexity",     icon: "👥", desc: "Shift conflicts, overtime, seasonal staffing" },
+  { id: "reviews",       label: "Review Management",               icon: "⭐", desc: "Unmonitored reviews, slow responses, reputation risk" },
+  { id: "reporting",     label: "Reporting & Analytics",           icon: "📊", desc: "Manual reports, no real-time dashboards, data silos" },
+  { id: "inventory",     label: "Inventory & Procurement",         icon: "📦", desc: "Manual ordering, stock-outs, supplier management" },
+  { id: "marketing",     label: "Marketing Automation",            icon: "🎯", desc: "No personalization, manual campaigns, low direct bookings" }
+];
+
+// ─── Automation Solutions Database ───
+const solutions = {
+  booking: {
+    name: "Booking & Channel Automation",
+    desc: "Auto-sync OTAs, PMS updates, confirmation emails, and availability management",
+    hoursSavedBase: 8,    // hours/week base for medium hotel
+    costFactor: 0.12,     // % of total labor cost savings
+    roi: "280%",
+    priority: "quick-win",
+    implementation: "2-3 weeks"
+  },
+  communication: {
+    name: "Guest Communication AI",
+    desc: "AI chatbot for FAQ, automated pre/post-stay emails, multi-language responses",
+    hoursSavedBase: 6,
+    costFactor: 0.09,
+    roi: "320%",
+    priority: "quick-win",
+    implementation: "1-2 weeks"
+  },
+  revenue: {
+    name: "Dynamic Revenue Management",
+    desc: "Demand-based pricing, competitor monitoring, automated rate adjustments",
+    hoursSavedBase: 5,
+    costFactor: 0.15,     // higher because revenue uplift
+    roi: "450%",
+    priority: "strategic",
+    implementation: "4-6 weeks"
+  },
+  scheduling: {
+    name: "Smart Staff Scheduling",
+    desc: "AI-optimized rosters, demand forecasting, overtime alerts, shift swapping",
+    hoursSavedBase: 7,
+    costFactor: 0.11,
+    roi: "240%",
+    priority: "strategic",
+    implementation: "3-4 weeks"
+  },
+  reviews: {
+    name: "Review Auto-Management",
+    desc: "Sentiment monitoring, auto-responses, review solicitation, reputation dashboard",
+    hoursSavedBase: 4,
+    costFactor: 0.05,
+    roi: "190%",
+    priority: "quick-win",
+    implementation: "1-2 weeks"
+  },
+  reporting: {
+    name: "Automated Reporting & BI",
+    desc: "Real-time dashboards, automated KPI reports, cross-department analytics",
+    hoursSavedBase: 5,
+    costFactor: 0.07,
+    roi: "210%",
+    priority: "minor",
+    implementation: "2-3 weeks"
+  },
+  inventory: {
+    name: "Inventory & Procurement Automation",
+    desc: "Auto-reorder triggers, supplier portals, consumption tracking, waste reduction",
+    hoursSavedBase: 4,
+    costFactor: 0.06,
+    roi: "170%",
+    priority: "minor",
+    implementation: "3-4 weeks"
+  },
+  marketing: {
+    name: "Marketing & CRM Automation",
+    desc: "Guest segmentation, personalized campaigns, loyalty programs, direct booking boost",
+    hoursSavedBase: 5,
+    costFactor: 0.10,
+    roi: "350%",
+    priority: "long-term",
+    implementation: "4-8 weeks"
+  }
+};
+
+// ─── State ───
+let ratings = {};
+const STAFF_COST_CHF = 4500; // average monthly per staff member
+
+// ─── Initialize Ratings UI ───
+function initRatings() {
+  const container = document.getElementById("ratingsContainer");
+  container.innerHTML = "";
+  painPoints.forEach(pp => {
+    ratings[pp.id] = 0;
+    const card = document.createElement("div");
+    card.className = "rating-card";
+    card.innerHTML = `
+      <div class="rating-header">
+        <span class="rating-title">${pp.icon} ${pp.label}</span>
+        <span class="rating-value" id="rv_${pp.id}">—</span>
+      </div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:8px">${pp.desc}</div>
+      <div class="rating-bar" id="rb_${pp.id}">
+        ${[1,2,3,4,5].map(v => `<div class="rating-dot" data-id="${pp.id}" data-val="${v}"></div>`).join("")}
+      </div>
+      <div class="rating-labels"><span>Minimal</span><span>Critical</span></div>
+    `;
+    container.appendChild(card);
+  });
+
+  // Click handlers
+  container.querySelectorAll(".rating-dot").forEach(dot => {
+    dot.addEventListener("click", function() {
+      const id = this.dataset.id;
+      const val = parseInt(this.dataset.val);
+      ratings[id] = val;
+      document.getElementById("rv_" + id).textContent = val;
+      const bar = document.getElementById("rb_" + id);
+      bar.querySelectorAll(".rating-dot").forEach((d, i) => {
+        d.classList.toggle("filled", i < val);
+      });
+    });
+  });
+}
+
+// ─── Checkbox Logic ───
+document.querySelectorAll(".check-item").forEach(item => {
+  item.addEventListener("click", function() {
+    const cb = this.querySelector("input");
+    const isNone = this.dataset.value === "None";
+
+    if (isNone) {
+      // Uncheck all others
+      document.querySelectorAll("#techStack .check-item").forEach(ci => {
+        if (ci.dataset.value !== "None") {
+          ci.classList.remove("checked");
+          ci.querySelector("input").checked = false;
+        }
+      });
+      cb.checked = !cb.checked;
+      this.classList.toggle("checked", cb.checked);
+    } else {
+      // Uncheck "None"
+      const noneItem = document.querySelector('#techStack .check-item[data-value="None"]');
+      if (noneItem) {
+        noneItem.classList.remove("checked");
+        noneItem.querySelector("input").checked = false;
+      }
+      cb.checked = !cb.checked;
+      this.classList.toggle("checked", cb.checked);
+    }
+  });
+});
+
+// ─── Step Navigation ───
+function goToStep(step) {
+  // Validate step 1
+  if (step === 2) {
+    const rooms = parseInt(document.getElementById("roomCount").value);
+    const staff = parseInt(document.getElementById("staffSize").value);
+    const type = document.getElementById("hotelType").value;
+    if (!rooms || rooms < 1) { shake("roomCount"); return; }
+    if (!staff || staff < 1) { shake("staffSize"); return; }
+    if (!type) { shake("hotelType"); return; }
+  }
+
+  document.querySelectorAll(".step-panel").forEach(p => p.classList.remove("active"));
+  document.getElementById("panel" + step).classList.add("active");
+
+  document.querySelectorAll(".step-indicator").forEach((si, i) => {
+    si.classList.remove("active", "done");
+    if (i + 1 < step) si.classList.add("done");
+    if (i + 1 === step) si.classList.add("active");
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function shake(id) {
+  const el = document.getElementById(id);
+  el.style.borderColor = "var(--red)";
+  el.style.animation = "none";
+  el.offsetHeight; // reflow
+  el.style.animation = "shake .4s ease";
+  setTimeout(() => { el.style.borderColor = ""; el.style.animation = ""; }, 600);
+}
+
+// ─── Calculate Results ───
+function calculateResults() {
+  const hotelName = document.getElementById("hotelName").value || "Your Hotel";
+  const rooms = parseInt(document.getElementById("roomCount").value) || 50;
+  const staff = parseInt(document.getElementById("staffSize").value) || 15;
+  const hotelType = document.getElementById("hotelType").value || "business";
+
+  // Get tech stack
+  const techStack = [];
+  document.querySelectorAll("#techStack .check-item.checked").forEach(c => {
+    techStack.push(c.dataset.value);
+  });
+  const techCount = techStack.filter(t => t !== "None").length;
+
+  // ─── Automation Score Calculation ───
+  // Base: average pain rating (0-5) scaled to 0-60
+  const ratingValues = Object.values(ratings);
+  const avgPain = ratingValues.reduce((s, v) => s + v, 0) / ratingValues.length;
+  let painScore = (avgPain / 5) * 60;
+
+  // Tech gap bonus: fewer tools = more automation potential (+0 to +25)
+  const techGapBonus = Math.max(0, (5 - techCount)) * 5;
+
+  // Scale factor: larger hotels benefit more (+0 to +15)
+  let scaleFactor = 0;
+  if (rooms > 200) scaleFactor = 15;
+  else if (rooms > 100) scaleFactor = 10;
+  else if (rooms > 50) scaleFactor = 5;
+
+  const rawScore = painScore + techGapBonus + scaleFactor;
+  const automationScore = Math.min(100, Math.max(8, Math.round(rawScore)));
+
+  // ─── Hours Saved Calculation ───
+  // Industry data: hotels spend 15-25% of labor on automatable tasks
+  // Scale by pain ratings and hotel size
+  const sizeMultiplier = Math.min(3, rooms / 50);  // 1x at 50 rooms, 3x at 150+
+  let totalHoursSaved = 0;
+  const solutionScores = [];
+
+  painPoints.forEach(pp => {
+    const sol = solutions[pp.id];
+    const rating = ratings[pp.id] || 0;
+    if (rating === 0) return;
+    const hours = sol.hoursSavedBase * (rating / 3) * sizeMultiplier * (0.7 + Math.random() * 0.3);
+    const roundedHours = Math.round(hours * 10) / 10;
+    totalHoursSaved += roundedHours;
+    solutionScores.push({
+      ...sol,
+      id: pp.id,
+      painRating: rating,
+      hoursSaved: roundedHours,
+      icon: pp.icon
+    });
+  });
+
+  totalHoursSaved = Math.round(totalHoursSaved);
+
+  // ─── Cost Savings (CHF) ───
+  // Staff cost basis: staff × CHF 4,500/month
+  // Automatable portion: 15-25% based on score
+  const automatablePct = 0.15 + (automationScore / 100) * 0.10; // 15-25%
+  const totalLaborCost = staff * STAFF_COST_CHF;
+  const monthlySavings = Math.round(totalLaborCost * automatablePct);
+
+  // Automation potential percentage
+  const automationPct = Math.round(automatablePct * 100);
+
+  // ─── Sort & pick top 3 recommendations ───
+  solutionScores.sort((a, b) => b.painRating - a.painRating || b.hoursSaved - a.hoursSaved);
+  const top3 = solutionScores.slice(0, 3);
+
+  // If fewer than 3 rated, fill with defaults
+  if (top3.length < 3) {
+    const remaining = Object.entries(solutions)
+      .filter(([k]) => !top3.find(t => t.id === k))
+      .map(([k, v]) => ({ ...v, id: k, painRating: 0, hoursSaved: v.hoursSavedBase * sizeMultiplier * 0.5 }));
+    remaining.sort((a, b) => b.hoursSaved - a.hoursSaved);
+    while (top3.length < 3 && remaining.length) top3.push(remaining.shift());
+  }
+
+  // ─── Render Results ───
+  goToStep(3);
+
+  // Animate score ring
+  const circumference = 2 * Math.PI * 85; // ~534
+  const offset = circumference - (automationScore / 100) * circumference;
+  const circle = document.getElementById("scoreCircle");
+  setTimeout(() => { circle.style.strokeDashoffset = offset; }, 100);
+
+  // Animate score number
+  animateNumber("scoreNumber", automationScore, "", 1500);
+  animateNumber("hoursSaved", totalHoursSaved, "", 1200);
+  document.getElementById("costSavings").textContent = "CHF " + monthlySavings.toLocaleString("de-CH");
+  document.getElementById("automationPotential").textContent = automationPct + "%";
+
+  // Recommendations
+  const recContainer = document.getElementById("recommendations");
+  recContainer.innerHTML = "";
+  top3.forEach((sol, i) => {
+    const card = document.createElement("div");
+    card.className = "rec-card animate-in";
+    card.style.animationDelay = (i * 0.15) + "s";
+    // Calculate specific ROI for this solution
+    const solSavings = Math.round(monthlySavings * sol.costFactor / automatablePct);
+    card.innerHTML = `
+      <div class="rec-rank">${i + 1}</div>
+      <div class="rec-info">
+        <h4>${sol.name}</h4>
+        <p>${sol.desc}</p>
+        <p style="margin-top:4px;font-size:.8rem;color:var(--accent)">⏱ Implementation: ${sol.implementation}</p>
+      </div>
+      <div class="rec-roi">
+        <div class="roi-value">CHF ${solSavings.toLocaleString("de-CH")}/mo</div>
+        <div class="roi-label">ROI: ${sol.roi}</div>
+      </div>
+    `;
+    recContainer.appendChild(card);
+  });
+
+  // Priority Matrix
+  const matrix = { "quick-win": [], "strategic": [], "minor": [], "long-term": [] };
+  solutionScores.forEach(sol => {
+    if (sol.painRating >= 4) {
+      // High pain + quick implementation = quick win, else strategic
+      if (sol.priority === "quick-win" || sol.priority === "minor") matrix["quick-win"].push(sol.name);
+      else matrix["strategic"].push(sol.name);
+    } else if (sol.painRating >= 2) {
+      if (sol.priority === "strategic" || sol.priority === "long-term") matrix["strategic"].push(sol.name);
+      else matrix["minor"].push(sol.name);
+    } else {
+      matrix["long-term"].push(sol.name);
+    }
+  });
+
+  // Fill empties with defaults
+  Object.keys(matrix).forEach(k => {
+    if (matrix[k].length === 0) matrix[k].push("—");
+  });
+
+  document.getElementById("matrixQW").innerHTML = matrix["quick-win"].map(s => `<li>${s}</li>`).join("");
+  document.getElementById("matrixSI").innerHTML = matrix["strategic"].map(s => `<li>${s}</li>`).join("");
+  document.getElementById("matrixMP").innerHTML = matrix["minor"].map(s => `<li>${s}</li>`).join("");
+  document.getElementById("matrixLT").innerHTML = matrix["long-term"].map(s => `<li>${s}</li>`).join("");
+
+  // ─── CTA mailto ───
+  document.getElementById("ctaEmail").onclick = function() {
+    const ratingLines = painPoints.map(pp => `  ${pp.label}: ${ratings[pp.id] || "not rated"}/5`).join("\n");
+    const recLines = top3.map((s, i) => `  ${i+1}. ${s.name} (ROI: ${s.roi})`).join("\n");
+
+    const subject = encodeURIComponent(`Hotel Automation Plan Request — ${hotelName}`);
+    const body = encodeURIComponent(
+      `HOTEL AUTOMATION ASSESSMENT RESULTS\n` +
+      `${"═".repeat(40)}\n\n` +
+      `Hotel: ${hotelName}\n` +
+      `Rooms: ${rooms}\n` +
+      `Staff: ${staff}\n` +
+      `Type: ${hotelType}\n` +
+      `Tech Stack: ${techStack.length ? techStack.join(", ") : "None"}\n\n` +
+      `AUTOMATION SCORE: ${automationScore}/100\n` +
+      `Hours Saved/Week: ${totalHoursSaved}\n` +
+      `Estimated Monthly Savings: CHF ${monthlySavings.toLocaleString("de-CH")}\n` +
+      `Automation Potential: ${automationPct}%\n\n` +
+      `PAIN POINT RATINGS:\n${ratingLines}\n\n` +
+      `TOP 3 RECOMMENDED AUTOMATIONS:\n${recLines}\n\n` +
+      `${"═".repeat(40)}\n` +
+      `I'd like to discuss a custom automation plan for my hotel.\n` +
+      `Please contact me to schedule a consultation.\n\n` +
+      `Best regards`
+    );
+
+    window.location.href = `mailto:aurasamuraihub@gmail.com?subject=${subject}&body=${body}`;
+  };
+}
+
+// ─── Animate number counter ───
+function animateNumber(elementId, target, suffix, duration) {
+  const el = document.getElementById(elementId);
+  const start = performance.now();
+  const initial = 0;
+
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out quad
+    const eased = 1 - (1 - progress) * (1 - progress);
+    const current = Math.round(initial + (target - initial) * eased);
+    el.textContent = current + (suffix || "");
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// ─── Restart ───
+function restart() {
+  document.getElementById("hotelName").value = "";
+  document.getElementById("roomCount").value = "";
+  document.getElementById("staffSize").value = "";
+  document.getElementById("hotelType").selectedIndex = 0;
+  document.querySelectorAll("#techStack .check-item").forEach(c => {
+    c.classList.remove("checked");
+    c.querySelector("input").checked = false;
+  });
+  ratings = {};
+  // Reset score circle
+  document.getElementById("scoreCircle").style.strokeDashoffset = "534";
+  initRatings();
+  goToStep(1);
+}
+
+// ─── Init ───
+initRatings();
+</script>
+</body>
+</html>
