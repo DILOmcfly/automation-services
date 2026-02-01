@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>n8n Workflow Validator — Free Online Tool</title>
+  <meta name="description" content="Free n8n workflow JSON validator. Check your workflows for errors, missing connections, and best practices before importing." />
+  <meta name="keywords" content="n8n workflow validator, n8n JSON checker, workflow debugging tool, n8n automation" />
+  <meta name="author" content="AuraSamuraiHub" />
+  <meta property="og:title" content="n8n Workflow Validator — Free Tool" />
+  <meta property="og:description" content="Validate your n8n workflow JSON. Catch errors before they break your automations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13; --bg-2: #0f1520; --surface: #121a26;
+      --card: #101826; --border: rgba(255,255,255,0.08);
+      --text: #e7eef6; --muted: #a9b7c7;
+      --accent: #38e8ff; --accent-2: #7b5cff; --accent-3: #23d18b;
+      --red: #ff4757; --yellow: #ffc048;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --max: 900px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Manrope", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #111b2c 0%, var(--bg) 45%, #07090d 100%);
+      color: var(--text); line-height: 1.6; min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page { width: 100%; position: relative; overflow: hidden; }
+    .page::before {
+      content: ""; position: absolute; inset: -200px -100px auto -100px; height: 480px;
+      background: radial-gradient(60% 60% at 50% 50%, rgba(123,92,255,0.18), transparent 70%);
+      z-index: 0; pointer-events: none;
+    }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(10,14,19,0.92), rgba(10,14,19,0.65));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      max-width: var(--max); margin: 0 auto;
+      padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: "Space Grotesk", monospace; font-weight: 700; font-size: 1.1rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 18px; font-size: 0.85rem; }
+    .nav-links a { color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 40px 24px; position: relative; z-index: 1; }
+
+    h1 {
+      font-family: "Space Grotesk", monospace;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800; text-align: center; margin-bottom: 8px;
+    }
+    h1 .gradient {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .subtitle { text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 28px; }
+
+    .editor-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden; box-shadow: var(--shadow);
+    }
+    .editor-toolbar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 20px; border-bottom: 1px solid var(--border);
+      background: var(--bg-2);
+    }
+    .editor-toolbar .label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+    .btn {
+      font-family: "Manrope", sans-serif; font-weight: 600; font-size: 0.82rem;
+      padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--bg-2); color: var(--text); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0a0e13; border: none; font-weight: 700;
+    }
+    .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(56,232,255,0.3); }
+    .spacer { flex: 1; }
+
+    textarea {
+      width: 100%; min-height: 300px; padding: 20px;
+      font-family: "JetBrains Mono", monospace; font-size: 0.85rem;
+      background: var(--card); color: var(--text); border: none;
+      resize: vertical; outline: none; line-height: 1.5;
+    }
+    textarea::placeholder { color: rgba(169,183,199,0.4); }
+
+    .results-panel {
+      padding: 20px; border-top: 1px solid var(--border);
+      display: none;
+    }
+    .results-panel.show { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .summary {
+      display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .summary .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;
+    }
+    .chip.pass { background: rgba(35,209,139,0.15); color: var(--accent-3); }
+    .chip.warn { background: rgba(255,192,72,0.15); color: var(--yellow); }
+    .chip.fail { background: rgba(255,71,87,0.15); color: var(--red); }
+    .chip.info { background: rgba(56,232,255,0.1); color: var(--accent); }
+
+    .issue-list { list-style: none; }
+    .issue {
+      padding: 10px 14px; border-radius: 8px; margin-bottom: 6px;
+      font-size: 0.85rem; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .issue.error { background: rgba(255,71,87,0.08); border-left: 3px solid var(--red); }
+    .issue.warning { background: rgba(255,192,72,0.08); border-left: 3px solid var(--yellow); }
+    .issue.tip { background: rgba(56,232,255,0.06); border-left: 3px solid var(--accent); }
+    .issue.ok { background: rgba(35,209,139,0.08); border-left: 3px solid var(--accent-3); }
+    .issue .icon { flex-shrink: 0; font-size: 1rem; }
+
+    .cta-bar {
+      margin-top: 20px; padding: 16px 20px; border-radius: 12px;
+      background: rgba(123,92,255,0.08); border: 1px solid rgba(123,92,255,0.2);
+      text-align: center; font-size: 0.88rem;
+    }
+    .cta-bar a { font-weight: 700; }
+
+    footer {
+      padding: 24px; border-top: 1px solid var(--border); text-align: center;
+      font-size: 0.78rem; color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      textarea { min-height: 200px; font-size: 0.78rem; }
+      .summary { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="nav">
+      <div class="logo">Aura<span>Automation</span></div>
+      <div class="nav-links">
+        <a href="index.html">Services</a>
+        <a href="calculator.html">ROI Calculator</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" target="_blank">Templates</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>n8n Workflow <span class="gradient">Validator</span></h1>
+    <p class="subtitle">Paste your workflow JSON below. Get instant feedback on structure, connections, and best practices.</p>
+
+    <div class="editor-wrap">
+      <div class="editor-toolbar">
+        <span class="label">workflow.json</span>
+        <span class="spacer"></span>
+        <button class="btn" onclick="loadSample()">Load Sample</button>
+        <button class="btn" onclick="formatJSON()">Format</button>
+        <button class="btn primary" onclick="validate()">🔍 Validate</button>
+      </div>
+      <textarea id="editor" placeholder='Paste your n8n workflow JSON here...
+
+Example:
+{
+  "nodes": [...],
+  "connections": {...},
+  "settings": {...}
+}'></textarea>
+      <div class="results-panel" id="results"></div>
+    </div>
+
+    <div class="cta-bar" id="ctaBar" style="margin-top: 20px; display: none;">
+      Need help fixing your workflow? <a href="mailto:aurasamuraihub@gmail.com?subject=Workflow%20Help%20Request">Get expert help →</a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html">← Services</a> · <a href="calculator.html">ROI Calculator</a> ·
+    © 2026 Aura Automation · <a href="https://github.com/DILOmcfly" target="_blank">GitHub</a>
+  </footer>
+</div>
+
+<script>
+function validate() {
+  const raw = document.getElementById('editor').value.trim();
+  const panel = document.getElementById('results');
+  const issues = [];
+  let data;
+
+  // Parse JSON
+  try {
+    data = JSON.parse(raw);
+  } catch (e) {
+    panel.innerHTML = renderResults([{type: 'error', icon: '❌', msg: `Invalid JSON: ${e.message}`}], null);
+    panel.classList.add('show');
+    document.getElementById('ctaBar').style.display = 'block';
+    return;
+  }
+
+  // Detect format (array wrapper vs object)
+  let workflow = data;
+  if (Array.isArray(data)) {
+    if (data.length === 0) {
+      issues.push({type: 'error', icon: '❌', msg: 'Empty array — no workflow found.'});
+      panel.innerHTML = renderResults(issues, null);
+      panel.classList.add('show');
+      return;
+    }
+    workflow = data[0];
+    issues.push({type: 'tip', icon: '💡', msg: 'Detected array-wrapped workflow (export format). Validating first item.'});
+  }
+
+  const stats = { nodes: 0, connections: 0, triggers: 0, errors: 0, warnings: 0, tips: 0 };
+
+  // Check required fields
+  if (!workflow.nodes || !Array.isArray(workflow.nodes)) {
+    issues.push({type: 'error', icon: '❌', msg: 'Missing or invalid "nodes" array. Every workflow needs at least one node.'});
+  } else {
+    stats.nodes = workflow.nodes.length;
+    if (stats.nodes === 0) {
+      issues.push({type: 'error', icon: '❌', msg: 'Workflow has 0 nodes. Add at least a trigger and one action.'});
+    }
+  }
+
+  if (!workflow.connections || typeof workflow.connections !== 'object') {
+    issues.push({type: 'warning', icon: '⚠️', msg: 'Missing "connections" object. Nodes won\'t be linked.'});
+  }
+
+  // Analyze nodes
+  if (workflow.nodes && workflow.nodes.length > 0) {
+    const nodeNames = new Set();
+    const nodeTypes = new Set();
+    const duplicateNames = [];
+
+    workflow.nodes.forEach((node, i) => {
+      // Check name
+      if (!node.name) {
+        issues.push({type: 'error', icon: '❌', msg: `Node #${i+1} has no name.`});
+      } else {
+        if (nodeNames.has(node.name)) {
+          duplicateNames.push(node.name);
+        }
+        nodeNames.add(node.name);
+      }
+
+      // Check type
+      if (!node.type) {
+        issues.push({type: 'error', icon: '❌', msg: `Node "${node.name || '#' + (i+1)}" has no type.`});
+      } else {
+        nodeTypes.add(node.type);
+        // Count triggers
+        if (node.type.includes('trigger') || node.type.includes('Trigger') ||
+            node.type === 'n8n-nodes-base.webhook' || node.type === 'n8n-nodes-base.schedule' ||
+            node.type === 'n8n-nodes-base.manualTrigger') {
+          stats.triggers++;
+        }
+      }
+
+      // Check position
+      if (!node.position || !Array.isArray(node.position) || node.position.length < 2) {
+        issues.push({type: 'warning', icon: '⚠️', msg: `Node "${node.name || '#' + (i+1)}" has no position. It may overlap with others.`});
+      }
+
+      // Check for disabled nodes
+      if (node.disabled === true) {
+        issues.push({type: 'tip', icon: '💡', msg: `Node "${node.name}" is disabled. Remove it or re-enable if needed.`});
+      }
+
+      // Check credentials reference
+      if (node.credentials) {
+        Object.keys(node.credentials).forEach(credType => {
+          if (typeof node.credentials[credType] === 'string') {
+            issues.push({type: 'tip', icon: '🔑', msg: `Node "${node.name}" references credential "${node.credentials[credType]}". Make sure it exists in your n8n instance.`});
+          }
+        });
+      }
+    });
+
+    if (duplicateNames.length > 0) {
+      issues.push({type: 'error', icon: '❌', msg: `Duplicate node names: ${[...new Set(duplicateNames)].join(', ')}. Each node must have a unique name.`});
+    }
+
+    // Check trigger count
+    if (stats.triggers === 0) {
+      issues.push({type: 'warning', icon: '⚠️', msg: 'No trigger node found. The workflow won\'t start automatically. Add a Webhook, Schedule, or Manual Trigger.'});
+    } else if (stats.triggers > 1) {
+      issues.push({type: 'tip', icon: '💡', msg: `${stats.triggers} trigger nodes detected. n8n processes only one trigger per execution.`});
+    }
+
+    // Check connections reference valid nodes
+    if (workflow.connections && typeof workflow.connections === 'object') {
+      let totalConns = 0;
+      const connectedNodes = new Set();
+
+      Object.entries(workflow.connections).forEach(([source, outputs]) => {
+        if (!nodeNames.has(source)) {
+          issues.push({type: 'error', icon: '❌', msg: `Connection references non-existent source node: "${source}"`});
+        }
+        connectedNodes.add(source);
+        if (outputs && outputs.main) {
+          outputs.main.forEach(outputGroup => {
+            if (Array.isArray(outputGroup)) {
+              outputGroup.forEach(conn => {
+                totalConns++;
+                if (conn.node && !nodeNames.has(conn.node)) {
+                  issues.push({type: 'error', icon: '❌', msg: `Connection references non-existent target node: "${conn.node}"`});
+                }
+                if (conn.node) connectedNodes.add(conn.node);
+              });
+            }
+          });
+        }
+      });
+
+      stats.connections = totalConns;
+
+      // Check for orphan nodes (not connected)
+      const orphans = [...nodeNames].filter(n => !connectedNodes.has(n));
+      if (orphans.length > 0 && workflow.nodes.length > 1) {
+        issues.push({type: 'warning', icon: '⚠️', msg: `Disconnected nodes: ${orphans.join(', ')}. These won't execute.`});
+      }
+    }
+
+    // Best practices
+    if (stats.nodes > 50) {
+      issues.push({type: 'tip', icon: '💡', msg: `Large workflow (${stats.nodes} nodes). Consider splitting into sub-workflows for maintainability.`});
+    }
+
+    // Check for error handling
+    const hasErrorTrigger = workflow.nodes.some(n => n.type === 'n8n-nodes-base.errorTrigger');
+    if (!hasErrorTrigger && stats.nodes > 5) {
+      issues.push({type: 'tip', icon: '💡', msg: 'No error handling detected. Consider adding an Error Trigger node for production workflows.'});
+    }
+
+    // Check settings
+    if (workflow.settings) {
+      if (workflow.settings.executionOrder === 'v1') {
+        issues.push({type: 'tip', icon: '💡', msg: 'Using v1 execution order. Consider upgrading to v2 for better parallel execution.'});
+      }
+    }
+  }
+
+  // Count
+  stats.errors = issues.filter(i => i.type === 'error').length;
+  stats.warnings = issues.filter(i => i.type === 'warning').length;
+  stats.tips = issues.filter(i => i.type === 'tip').length;
+
+  // All good?
+  if (issues.length === 0) {
+    issues.push({type: 'ok', icon: '✅', msg: 'Workflow looks valid! No issues detected.'});
+  }
+
+  panel.innerHTML = renderResults(issues, stats);
+  panel.classList.add('show');
+  document.getElementById('ctaBar').style.display = stats.errors > 0 ? 'block' : 'none';
+}
+
+function renderResults(issues, stats) {
+  let html = '<div class="summary">';
+  if (stats) {
+    html += `<span class="chip info">📦 ${stats.nodes} nodes</span>`;
+    html += `<span class="chip info">🔗 ${stats.connections} connections</span>`;
+    html += `<span class="chip info">⚡ ${stats.triggers} trigger${stats.triggers !== 1 ? 's' : ''}</span>`;
+    if (stats.errors > 0) html += `<span class="chip fail">❌ ${stats.errors} error${stats.errors !== 1 ? 's' : ''}</span>`;
+    if (stats.warnings > 0) html += `<span class="chip warn">⚠️ ${stats.warnings} warning${stats.warnings !== 1 ? 's' : ''}</span>`;
+    if (stats.tips > 0) html += `<span class="chip info">💡 ${stats.tips} tip${stats.tips !== 1 ? 's' : ''}</span>`;
+    if (stats.errors === 0 && stats.warnings === 0) html += `<span class="chip pass">✅ Valid</span>`;
+  }
+  html += '</div><ul class="issue-list">';
+  issues.forEach(i => {
+    const cls = i.type === 'error' ? 'error' : i.type === 'warning' ? 'warning' : i.type === 'ok' ? 'ok' : 'tip';
+    html += `<li class="issue ${cls}"><span class="icon">${i.icon}</span><span>${i.msg}</span></li>`;
+  });
+  html += '</ul>';
+  return html;
+}
+
+function formatJSON() {
+  const ed = document.getElementById('editor');
+  try {
+    const parsed = JSON.parse(ed.value);
+    ed.value = JSON.stringify(parsed, null, 2);
+  } catch (e) {
+    // Can't format invalid JSON
+  }
+}
+
+function loadSample() {
+  document.getElementById('editor').value = JSON.stringify({
+    "name": "AI Email Responder",
+    "nodes": [
+      {"name": "Email Trigger", "type": "n8n-nodes-base.emailReadImap", "position": [250, 300], "parameters": {"mailbox": "INBOX", "options": {}}},
+      {"name": "AI Classify", "type": "@n8n/n8n-nodes-langchain.openAi", "position": [500, 300], "parameters": {"model": "gpt-4", "prompt": "Classify this email"}},
+      {"name": "Route", "type": "n8n-nodes-base.switch", "position": [750, 300], "parameters": {}},
+      {"name": "Draft Reply", "type": "@n8n/n8n-nodes-langchain.openAi", "position": [1000, 200], "parameters": {}},
+      {"name": "Archive", "type": "n8n-nodes-base.gmail", "position": [1000, 400], "parameters": {}}
+    ],
+    "connections": {
+      "Email Trigger": {"main": [[{"node": "AI Classify", "type": "main", "index": 0}]]},
+      "AI Classify": {"main": [[{"node": "Route", "type": "main", "index": 0}]]},
+      "Route": {"main": [[{"node": "Draft Reply", "type": "main", "index": 0}], [{"node": "Archive", "type": "main", "index": 0}]]}
+    },
+    "settings": {"executionOrder": "v1"}
+  }, null, 2);
+  validate();
+}
+</script>
+</body>
+</html>
