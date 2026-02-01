@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Case Studies | Aura Automation — Real Results from Real Businesses</title>
+  <meta name="description" content="See how businesses saved 25+ hours/week and thousands per month with custom n8n automation workflows. Real case studies with measurable ROI." />
+  <meta name="keywords" content="automation case studies, n8n results, business automation ROI, workflow automation examples" />
+  <meta name="author" content="AuraSamuraiHub" />
+  <meta property="og:title" content="Case Studies | Aura Automation" />
+  <meta property="og:description" content="Real businesses. Real automation. Real results. See how our clients save hours and thousands per month." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dilomcfly.github.io/automation-services/case-studies.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Case Studies | Aura Automation" />
+  <meta name="twitter:description" content="Real businesses. Real automation. Real results." />
+  <link rel="canonical" href="https://dilomcfly.github.io/automation-services/case-studies.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13;
+      --bg-2: #0f1520;
+      --surface: #121a26;
+      --surface-2: #141f2f;
+      --card: #101826;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e7eef6;
+      --muted: #a9b7c7;
+      --accent: #38e8ff;
+      --accent-2: #7b5cff;
+      --accent-3: #23d18b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --glow: 0 0 40px rgba(56, 232, 255, 0.15);
+      --max: 1140px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #111b2c 0%, var(--bg) 45%, #07090d 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page { position: relative; overflow: hidden; }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: -200px -100px auto -100px;
+      height: 480px;
+      background: radial-gradient(60% 60% at 50% 50%, rgba(123, 92, 255, 0.18), transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: auto -150px -120px -150px;
+      height: 360px;
+      background: radial-gradient(60% 60% at 50% 50%, rgba(35, 209, 139, 0.12), transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Header / Nav ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(10, 14, 19, 0.92), rgba(10, 14, 19, 0.65));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(56, 232, 255, 0.3), rgba(123, 92, 255, 0.35));
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--glow);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a { transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+
+    .cta {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #05080e;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(56, 232, 255, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(56, 232, 255, 0.35);
+    }
+
+    main { position: relative; z-index: 1; }
+    section { padding: 96px 28px; }
+    .container { max-width: var(--max); margin: 0 auto; }
+
+    /* ── Hero ── */
+    .page-hero {
+      padding-top: 110px;
+      padding-bottom: 60px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .page-hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    .stats-bar .stat-item {
+      text-align: center;
+    }
+
+    .stats-bar .stat-number {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stats-bar .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    /* ── Case Study Cards ── */
+    .cases-grid {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    }
+
+    .case-card {
+      background: linear-gradient(160deg, rgba(18, 26, 38, 0.95), rgba(14, 20, 31, 0.85));
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .case-card:hover {
+      border-color: rgba(56, 232, 255, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .case-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .case-card:hover::before { opacity: 1; }
+
+    .case-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .case-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(56, 232, 255, 0.15), rgba(123, 92, 255, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .case-header-text h3 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .industry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(123, 92, 255, 0.15);
+      border: 1px solid rgba(123, 92, 255, 0.25);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      width: fit-content;
+    }
+
+    .case-section { display: flex; flex-direction: column; gap: 8px; }
+
+    .case-section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .case-section p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* Results Grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .result-item {
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .result-number {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .result-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Quote */
+    .case-quote {
+      padding: 20px 24px;
+      border-radius: 16px;
+      background: rgba(123, 92, 255, 0.06);
+      border-left: 3px solid var(--accent-2);
+      position: relative;
+    }
+
+    .case-quote p {
+      color: var(--text);
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .case-quote .quote-author {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--accent-2);
+    }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      text-align: center;
+      padding: 96px 28px 120px;
+    }
+
+    .cta-card {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 56px 48px;
+      border-radius: 28px;
+      background: linear-gradient(160deg, rgba(18, 26, 38, 0.95), rgba(14, 20, 31, 0.9));
+      border: 1px solid rgba(123, 92, 255, 0.2);
+      box-shadow: var(--shadow), 0 0 80px rgba(123, 92, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    }
+
+    .cta-card h2 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin-bottom: 14px;
+    }
+
+    .cta-card p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .secondary-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+      font-weight: 600;
+      transition: border 0.2s ease, transform 0.2s ease;
+    }
+
+    .secondary-btn:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ── Animations ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 720px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .nav-links { flex-wrap: wrap; }
+      section { padding: 80px 22px; }
+      .page-hero { padding-top: 90px; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-bar { gap: 24px; }
+      .cta-card { padding: 40px 28px; }
+    }
+
+    @media (max-width: 540px) {
+      .case-card { padding: 24px; }
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="brand"><div class="brand-mark">⟁</div><span>Aura Automation</span></div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="case-studies.html" class="active">Case Studies</a>
+          <a href="chatbot.html">AI Chatbot</a>
+          <a href="calculator.html">Calculator</a>
+          <a href="optimizer.html">Optimizer</a>
+          <a href="quiz.html">Quiz</a>
+        </div>
+        <a class="cta" href="index.html#contact">Book a Call</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="container page-hero">
+        <div class="scroll-reveal">
+          <span class="industry-badge" style="margin: 0 auto 20px; background: rgba(56, 232, 255, 0.1); border-color: rgba(56, 232, 255, 0.25); color: var(--accent);">Proven Results</span>
+          <h1>Real Businesses.<br><span>Real Automation. Real ROI.</span></h1>
+          <p>Every project below started with a single question: "Where are we wasting time?" Here's what happened when we answered it with automation.</p>
+        </div>
+        <div class="stats-bar scroll-reveal">
+          <div class="stat-item">
+            <span class="stat-number">60+</span>
+            <span class="stat-label">Hours Saved / Week</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Industries Served</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">€8K+</span>
+            <span class="stat-label">Monthly Client Savings</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">&lt;1 wk</span>
+            <span class="stat-label">Avg. Time to ROI</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Studies -->
+      <section class="container" style="padding-top: 0;">
+        <div class="cases-grid">
+
+          <!-- 1. Alpine Restaurant Group -->
+          <div class="case-card scroll-reveal">
+            <div class="case-header">
+              <div class="case-icon">🍽️</div>
+              <div class="case-header-text">
+                <h3>Alpine Restaurant Group</h3>
+                <div class="industry-badge">Hospitality</div>
+              </div>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">⚡ Challenge</span>
+              <p>30+ hours every week burned on manual reservation confirmations, responding to online reviews, and placing supplier orders — across multiple locations.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">🔧 Solution</span>
+              <p>n8n workflow automating reservation confirmation emails, real-time review monitoring with auto-response drafts, and supplier reorder triggers based on inventory thresholds.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">📊 Results</span>
+              <div class="results-grid">
+                <div class="result-item">
+                  <span class="result-number">25h</span>
+                  <span class="result-label">Saved per week</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">40%</span>
+                  <span class="result-label">Faster reviews</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">4.8★</span>
+                  <span class="result-label">From 4.6 avg</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">€2,400</span>
+                  <span class="result-label">Saved / month</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-quote">
+              <p>"We didn't realize how much time we were losing until the automation showed us."</p>
+              <span class="quote-author">— Operations Director</span>
+            </div>
+          </div>
+
+          <!-- 2. Nordic E-commerce -->
+          <div class="case-card scroll-reveal">
+            <div class="case-header">
+              <div class="case-icon">🛒</div>
+              <div class="case-header-text">
+                <h3>Nordic E-commerce</h3>
+                <div class="industry-badge">Online Retail</div>
+              </div>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">⚡ Challenge</span>
+              <p>Customer support completely overwhelmed with an 8-hour average response time. Cart abandonment sitting at 72% — revenue bleeding out daily.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">🔧 Solution</span>
+              <p>AI-powered email responder for instant triage and replies, abandoned cart recovery sequences with personalized follow-ups, and order status auto-update notifications.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">📊 Results</span>
+              <div class="results-grid">
+                <div class="result-item">
+                  <span class="result-number">8h→45m</span>
+                  <span class="result-label">Response time</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">+15%</span>
+                  <span class="result-label">Cart recovery</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">-60%</span>
+                  <span class="result-label">Support tickets</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">80%</span>
+                  <span class="result-label">Time reduction</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-quote">
+              <p>"Our customers think we hired 3 new support agents. We didn't hire anyone."</p>
+              <span class="quote-author">— Founder</span>
+            </div>
+          </div>
+
+          <!-- 3. SwissProperty Real Estate -->
+          <div class="case-card scroll-reveal">
+            <div class="case-header">
+              <div class="case-icon">🏠</div>
+              <div class="case-header-text">
+                <h3>SwissProperty Real Estate</h3>
+                <div class="industry-badge">Real Estate</div>
+              </div>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">⚡ Challenge</span>
+              <p>Leads from 6 different portals dumped into spreadsheets with no tracking. 40% of inquiries were never followed up — deals lost before they started.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">🔧 Solution</span>
+              <p>Unified lead capture syncing all 6 portals into CRM, auto-qualification scoring based on lead data, and personalized follow-up email sequences triggered instantly.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">📊 Results</span>
+              <div class="results-grid">
+                <div class="result-item">
+                  <span class="result-number">3×</span>
+                  <span class="result-label">Lead conversion</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">100%</span>
+                  <span class="result-label">Response rate</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">12</span>
+                  <span class="result-label">Deals in month 1</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">&lt;5min</span>
+                  <span class="result-label">Lead response</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-quote">
+              <p>"Every lead gets a response within 5 minutes now. That alone changed everything."</p>
+              <span class="quote-author">— Sales Director</span>
+            </div>
+          </div>
+
+          <!-- 4. CloudStack SaaS -->
+          <div class="case-card scroll-reveal">
+            <div class="case-header">
+              <div class="case-icon">☁️</div>
+              <div class="case-header-text">
+                <h3>CloudStack SaaS</h3>
+                <div class="industry-badge">Technology</div>
+              </div>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">⚡ Challenge</span>
+              <p>Manual customer onboarding taking 2 full weeks per account. Support tickets piling up as new users got stuck without guidance.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">🔧 Solution</span>
+              <p>Automated onboarding email sequences triggered by signup, in-app trigger workflows for milestone guidance, and smart ticket routing based on category and urgency.</p>
+            </div>
+
+            <div class="case-section">
+              <span class="case-section-label">📊 Results</span>
+              <div class="results-grid">
+                <div class="result-item">
+                  <span class="result-number">14→3d</span>
+                  <span class="result-label">Onboarding time</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">-45%</span>
+                  <span class="result-label">Support volume</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">$3,000</span>
+                  <span class="result-label">Saved / month</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-number">Wk 1</span>
+                  <span class="result-label">Positive ROI</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-quote">
+              <p>"The ROI was positive in week one. We should have done this a year ago."</p>
+              <span class="quote-author">— CTO</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="cta-card scroll-reveal">
+          <h2>Ready for Your<br>Success Story?</h2>
+          <p>Every case study above started with a free automation audit. Let's find the 10+ hours you're losing every week.</p>
+          <div class="cta-actions">
+            <a class="cta" href="index.html#contact">Get a Free Automation Audit</a>
+            <a class="secondary-btn" href="calculator.html">📊 Calculate Your ROI</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 Aura Automation. All rights reserved.</span>
+        <span>
+          <a href="https://github.com/DILOmcfly" target="_blank" rel="noreferrer">GitHub</a>
+          · <a href="mailto:aurasamuraihub@gmail.com">aurasamuraihub@gmail.com</a>
+        </span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll(".scroll-reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
