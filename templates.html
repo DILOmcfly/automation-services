@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>N8N Automation Templates Gallery | Ready-to-Use Workflows</title>
+  <meta name="description" content="14 professional n8n automation templates. Lead capture, AI content, e-commerce, customer support, invoicing, and more. Download or get custom installation." />
+  <link rel="canonical" href="https://dilomcfly.github.io/automation-services/templates.html" />
+  <style>
+    :root { --bg:#0a0a0f; --card:#12121a; --accent:#6366f1; --accent2:#8b5cf6; --text:#e2e8f0; --muted:#94a3b8; --border:#1e1e2e; --success:#22c55e; --warning:#f59e0b; --premium:#f59e0b; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    nav{background:rgba(10,10,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:0;z-index:100}
+    nav .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .logo{font-size:1.2rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .nav-links{display:flex;gap:16px;flex-wrap:wrap}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+    .hero{padding:60px 0 40px;text-align:center}
+    .hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p{font-size:1.1rem;color:var(--muted);max-width:650px;margin:0 auto 24px}
+    .hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:8px}
+    .stat{text-align:center}.stat-num{font-size:1.8rem;font-weight:800;color:var(--accent)}.stat-label{font-size:.8rem;color:var(--muted)}
+    .filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:24px 0 32px}
+    .filter-btn{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.85rem;cursor:pointer;transition:all .2s}
+    .filter-btn:hover,.filter-btn.active{background:var(--accent);color:white;border-color:var(--accent)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;padding-bottom:60px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:transform .2s,border-color .2s;position:relative;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-4px);border-color:var(--accent)}
+    .card.premium{border-color:var(--premium)}
+    .card.premium::before{content:'⭐ PREMIUM';position:absolute;top:12px;right:12px;background:var(--premium);color:#000;padding:2px 10px;border-radius:12px;font-size:.7rem;font-weight:700}
+    .card-icon{font-size:2rem;margin-bottom:12px}
+    .card h3{font-size:1.05rem;margin-bottom:8px;padding-right:80px}
+    .card-desc{color:var(--muted);font-size:.88rem;flex:1;margin-bottom:14px}
+    .card-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+    .meta-tag{font-size:.75rem;padding:3px 10px;border-radius:12px;background:rgba(99,102,241,.1);color:var(--accent)}
+    .meta-tag.nodes{background:rgba(34,197,94,.1);color:var(--success)}
+    .card-actions{display:flex;gap:8px;margin-top:auto}
+    .btn-sm{padding:8px 16px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none;text-align:center;flex:1;transition:all .2s;cursor:pointer;border:none}
+    .btn-primary{background:var(--accent);color:white}.btn-primary:hover{background:var(--accent2)}
+    .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+    .cta-section{padding:60px 0;text-align:center;background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(139,92,246,.05));border-radius:16px;margin:40px 0}
+    .cta-section h2{font-size:1.8rem;margin-bottom:12px}
+    .cta-section p{color:var(--muted);margin-bottom:24px;max-width:550px;margin-left:auto;margin-right:auto}
+    .cta-btn{display:inline-block;padding:14px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;text-decoration:none;border-radius:8px;font-weight:600;font-size:1rem;transition:transform .2s;border:none;cursor:pointer}
+    .cta-btn:hover{transform:translateY(-2px)}
+    footer{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:.85rem}
+    footer a{color:var(--accent);text-decoration:none}
+    @media(max-width:768px){.grid{grid-template-columns:1fr}.hero{padding:40px 0 24px}}
+  </style>
+</head>
+<body>
+<nav><div class="container">
+  <a href="index.html" class="logo">⚡ AuraSamuraiHub</a>
+  <div class="nav-links">
+    <a href="index.html">Automation</a>
+    <a href="chatbot.html">AI Chatbot</a>
+    <a href="templates.html" class="active">Templates</a>
+    <a href="calculator.html">ROI Calculator</a>
+    <a href="quiz.html">Assessment</a>
+  </div>
+</div></nav>
+
+<section class="hero"><div class="container">
+  <h1>N8N Automation Templates</h1>
+  <p>14 battle-tested workflow templates ready to deploy. Save weeks of development and start automating today.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Templates</div></div>
+    <div class="stat"><div class="stat-num">158</div><div class="stat-label">Total Nodes</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Categories</div></div>
+  </div>
+</div></section>
+
+<div class="container">
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCards('all')">All (14)</button>
+    <button class="filter-btn" onclick="filterCards('lead')">Lead Gen (4)</button>
+    <button class="filter-btn" onclick="filterCards('content')">Content (3)</button>
+    <button class="filter-btn" onclick="filterCards('support')">Support (2)</button>
+    <button class="filter-btn" onclick="filterCards('ecommerce')">E-Commerce (2)</button>
+    <button class="filter-btn" onclick="filterCards('premium')">⭐ Premium (3)</button>
+  </div>
+
+  <div class="grid" id="templates-grid">
+
+    <div class="card" data-cat="lead">
+      <div class="card-icon">📧</div>
+      <h3>Lead Capture → CRM + Auto Email</h3>
+      <p class="card-desc">Capture leads from web forms, store in CRM, send personalized welcome emails automatically.</p>
+      <div class="card-meta"><span class="meta-tag">Lead Gen</span><span class="meta-tag nodes">7 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20Lead%20Capture%20CRM&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="lead">
+      <div class="card-icon">🤖</div>
+      <h3>Lead Capture → CRM → AI Follow-up</h3>
+      <p class="card-desc">Automated lead pipeline with AI-generated personalized follow-up emails based on lead data.</p>
+      <div class="card-meta"><span class="meta-tag">Lead Gen</span><span class="meta-tag">AI</span><span class="meta-tag nodes">6 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20AI%20Lead%20Follow-up&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="lead">
+      <div class="card-icon">🎯</div>
+      <h3>Lead Generation & CRM Pipeline</h3>
+      <p class="card-desc">Full lead gen pipeline: capture, qualify, score, assign, and track through your sales funnel.</p>
+      <div class="card-meta"><span class="meta-tag">Lead Gen</span><span class="meta-tag nodes">9 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20Lead%20Gen%20Pipeline&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="content">
+      <div class="card-icon">📝</div>
+      <h3>AI Content Generator → Multi-Platform</h3>
+      <p class="card-desc">Generate content with AI and automatically publish to multiple social media platforms.</p>
+      <div class="card-meta"><span class="meta-tag">Content</span><span class="meta-tag">AI</span><span class="meta-tag nodes">8 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20AI%20Content%20Generator&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="content">
+      <div class="card-icon">📱</div>
+      <h3>Social Media Auto-Publisher</h3>
+      <p class="card-desc">Schedule and auto-publish content across Twitter, LinkedIn, Facebook, and Instagram.</p>
+      <div class="card-meta"><span class="meta-tag">Content</span><span class="meta-tag">Social</span><span class="meta-tag nodes">7 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20Social%20Publisher&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="content">
+      <div class="card-icon">♻️</div>
+      <h3>Content Repurposer — Blog to Multi-Platform</h3>
+      <p class="card-desc">Transform one blog post into tweets, LinkedIn posts, email newsletters, and social snippets.</p>
+      <div class="card-meta"><span class="meta-tag">Content</span><span class="meta-tag">AI</span><span class="meta-tag nodes">10 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20Content%20Repurposer&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="support">
+      <div class="card-icon">📬</div>
+      <h3>AI Email Auto-Responder (GPT-4)</h3>
+      <p class="card-desc">Monitor inbox, analyze emails with AI, auto-draft and send intelligent responses.</p>
+      <div class="card-meta"><span class="meta-tag">Support</span><span class="meta-tag">AI</span><span class="meta-tag nodes">7 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20AI%20Email%20Responder&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="support">
+      <div class="card-icon">💬</div>
+      <h3>AI Customer Support Bot</h3>
+      <p class="card-desc">Multi-channel AI support bot with intent detection, escalation rules, and ticket creation.</p>
+      <div class="card-meta"><span class="meta-tag">Support</span><span class="meta-tag">AI</span><span class="meta-tag nodes">13 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20AI%20Support%20Bot&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="ecommerce">
+      <div class="card-icon">🛒</div>
+      <h3>E-Commerce Order Processing</h3>
+      <p class="card-desc">Shopify order → inventory check → fulfillment → shipping notification. Fully automated.</p>
+      <div class="card-meta"><span class="meta-tag">E-Commerce</span><span class="meta-tag nodes">7 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20Order%20Processing&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="ecommerce lead">
+      <div class="card-icon">📲</div>
+      <h3>WhatsApp Appointment Booker (AI)</h3>
+      <p class="card-desc">AI-powered WhatsApp bot that handles appointment scheduling, reminders, and confirmations.</p>
+      <div class="card-meta"><span class="meta-tag">WhatsApp</span><span class="meta-tag">AI</span><span class="meta-tag nodes">9 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20WhatsApp%20Booker&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card" data-cat="support">
+      <div class="card-icon">📊</div>
+      <h3>Social Media Brand Monitor</h3>
+      <p class="card-desc">Monitor brand mentions across platforms, analyze sentiment, alert on negative feedback.</p>
+      <div class="card-meta"><span class="meta-tag">Monitoring</span><span class="meta-tag">AI</span><span class="meta-tag nodes">15 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Template:%20Brand%20Monitor&body=I'd%20like%20this%20template%20installed." class="btn-sm btn-primary">Get Template</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card premium" data-cat="premium ecommerce">
+      <div class="card-icon">🧾</div>
+      <h3>Smart Invoicing System</h3>
+      <p class="card-desc">End-to-end invoice automation: generate, send, track payments, send reminders, reconcile.</p>
+      <div class="card-meta"><span class="meta-tag">Finance</span><span class="meta-tag nodes">20 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Premium%20Template:%20Invoicing&body=I'd%20like%20the%20premium%20invoicing%20template." class="btn-sm btn-primary">Get Quote</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card premium" data-cat="premium lead">
+      <div class="card-icon">🏆</div>
+      <h3>AI Lead Scoring & Smart Routing</h3>
+      <p class="card-desc">AI scores leads by engagement + fit, routes to right sales rep, auto-nurtures cold leads.</p>
+      <div class="card-meta"><span class="meta-tag">Lead Gen</span><span class="meta-tag">AI</span><span class="meta-tag nodes">20 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Premium%20Template:%20Lead%20Scoring&body=I'd%20like%20the%20premium%20lead%20scoring%20template." class="btn-sm btn-primary">Get Quote</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card premium" data-cat="premium lead">
+      <div class="card-icon">🚀</div>
+      <h3>AI Client Onboarding System</h3>
+      <p class="card-desc">Full client onboarding: intake form → AI analysis → task creation → welcome sequence → follow-ups.</p>
+      <div class="card-meta"><span class="meta-tag">Onboarding</span><span class="meta-tag">AI</span><span class="meta-tag nodes">20 nodes</span></div>
+      <div class="card-actions">
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Premium%20Template:%20Client%20Onboarding&body=I'd%20like%20the%20premium%20onboarding%20template." class="btn-sm btn-primary">Get Quote</a>
+        <a href="https://github.com/DILOmcfly/n8n-automation-templates" class="btn-sm btn-outline" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<section class="cta-section"><div class="container">
+  <h2>Need a Custom Workflow?</h2>
+  <p>Don't see what you need? We build custom n8n automations tailored to your specific business processes.</p>
+  <a href="mailto:aurasamuraihub@gmail.com?subject=Custom%20N8N%20Workflow&body=Hi!%20I%20need%20a%20custom%20workflow.%0A%0AWhat%20I%20want%20to%20automate:%20%0AMy%20tools/platforms:%20%0ABudget:%20" class="cta-btn">Request Custom Workflow →</a>
+</div></section>
+
+<footer><div class="container">
+  <p>© 2026 AuraSamuraiHub · <a href="index.html">Automation</a> · <a href="chatbot.html">AI Chatbot</a> · <a href="templates.html">Templates</a> · <a href="calculator.html">ROI Calculator</a></p>
+</div></footer>
+
+<script>
+function filterCards(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.card').forEach(c => {
+    if (cat === 'all') { c.style.display = ''; return; }
+    c.style.display = c.dataset.cat.includes(cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
