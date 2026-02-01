@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-Powered Business Automation | n8n Freelancer</title>
+  <meta name="description" content="AI-powered n8n automation freelancer helping businesses save 10+ hours per week with custom workflows and AI agents." />
+  <meta name="keywords" content="n8n automation freelancer, AI workflow builder, business automation services" />
+  <meta name="author" content="AuraSamuraiHub" />
+  <meta property="og:title" content="AI-Powered Business Automation" />
+  <meta property="og:description" content="Save 10+ hours/week with custom n8n workflows and AI agents." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dilomcfly.github.io/automation-services" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13;
+      --bg-2: #0f1520;
+      --surface: #121a26;
+      --surface-2: #141f2f;
+      --card: #101826;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e7eef6;
+      --muted: #a9b7c7;
+      --accent: #38e8ff;
+      --accent-2: #7b5cff;
+      --accent-3: #23d18b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --glow: 0 0 40px rgba(56, 232, 255, 0.15);
+      --max: 1140px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #111b2c 0%, var(--bg) 45%, #07090d 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: -200px -100px auto -100px;
+      height: 480px;
+      background: radial-gradient(60% 60% at 50% 50%, rgba(123, 92, 255, 0.18), transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: auto -150px -120px -150px;
+      height: 360px;
+      background: radial-gradient(60% 60% at 50% 50%, rgba(35, 209, 139, 0.12), transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(10, 14, 19, 0.92), rgba(10, 14, 19, 0.65));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(56, 232, 255, 0.3), rgba(123, 92, 255, 0.35));
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--glow);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .cta {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #05080e;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(56, 232, 255, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(56, 232, 255, 0.35);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 96px 28px;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding-top: 110px;
+      display: grid;
+      gap: 40px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(2.6rem, 4.5vw, 4.4rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .secondary-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+      font-weight: 600;
+      transition: border 0.2s ease, transform 0.2s ease;
+    }
+
+    .secondary-btn:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, rgba(18, 26, 38, 0.95), rgba(14, 20, 31, 0.85));
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 18px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .stat h3 {
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 36px;
+      max-width: 700px;
+    }
+
+    .grid-3 {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .service-card {
+      padding: 28px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56, 232, 255, 0.12), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .tier {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .service-card ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .service-card li::before {
+      content: "▹";
+      margin-right: 8px;
+      color: var(--accent);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(56, 232, 255, 0.08);
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .portfolio-card {
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(16, 24, 38, 0.95), rgba(11, 16, 26, 0.95));
+      display: grid;
+      gap: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .portfolio-card a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .testimonial {
+      border-radius: 20px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .faq-grid {
+      display: grid;
+      gap: 16px;
+      max-width: 860px;
+    }
+
+    details {
+      background: var(--surface-2);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      transition: border 0.2s ease;
+    }
+
+    details[open] {
+      border-color: rgba(56, 232, 255, 0.4);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      float: right;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    details[open] summary::after {
+      content: "–";
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      align-items: start;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(8, 12, 18, 0.9);
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+      }
+      section {
+        padding: 80px 22px;
+      }
+      .hero {
+        padding-top: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-mark">⟁</div>
+          <span>Aura Automation</span>
+        </div>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="cta" href="#contact">Book a Call</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container hero" id="top">
+        <div class="scroll-reveal">
+          <span class="badge">n8n Specialist · AI-First Workflows</span>
+          <h1>AI-Powered Business Automation</h1>
+          <p>Save 10+ hours/week with custom n8n workflows that connect your tools, automate operations, and add AI to the repetitive work.</p>
+          <div class="hero-actions">
+            <a class="cta" href="#contact">Get a Free Automation Audit</a>
+            <a class="secondary-btn" href="#portfolio">View Templates</a>
+          </div>
+        </div>
+        <div class="hero-card scroll-reveal">
+          <h2 style="font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; margin-bottom: 16px;">Results-focused automation</h2>
+          <div class="stat-grid">
+            <div class="stat">
+              <h3>13</h3>
+              <span>Workflow templates ready</span>
+            </div>
+            <div class="stat">
+              <h3>48h</h3>
+              <span>Typical delivery window</span>
+            </div>
+            <div class="stat">
+              <h3>100%</h3>
+              <span>Custom to your stack</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" id="services">
+        <div class="scroll-reveal">
+          <h2 class="section-title">Service Tiers</h2>
+          <p class="section-subtitle">From a single workflow to full AI-powered automation systems. Every tier includes clear documentation, testing, and handoff.</p>
+        </div>
+        <div class="grid-3">
+          <div class="service-card scroll-reveal">
+            <span class="tier">Starter</span>
+            <div class="price">$99</div>
+            <p class="section-subtitle" style="margin: 0;">One high-impact workflow for immediate time savings.</p>
+            <ul>
+              <li>1 automation workflow</li>
+              <li>Up to 3 integrations</li>
+              <li>Basic error handling</li>
+              <li>Deployment walkthrough</li>
+            </ul>
+          </div>
+          <div class="service-card scroll-reveal">
+            <span class="tier">Business</span>
+            <div class="price">$249</div>
+            <p class="section-subtitle" style="margin: 0;">Multi-step automation with AI enrichment and reporting.</p>
+            <ul>
+              <li>2-3 workflows, 8+ nodes each</li>
+              <li>AI logic + data enrichment</li>
+              <li>Centralized error alerts</li>
+              <li>Workflow documentation</li>
+            </ul>
+          </div>
+          <div class="service-card scroll-reveal">
+            <span class="tier">AI Agent</span>
+            <div class="price">$599</div>
+            <p class="section-subtitle" style="margin: 0;">End-to-end automation system with AI agents + dashboards.</p>
+            <ul>
+              <li>Advanced AI agent workflows</li>
+              <li>Multi-channel automations</li>
+              <li>Performance monitoring</li>
+              <li>Priority support</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" id="portfolio">
+        <div class="scroll-reveal">
+          <h2 class="section-title">Portfolio</h2>
+          <p class="section-subtitle">13 production-ready workflow templates built for real business use cases. Import, customize, and launch fast.</p>
+        </div>
+        <div class="portfolio-card scroll-reveal">
+          <strong>n8n Automation Templates</strong>
+          <p>Includes AI onboarding, lead capture, content repurposing, order processing, appointment booking, and more.</p>
+          <a href="https://github.com/DILOmcfly/n8n-automation-templates" target="_blank" rel="noreferrer">github.com/DILOmcfly/n8n-automation-templates</a>
+        </div>
+      </section>
+
+      <section class="container" id="testimonials">
+        <div class="scroll-reveal">
+          <h2 class="section-title">Testimonials</h2>
+          <p class="section-subtitle">Client stories are coming soon. For now, here are placeholders to show how the section will look.</p>
+        </div>
+        <div class="testimonial-grid">
+          <div class="testimonial scroll-reveal">“Placeholder testimonial about saving hours and flawless delivery.”</div>
+          <div class="testimonial scroll-reveal">“Placeholder testimonial about automation ROI and faster ops.”</div>
+          <div class="testimonial scroll-reveal">“Placeholder testimonial about AI agents and business growth.”</div>
+        </div>
+      </section>
+
+      <section class="container" id="faq">
+        <div class="scroll-reveal">
+          <h2 class="section-title">FAQ</h2>
+          <p class="section-subtitle">Common questions about n8n automation and AI workflows.</p>
+        </div>
+        <div class="faq-grid">
+          <details class="scroll-reveal">
+            <summary>What is n8n and why should I use it?</summary>
+            <p>n8n is a flexible automation platform that connects your apps and lets you build custom workflows without heavy engineering. It is powerful, transparent, and cost-effective.</p>
+          </details>
+          <details class="scroll-reveal">
+            <summary>How quickly can you deliver a workflow?</summary>
+            <p>Most single workflows are delivered within 48 hours. Larger systems depend on complexity, integrations, and testing requirements.</p>
+          </details>
+          <details class="scroll-reveal">
+            <summary>Can you work with my existing tools and data?</summary>
+            <p>Yes. I build automations around your current stack, and add AI steps only where they truly improve outcomes.</p>
+          </details>
+          <details class="scroll-reveal">
+            <summary>Do you provide documentation and support?</summary>
+            <p>Every delivery includes documentation and a walkthrough. Support is available for ongoing iteration or new features.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="container" id="contact">
+        <div class="scroll-reveal">
+          <h2 class="section-title">Let’s Automate Your Business</h2>
+          <p class="section-subtitle">Tell me what you want to automate and I will map out a fast, clear workflow plan.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="scroll-reveal">
+            <h3 style="font-family: 'Space Grotesk', system-ui, sans-serif; margin-bottom: 12px;">Start with a quick brief</h3>
+            <p class="section-subtitle" style="margin-bottom: 18px;">Prefer email? Write directly to <strong>aurasamuraihub@gmail.com</strong>.</p>
+            <div class="badge">Typical response: under 24 hours</div>
+          </div>
+          <form class="scroll-reveal" action="https://formspree.io/f/YOUR_ID" method="POST">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+            <input type="text" name="company" placeholder="Company / Website" />
+            <textarea name="message" placeholder="What do you want to automate?" required></textarea>
+            <button class="cta" type="submit">Send Request</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 Aura Automation. All rights reserved.</span>
+        <span>
+          <a href="https://github.com/DILOmcfly" target="_blank" rel="noreferrer">GitHub</a>
+          · <a href="mailto:aurasamuraihub@gmail.com">aurasamuraihub@gmail.com</a>
+        </span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".scroll-reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
