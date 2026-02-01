@@ -1,329 +1,745 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>n8n Workflow Visualizer — AuraHub</title>
-<meta name="description" content="Free n8n workflow visualizer. Paste any workflow JSON to see a visual node diagram instantly.">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;color:#e0e0e0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
-.header{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:20px 30px;border-bottom:1px solid #c8a86633;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.header h1{font-size:1.4rem;color:#c8a866}
-.header h1 span{color:#888;font-weight:400;font-size:.9rem}
-.header nav a{color:#888;text-decoration:none;font-size:.85rem;margin-left:16px;transition:color .2s}
-.header nav a:hover{color:#c8a866}
-.main{display:grid;grid-template-columns:320px 1fr;gap:0;height:calc(100vh - 70px)}
-.sidebar{background:#111;border-right:1px solid #222;padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
-.sidebar label{font-size:.8rem;color:#888;text-transform:uppercase;letter-spacing:.5px}
-.sidebar textarea{width:100%;height:200px;background:#0a0a0a;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-family:'Courier New',monospace;font-size:.78rem;padding:10px;resize:vertical;transition:border-color .2s}
-.sidebar textarea:focus{outline:none;border-color:#c8a866}
-.btn-row{display:flex;gap:8px;flex-wrap:wrap}
-.btn{padding:8px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
-.btn-gold{background:#c8a866;color:#0a0a0a}.btn-gold:hover{background:#d4b876}
-.btn-outline{background:transparent;border:1px solid #444;color:#ccc}.btn-outline:hover{border-color:#c8a866;color:#c8a866}
-.stats{background:#1a1a2e;border-radius:10px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.stat{text-align:center;padding:8px;background:#0a0a0a;border-radius:6px}
-.stat .val{font-size:1.3rem;font-weight:700;color:#c8a866}
-.stat .lbl{font-size:.7rem;color:#888;margin-top:2px}
-.canvas-wrap{position:relative;overflow:hidden;background:#0a0a0a}
-svg{width:100%;height:100%}
-.node-card{cursor:pointer;transition:filter .2s}
-.node-card:hover{filter:brightness(1.2)}
-.empty-state{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#555}
-.empty-state p{font-size:1.1rem;margin-bottom:10px}
-.empty-state span{font-size:.85rem;color:#666}
-.toast{position:fixed;bottom:20px;right:20px;background:#1a1a2e;border:1px solid #c8a866;color:#e0e0e0;padding:12px 20px;border-radius:8px;font-size:.85rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:99}
-.toast.show{opacity:1}
-@media(max-width:768px){.main{grid-template-columns:1fr;grid-template-rows:auto 1fr}.sidebar{max-height:40vh}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>n8n Workflow Visualizer | Aura Automation</title>
+  <meta name="description" content="Paste any n8n workflow JSON to render a clean node diagram with connections and export as PNG." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13;
+      --bg-2: #0f1520;
+      --surface: #121a26;
+      --surface-2: #141f2f;
+      --card: #101826;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e7eef6;
+      --muted: #a9b7c7;
+      --accent: #38e8ff;
+      --accent-2: #7b5cff;
+      --accent-3: #23d18b;
+      --warning: #f6c453;
+      --danger: #ff6b6b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --glow: 0 0 40px rgba(56, 232, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #111b2c 0%, var(--bg) 48%, #07090d 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(10, 14, 19, 0.92), rgba(10, 14, 19, 0.65));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(56, 232, 255, 0.3), rgba(123, 92, 255, 0.35));
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--glow);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #05080e;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 10px 24px rgba(56, 232, 255, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(56, 232, 255, 0.35);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      height: calc(100vh - 72px);
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(16, 24, 38, 0.95), rgba(11, 16, 26, 0.92));
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      overflow-y: auto;
+    }
+
+    .panel h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .panel p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      background: rgba(8, 12, 18, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      color: var(--text);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.78rem;
+      resize: vertical;
+      transition: border 0.2s ease;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: rgba(56, 232, 255, 0.5);
+    }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #05080e;
+      box-shadow: 0 10px 20px rgba(56, 232, 255, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat-card {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(12, 18, 28, 0.9);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .legend {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(12, 18, 28, 0.7);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .canvas-wrap {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 20%, rgba(56, 232, 255, 0.07), transparent 45%),
+        radial-gradient(circle at 80% 30%, rgba(123, 92, 255, 0.08), transparent 50%),
+        #080b11;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .empty-state {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+    }
+
+    .empty-state h2 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: rgba(16, 24, 38, 0.95);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    .footer-note {
+      margin-top: auto;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+
+      .panel {
+        max-height: 45vh;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="header">
-  <h1>⚡ n8n Workflow Visualizer <span>by AuraHub</span></h1>
-  <nav>
-    <a href="index.html">Services</a>
-    <a href="templates.html">Templates</a>
-    <a href="validator.html">Validator</a>
-    <a href="calculator.html">ROI Calc</a>
-  </nav>
-</div>
-<div class="main">
-  <div class="sidebar">
-    <div>
-      <label>Paste n8n Workflow JSON</label>
-      <textarea id="jsonInput" placeholder='{"nodes":[...],"connections":{...}}'></textarea>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-gold" onclick="visualize()">Visualize</button>
-      <button class="btn btn-outline" onclick="loadSample()">Load Sample</button>
-      <button class="btn btn-outline" onclick="exportPNG()">Export PNG</button>
-      <button class="btn btn-outline" onclick="clearAll()">Clear</button>
-    </div>
-    <div>
-      <label>Workflow Stats</label>
-      <div class="stats">
-        <div class="stat"><div class="val" id="sNodes">—</div><div class="lbl">Nodes</div></div>
-        <div class="stat"><div class="val" id="sConns">—</div><div class="lbl">Connections</div></div>
-        <div class="stat"><div class="val" id="sTriggers">—</div><div class="lbl">Triggers</div></div>
-        <div class="stat"><div class="val" id="sErrors">—</div><div class="lbl">Error Handling</div></div>
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">N8</div>
+        <span>n8n Workflow Visualizer</span>
       </div>
-    </div>
-    <div style="margin-top:auto;padding-top:16px;border-top:1px solid #222">
-      <p style="font-size:.75rem;color:#666">Free tool by <a href="index.html" style="color:#c8a866;text-decoration:none">AuraHub Automation Services</a>. Need custom workflows? <a href="index.html#contact" style="color:#c8a866;text-decoration:none">Contact us</a>.</p>
-    </div>
-  </div>
-  <div class="canvas-wrap" id="canvasWrap">
-    <div class="empty-state" id="emptyState">
-      <p>📋 Paste a workflow JSON or click <strong>Load Sample</strong></p>
-      <span>Supports any n8n workflow export format</span>
-    </div>
-    <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
-  </div>
-</div>
-<div class="toast" id="toast"></div>
+      <div class="nav-links">
+        <a href="index.html">Services</a>
+        <a href="templates.html">Templates</a>
+        <a href="validator.html">Validator</a>
+        <a href="calculator.html">ROI Calc</a>
+        <a href="quiz.html">Quiz</a>
+      </div>
+      <a class="cta" href="index.html#contact">Book a Call</a>
+    </nav>
+  </header>
 
-<script>
-const COLORS={trigger:'#22c55e',action:'#3b82f6',logic:'#a855f7',error:'#ef4444',default:'#c8a866'};
-const CARD_W=180,CARD_H=60,GAP_X=80,GAP_Y=30,PAD=60;
+  <main class="layout">
+    <aside class="panel">
+      <div>
+        <h1>Visualize your n8n workflow</h1>
+        <p>Paste any exported workflow JSON and get an instant node map with arrows, icons, and stats.</p>
+      </div>
 
-function nodeColor(type){
-  const t=(type||'').toLowerCase();
-  if(t.includes('webhook')||t.includes('trigger')||t.includes('cron')||t.includes('schedule'))return COLORS.trigger;
-  if(t.includes('if')||t.includes('switch')||t.includes('merge')||t.includes('filter'))return COLORS.logic;
-  if(t.includes('error')||t.includes('stop'))return COLORS.error;
-  if(t.includes('set')||t.includes('code')||t.includes('function'))return COLORS.action;
-  return COLORS.default;
-}
-function isTrigger(type){const t=(type||'').toLowerCase();return t.includes('trigger')||t.includes('webhook')||t.includes('cron')||t.includes('schedule')}
-function shortName(name,type){return name||type.replace(/^n8n-nodes-base\./,'').replace(/([A-Z])/g,' $1').trim()}
+      <div>
+        <label for="jsonInput">Workflow JSON</label>
+        <textarea id="jsonInput" placeholder='{"nodes": [...], "connections": {...}}'></textarea>
+      </div>
 
-function parseWorkflow(json){
-  let wf;
-  try{wf=JSON.parse(json)}catch(e){throw new Error('Invalid JSON: '+e.message)}
-  const nodes=(wf.nodes||[]).map(n=>({id:n.id||n.name,name:n.name,type:n.type||'',position:n.position||[0,0]}));
-  const edges=[];
-  const conns=wf.connections||{};
-  for(const src of Object.keys(conns)){
-    const outputs=conns[src];
-    if(!outputs)continue;
-    // outputs can be {main:[[{node,type,index}]]} or just [[{node}]]
-    const groups=outputs.main||outputs;
-    if(!Array.isArray(groups))continue;
-    for(const group of groups){
-      if(!Array.isArray(group))continue;
-      for(const link of group){
-        if(link&&link.node)edges.push({from:src,to:link.node});
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="visualize()">Visualize</button>
+        <button class="btn btn-ghost" onclick="loadSample()">Load Sample</button>
+        <button class="btn btn-ghost" onclick="exportPNG()">Export as PNG</button>
+        <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
+      </div>
+
+      <div>
+        <label>Workflow Stats</label>
+        <div class="stats">
+          <div class="stat-card"><strong id="sNodes">—</strong><span>Nodes</span></div>
+          <div class="stat-card"><strong id="sConns">—</strong><span>Connections</span></div>
+          <div class="stat-card"><strong id="sTriggers">—</strong><span>Triggers</span></div>
+          <div class="stat-card"><strong id="sErrors">—</strong><span>Error Handling</span></div>
+        </div>
+      </div>
+
+      <div>
+        <label>Legend</label>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background: var(--accent-3)"></span>Trigger</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span>Action</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--accent-2)"></span>Logic</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--danger)"></span>Error</div>
+          <div class="legend-item"><span class="legend-dot" style="background: var(--warning)"></span>Other</div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Free tool by Aura Automation. Need a custom workflow? Contact us from the Services page.
+      </div>
+    </aside>
+
+    <section class="canvas-wrap" id="canvasWrap">
+      <div class="empty-state" id="emptyState">
+        <div>
+          <h2>Paste a workflow JSON to render the diagram.</h2>
+          <p>Click "Load Sample" to preview a real automation flow.</p>
+        </div>
+      </div>
+      <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const COLORS = {
+      trigger: '#23d18b',
+      action: '#38e8ff',
+      logic: '#7b5cff',
+      error: '#ff6b6b',
+      other: '#f6c453'
+    };
+
+    const CARD_W = 190;
+    const CARD_H = 64;
+    const GAP_X = 90;
+    const GAP_Y = 34;
+    const PAD = 70;
+
+    function nodeColor(type) {
+      const t = (type || '').toLowerCase();
+      if (t.includes('webhook') || t.includes('trigger') || t.includes('cron') || t.includes('schedule')) return COLORS.trigger;
+      if (t.includes('if') || t.includes('switch') || t.includes('merge') || t.includes('filter')) return COLORS.logic;
+      if (t.includes('error') || t.includes('stop')) return COLORS.error;
+      if (t.includes('set') || t.includes('code') || t.includes('function') || t.includes('http')) return COLORS.action;
+      return COLORS.other;
+    }
+
+    function isTrigger(type) {
+      const t = (type || '').toLowerCase();
+      return t.includes('trigger') || t.includes('webhook') || t.includes('cron') || t.includes('schedule');
+    }
+
+    function shortName(name, type) {
+      if (name) return name;
+      return (type || '').replace(/^n8n-nodes-base\./, '').replace(/([A-Z])/g, ' $1').trim();
+    }
+
+    function iconFor(type) {
+      const t = (type || '').toLowerCase();
+      if (t.includes('webhook')) return 'WB';
+      if (t.includes('trigger') || t.includes('cron') || t.includes('schedule')) return 'TR';
+      if (t.includes('if') || t.includes('switch')) return 'IF';
+      if (t.includes('merge')) return 'MR';
+      if (t.includes('http')) return 'API';
+      if (t.includes('slack')) return 'SL';
+      if (t.includes('gmail') || t.includes('email')) return 'EM';
+      if (t.includes('set')) return 'SET';
+      if (t.includes('code') || t.includes('function')) return 'FX';
+      if (t.includes('error') || t.includes('stop')) return 'ERR';
+      return 'NX';
+    }
+
+    function parseWorkflow(json) {
+      let wf;
+      try {
+        wf = JSON.parse(json);
+      } catch (e) {
+        throw new Error('Invalid JSON: ' + e.message);
+      }
+      const nodes = (wf.nodes || []).map((n) => ({
+        id: n.id || n.name,
+        name: n.name,
+        type: n.type || '',
+        position: n.position || [0, 0]
+      }));
+      const edges = [];
+      const conns = wf.connections || {};
+      for (const src of Object.keys(conns)) {
+        const outputs = conns[src];
+        if (!outputs) continue;
+        const groups = outputs.main || outputs;
+        if (!Array.isArray(groups)) continue;
+        for (const group of groups) {
+          if (!Array.isArray(group)) continue;
+          for (const link of group) {
+            if (link && link.node) edges.push({ from: src, to: link.node });
+          }
+        }
+      }
+      return { nodes, edges };
+    }
+
+    function layout(nodes, edges) {
+      const posAvailable = nodes.some((n) => Array.isArray(n.position) && (n.position[0] || n.position[1]));
+      if (posAvailable) {
+        const positions = {};
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        nodes.forEach((n) => {
+          const x = n.position[0] || 0;
+          const y = n.position[1] || 0;
+          minX = Math.min(minX, x);
+          minY = Math.min(minY, y);
+          maxX = Math.max(maxX, x);
+          maxY = Math.max(maxY, y);
+          positions[n.name] = { x, y };
+        });
+        const offsetX = PAD - minX;
+        const offsetY = PAD - minY;
+        Object.keys(positions).forEach((key) => {
+          positions[key].x += offsetX;
+          positions[key].y += offsetY;
+        });
+        return { pos: positions, bounds: { maxX: maxX + offsetX, maxY: maxY + offsetY } };
+      }
+
+      const adj = {};
+      const inDeg = {};
+      nodes.forEach((n) => {
+        adj[n.name] = [];
+        inDeg[n.name] = 0;
+      });
+      edges.forEach((e) => {
+        if (adj[e.from]) adj[e.from].push(e.to);
+        if (inDeg[e.to] !== undefined) inDeg[e.to]++;
+      });
+      const layers = [];
+      const visited = new Set();
+      let queue = nodes.filter((n) => inDeg[n.name] === 0).map((n) => n.name);
+      if (queue.length === 0 && nodes[0]) queue = [nodes[0].name];
+      while (queue.length > 0) {
+        layers.push([...queue]);
+        queue.forEach((n) => visited.add(n));
+        const next = [];
+        for (const n of queue) {
+          for (const nb of adj[n] || []) {
+            inDeg[nb]--;
+            if (inDeg[nb] <= 0 && !visited.has(nb) && !next.includes(nb)) next.push(nb);
+          }
+        }
+        queue = next;
+      }
+      nodes.forEach((n) => {
+        if (!visited.has(n.name)) layers.push([n.name]);
+      });
+      const pos = {};
+      layers.forEach((layer, col) => {
+        const totalH = layer.length * (CARD_H + GAP_Y) - GAP_Y;
+        const startY = Math.max(PAD, (420 - totalH) / 2);
+        layer.forEach((name, row) => {
+          pos[name] = { x: PAD + col * (CARD_W + GAP_X), y: startY + row * (CARD_H + GAP_Y) };
+        });
+      });
+      return { pos };
+    }
+
+    function render(nodes, edges, pos, bounds) {
+      const svg = document.getElementById('svg');
+      const wrap = document.getElementById('canvasWrap');
+      document.getElementById('emptyState').style.display = 'none';
+
+      let maxX = 0, maxY = 0;
+      if (bounds && bounds.maxX && bounds.maxY) {
+        maxX = bounds.maxX + CARD_W + PAD;
+        maxY = bounds.maxY + CARD_H + PAD;
+      } else {
+        Object.values(pos).forEach((p) => {
+          maxX = Math.max(maxX, p.x + CARD_W + PAD);
+          maxY = Math.max(maxY, p.y + CARD_H + PAD);
+        });
+      }
+      const w = Math.max(maxX, wrap.clientWidth);
+      const h = Math.max(maxY, wrap.clientHeight);
+      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      svg.innerHTML = '';
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      defs.innerHTML = `
+        <marker id="arrow" viewBox="0 0 10 8" refX="10" refY="4" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,4 L0,8 Z" fill="#45536a" />
+        </marker>
+        <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      `;
+      svg.appendChild(defs);
+
+      edges.forEach((e) => {
+        const from = pos[e.from];
+        const to = pos[e.to];
+        if (!from || !to) return;
+        const x1 = from.x + CARD_W;
+        const y1 = from.y + CARD_H / 2;
+        const x2 = to.x;
+        const y2 = to.y + CARD_H / 2;
+        const cx1 = x1 + (x2 - x1) * 0.5;
+        const cx2 = x2 - (x2 - x1) * 0.5;
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', `M${x1},${y1} C${cx1},${y1} ${cx2},${y2} ${x2},${y2}`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#2d394c');
+        path.setAttribute('stroke-width', '2');
+        path.setAttribute('marker-end', 'url(#arrow)');
+        svg.appendChild(path);
+      });
+
+      nodes.forEach((n) => {
+        const p = pos[n.name];
+        if (!p) return;
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('transform', `translate(${p.x},${p.y})`);
+
+        const color = nodeColor(n.type);
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('width', CARD_W);
+        rect.setAttribute('height', CARD_H);
+        rect.setAttribute('rx', '14');
+        rect.setAttribute('fill', '#0f1624');
+        rect.setAttribute('stroke', color);
+        rect.setAttribute('stroke-width', '2');
+        g.appendChild(rect);
+
+        const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        bar.setAttribute('width', '5');
+        bar.setAttribute('height', CARD_H);
+        bar.setAttribute('rx', '3');
+        bar.setAttribute('fill', color);
+        g.appendChild(bar);
+
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', '26');
+        circle.setAttribute('cy', CARD_H / 2);
+        circle.setAttribute('r', '14');
+        circle.setAttribute('fill', color + '26');
+        circle.setAttribute('stroke', color);
+        circle.setAttribute('stroke-width', '1');
+        g.appendChild(circle);
+
+        const icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        icon.setAttribute('x', '26');
+        icon.setAttribute('y', CARD_H / 2 + 4);
+        icon.setAttribute('text-anchor', 'middle');
+        icon.setAttribute('font-size', '9');
+        icon.setAttribute('font-weight', '700');
+        icon.setAttribute('fill', color);
+        icon.textContent = iconFor(n.type);
+        g.appendChild(icon);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', '48');
+        label.setAttribute('y', CARD_H / 2 - 4);
+        label.setAttribute('fill', '#e7eef6');
+        label.setAttribute('font-size', '11');
+        label.setAttribute('font-weight', '600');
+        const name = shortName(n.name, n.type);
+        label.textContent = name.length > 20 ? name.slice(0, 19) + '…' : name;
+        g.appendChild(label);
+
+        const sub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        sub.setAttribute('x', '48');
+        sub.setAttribute('y', CARD_H / 2 + 14);
+        sub.setAttribute('fill', '#a9b7c7');
+        sub.setAttribute('font-size', '9');
+        const typeName = (n.type || '').replace(/^n8n-nodes-base\./, '');
+        sub.textContent = typeName.length > 22 ? typeName.slice(0, 21) + '…' : typeName;
+        g.appendChild(sub);
+
+        svg.appendChild(g);
+      });
+    }
+
+    function updateStats(nodes, edges) {
+      document.getElementById('sNodes').textContent = nodes.length;
+      document.getElementById('sConns').textContent = edges.length;
+      document.getElementById('sTriggers').textContent = nodes.filter((n) => isTrigger(n.type)).length;
+      const hasError = nodes.some((n) => (n.type || '').toLowerCase().includes('error') || (n.name || '').toLowerCase().includes('error'));
+      document.getElementById('sErrors').textContent = hasError ? 'Yes' : 'No';
+    }
+
+    function visualize() {
+      const json = document.getElementById('jsonInput').value.trim();
+      if (!json) return toast('Paste a workflow JSON first.');
+      try {
+        const { nodes, edges } = parseWorkflow(json);
+        if (nodes.length === 0) return toast('No nodes found in the workflow.');
+        const { pos, bounds } = layout(nodes, edges);
+        render(nodes, edges, pos, bounds);
+        updateStats(nodes, edges);
+        toast(`Rendered ${nodes.length} nodes.`);
+      } catch (e) {
+        toast('Error: ' + e.message);
       }
     }
-  }
-  return{nodes,edges};
-}
 
-function layout(nodes,edges){
-  // Build adjacency
-  const adj={},inDeg={};
-  nodes.forEach(n=>{adj[n.name]=[];inDeg[n.name]=0});
-  edges.forEach(e=>{
-    if(adj[e.from])adj[e.from].push(e.to);
-    if(inDeg[e.to]!==undefined)inDeg[e.to]++;
-  });
-  // Topological layers
-  const layers=[];
-  const visited=new Set();
-  let queue=nodes.filter(n=>inDeg[n.name]===0).map(n=>n.name);
-  if(queue.length===0)queue=[nodes[0]?.name].filter(Boolean);
-  while(queue.length>0){
-    layers.push([...queue]);
-    queue.forEach(n=>visited.add(n));
-    const next=[];
-    for(const n of queue){
-      for(const nb of(adj[n]||[])){
-        inDeg[nb]--;
-        if(inDeg[nb]<=0&&!visited.has(nb)&&!next.includes(nb))next.push(nb);
-      }
+    function loadSample() {
+      const sample = {
+        name: 'Lead Processing Workflow',
+        nodes: [
+          { name: 'Webhook', type: 'n8n-nodes-base.webhook', position: [250, 300] },
+          { name: 'Validate Data', type: 'n8n-nodes-base.if', position: [480, 300] },
+          { name: 'Enrich Lead', type: 'n8n-nodes-base.set', position: [720, 220] },
+          { name: 'AI Scoring', type: 'n8n-nodes-base.httpRequest', position: [960, 220] },
+          { name: 'Send to CRM', type: 'n8n-nodes-base.httpRequest', position: [1200, 220] },
+          { name: 'Send Notification', type: 'n8n-nodes-base.slack', position: [1200, 400] },
+          { name: 'Error Handler', type: 'n8n-nodes-base.stopAndError', position: [720, 440] }
+        ],
+        connections: {
+          Webhook: { main: [[{ node: 'Validate Data', type: 'main', index: 0 }]] },
+          'Validate Data': { main: [[{ node: 'Enrich Lead', type: 'main', index: 0 }], [{ node: 'Error Handler', type: 'main', index: 0 }]] },
+          'Enrich Lead': { main: [[{ node: 'AI Scoring', type: 'main', index: 0 }]] },
+          'AI Scoring': { main: [[{ node: 'Send to CRM', type: 'main', index: 0 }, { node: 'Send Notification', type: 'main', index: 0 }]] }
+        }
+      };
+      document.getElementById('jsonInput').value = JSON.stringify(sample, null, 2);
+      visualize();
     }
-    queue=next;
-  }
-  // Place unvisited
-  nodes.forEach(n=>{if(!visited.has(n.name)){layers.push([n.name]);visited.add(n.name)}});
-  // Assign positions
-  const pos={};
-  layers.forEach((layer,col)=>{
-    const totalH=layer.length*(CARD_H+GAP_Y)-GAP_Y;
-    const startY=Math.max(PAD,(400-totalH)/2);
-    layer.forEach((name,row)=>{
-      pos[name]={x:PAD+col*(CARD_W+GAP_X),y:startY+row*(CARD_H+GAP_Y)};
-    });
-  });
-  return{pos,layers};
-}
 
-function render(nodes,edges,pos){
-  const svg=document.getElementById('svg');
-  const wrap=document.getElementById('canvasWrap');
-  document.getElementById('emptyState').style.display='none';
-  // Calculate bounds
-  let maxX=0,maxY=0;
-  Object.values(pos).forEach(p=>{maxX=Math.max(maxX,p.x+CARD_W+PAD);maxY=Math.max(maxY,p.y+CARD_H+PAD)});
-  const w=Math.max(maxX,wrap.clientWidth);
-  const h=Math.max(maxY,wrap.clientHeight);
-  svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
-  svg.innerHTML='';
-  // Defs
-  const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');
-  defs.innerHTML=`<marker id="arrow" viewBox="0 0 10 8" refX="10" refY="4" markerWidth="8" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,4 L0,8 Z" fill="#555"/></marker>
-  <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`;
-  svg.appendChild(defs);
-  // Draw edges
-  const nodeMap={};
-  nodes.forEach(n=>nodeMap[n.name]=n);
-  edges.forEach(e=>{
-    const from=pos[e.from],to=pos[e.to];
-    if(!from||!to)return;
-    const x1=from.x+CARD_W,y1=from.y+CARD_H/2;
-    const x2=to.x,y2=to.y+CARD_H/2;
-    const cx1=x1+(x2-x1)*0.5,cx2=x2-(x2-x1)*0.5;
-    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',`M${x1},${y1} C${cx1},${y1} ${cx2},${y2} ${x2},${y2}`);
-    path.setAttribute('fill','none');
-    path.setAttribute('stroke','#444');
-    path.setAttribute('stroke-width','2');
-    path.setAttribute('marker-end','url(#arrow)');
-    svg.appendChild(path);
-  });
-  // Draw nodes
-  nodes.forEach(n=>{
-    const p=pos[n.name];if(!p)return;
-    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
-    g.setAttribute('class','node-card');
-    g.setAttribute('transform',`translate(${p.x},${p.y})`);
-    const color=nodeColor(n.type);
-    // Card bg
-    const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
-    rect.setAttribute('width',CARD_W);rect.setAttribute('height',CARD_H);
-    rect.setAttribute('rx','10');rect.setAttribute('fill','#1a1a2e');
-    rect.setAttribute('stroke',color);rect.setAttribute('stroke-width','2');
-    g.appendChild(rect);
-    // Color bar
-    const bar=document.createElementNS('http://www.w3.org/2000/svg','rect');
-    bar.setAttribute('width','4');bar.setAttribute('height',CARD_H);
-    bar.setAttribute('rx','2');bar.setAttribute('fill',color);
-    g.appendChild(bar);
-    // Icon circle
-    const circle=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    circle.setAttribute('cx','24');circle.setAttribute('cy',CARD_H/2);
-    circle.setAttribute('r','10');circle.setAttribute('fill',color+'33');
-    circle.setAttribute('stroke',color);circle.setAttribute('stroke-width','1');
-    g.appendChild(circle);
-    // Icon text
-    const icon=document.createElementNS('http://www.w3.org/2000/svg','text');
-    icon.setAttribute('x','24');icon.setAttribute('y',CARD_H/2+4);
-    icon.setAttribute('text-anchor','middle');icon.setAttribute('font-size','10');
-    icon.setAttribute('fill',color);
-    icon.textContent=isTrigger(n.type)?'▶':n.type.toLowerCase().includes('if')?'◆':'●';
-    g.appendChild(icon);
-    // Name
-    const text=document.createElementNS('http://www.w3.org/2000/svg','text');
-    text.setAttribute('x','42');text.setAttribute('y',CARD_H/2-4);
-    text.setAttribute('fill','#e0e0e0');text.setAttribute('font-size','11');
-    text.setAttribute('font-weight','600');
-    const label=shortName(n.name,n.type);
-    text.textContent=label.length>16?label.slice(0,15)+'…':label;
-    g.appendChild(text);
-    // Type
-    const sub=document.createElementNS('http://www.w3.org/2000/svg','text');
-    sub.setAttribute('x','42');sub.setAttribute('y',CARD_H/2+12);
-    sub.setAttribute('fill','#888');sub.setAttribute('font-size','9');
-    const typeName=n.type.replace(/^n8n-nodes-base\./,'');
-    sub.textContent=typeName.length>20?typeName.slice(0,19)+'…':typeName;
-    g.appendChild(sub);
-    svg.appendChild(g);
-  });
-}
-
-function updateStats(nodes,edges){
-  document.getElementById('sNodes').textContent=nodes.length;
-  document.getElementById('sConns').textContent=edges.length;
-  document.getElementById('sTriggers').textContent=nodes.filter(n=>isTrigger(n.type)).length;
-  const hasError=nodes.some(n=>(n.type||'').toLowerCase().includes('error')||
-    (n.name||'').toLowerCase().includes('error'));
-  document.getElementById('sErrors').textContent=hasError?'✅ Yes':'❌ No';
-}
-
-function visualize(){
-  const json=document.getElementById('jsonInput').value.trim();
-  if(!json){toast('Paste a workflow JSON first');return}
-  try{
-    const{nodes,edges}=parseWorkflow(json);
-    if(nodes.length===0){toast('No nodes found in workflow');return}
-    const{pos}=layout(nodes,edges);
-    render(nodes,edges,pos);
-    updateStats(nodes,edges);
-    toast('✅ Rendered '+nodes.length+' nodes');
-  }catch(e){toast('❌ '+e.message)}
-}
-
-function loadSample(){
-  const sample={
-    "name":"Lead Processing Workflow",
-    "nodes":[
-      {"name":"Webhook","type":"n8n-nodes-base.webhook","position":[250,300]},
-      {"name":"Validate Data","type":"n8n-nodes-base.if","position":[450,300]},
-      {"name":"Enrich Lead","type":"n8n-nodes-base.set","position":[650,200]},
-      {"name":"AI Scoring","type":"n8n-nodes-base.httpRequest","position":[850,200]},
-      {"name":"Send to CRM","type":"n8n-nodes-base.httpRequest","position":[1050,200]},
-      {"name":"Send Notification","type":"n8n-nodes-base.slack","position":[1050,400]},
-      {"name":"Error Handler","type":"n8n-nodes-base.stopAndError","position":[650,450]}
-    ],
-    "connections":{
-      "Webhook":{"main":[[{"node":"Validate Data","type":"main","index":0}]]},
-      "Validate Data":{"main":[[{"node":"Enrich Lead","type":"main","index":0}],[{"node":"Error Handler","type":"main","index":0}]]},
-      "Enrich Lead":{"main":[[{"node":"AI Scoring","type":"main","index":0}]]},
-      "AI Scoring":{"main":[[{"node":"Send to CRM","type":"main","index":0},{"node":"Send Notification","type":"main","index":0}]]}
+    function exportPNG() {
+      const svg = document.getElementById('svg');
+      if (!svg.innerHTML || svg.childNodes.length <= 1) return toast('Nothing to export.');
+      const svgData = new XMLSerializer().serializeToString(svg);
+      const canvas = document.createElement('canvas');
+      const vb = (svg.getAttribute('viewBox') || '0 0 800 600').split(' ').map(Number);
+      canvas.width = vb[2] * 2;
+      canvas.height = vb[3] * 2;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(2, 2);
+      ctx.fillStyle = '#0a0e13';
+      ctx.fillRect(0, 0, vb[2], vb[3]);
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, vb[2], vb[3]);
+        const link = document.createElement('a');
+        link.download = 'workflow-diagram.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        toast('PNG exported.');
+      };
+      img.onerror = () => toast('Export failed.');
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
     }
-  };
-  document.getElementById('jsonInput').value=JSON.stringify(sample,null,2);
-  visualize();
-}
 
-function exportPNG(){
-  const svg=document.getElementById('svg');
-  if(!svg.innerHTML||svg.childNodes.length<=1){toast('Nothing to export');return}
-  const svgData=new XMLSerializer().serializeToString(svg);
-  const canvas=document.createElement('canvas');
-  const vb=(svg.getAttribute('viewBox')||'0 0 800 600').split(' ').map(Number);
-  canvas.width=vb[2]*2;canvas.height=vb[3]*2;
-  const ctx=canvas.getContext('2d');
-  ctx.scale(2,2);ctx.fillStyle='#0a0a0a';ctx.fillRect(0,0,vb[2],vb[3]);
-  const img=new Image();
-  img.onload=()=>{
-    ctx.drawImage(img,0,0,vb[2],vb[3]);
-    const link=document.createElement('a');
-    link.download='workflow-diagram.png';
-    link.href=canvas.toDataURL('image/png');
-    link.click();
-    toast('✅ PNG exported');
-  };
-  img.onerror=()=>toast('❌ Export failed');
-  img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svgData);
-}
+    function clearAll() {
+      document.getElementById('jsonInput').value = '';
+      document.getElementById('svg').innerHTML = '';
+      document.getElementById('emptyState').style.display = '';
+      ['sNodes', 'sConns', 'sTriggers', 'sErrors'].forEach((id) => (document.getElementById(id).textContent = '—'));
+    }
 
-function clearAll(){
-  document.getElementById('jsonInput').value='';
-  document.getElementById('svg').innerHTML='';
-  document.getElementById('emptyState').style.display='';
-  ['sNodes','sConns','sTriggers','sErrors'].forEach(id=>document.getElementById(id).textContent='—');
-}
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2400);
+    }
 
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
-
-// Auto-visualize on paste
-document.getElementById('jsonInput').addEventListener('paste',()=>setTimeout(visualize,100));
-</script>
+    document.getElementById('jsonInput').addEventListener('paste', () => setTimeout(visualize, 100));
+  </script>
 </body>
 </html>
