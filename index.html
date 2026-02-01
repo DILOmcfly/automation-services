@@ -3,35 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI-Powered Business Automation | n8n Freelancer</title>
-  <meta name="description" content="AI-powered n8n automation freelancer helping businesses save 10+ hours per week with custom workflows and AI agents." />
-  <meta name="keywords" content="n8n automation freelancer, AI workflow builder, business automation services" />
-  <meta name="author" content="AuraSamuraiHub" />
-  <meta property="og:title" content="AI-Powered Business Automation" />
-  <meta property="og:description" content="Save 10+ hours/week with custom n8n workflows and AI agents." />
+  <title>AuraHub Digital — AI Automation for Hospitality</title>
+  <meta name="description" content="Custom AI automation for hotels, restaurants & hospitality businesses in Switzerland. n8n workflows, chatbots & AI agents. Save 10+ hours/week." />
+  <meta name="keywords" content="hotel automation, AI hospitality, n8n workflows, chatbot hotel, Swiss hospitality technology, KI Automatisierung Hotel" />
+  <meta name="author" content="AuraHub Digital" />
+  <meta property="og:title" content="AuraHub Digital — AI Automation for Hospitality" />
+  <meta property="og:description" content="Custom AI workflows for hotels & restaurants. Save 10+ hours/week. Starting from CHF 99." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dilomcfly.github.io/automation-services" />
+  <meta property="og:url" content="https://dilomcfly.github.io/automation-services/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI-Powered Business Automation | n8n Expert" />
-  <meta name="twitter:description" content="Save 10+ hours/week with custom n8n workflows and AI agents. Free ROI calculator included." />
   <link rel="canonical" href="https://dilomcfly.github.io/automation-services/" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "AuraSamuraiHub - AI Automation Services",
-    "description": "AI-powered n8n automation freelancer helping businesses save 10+ hours per week with custom workflows and AI agents.",
+    "name": "AuraHub Digital",
+    "description": "AI-powered automation for hospitality businesses. Custom n8n workflows, chatbots, and AI agents.",
     "url": "https://dilomcfly.github.io/automation-services/",
-    "priceRange": "$99-$599",
-    "areaServed": "Worldwide",
-    "serviceType": ["Business Automation", "AI Workflow Builder", "n8n Development"],
+    "areaServed": {"@type": "Country", "name": "Switzerland"},
+    "serviceType": ["Hotel Automation", "AI Chatbot", "n8n Workflow Development", "Business Process Automation"],
+    "priceRange": "CHF 99 - CHF 599",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Automation Packages",
       "itemListElement": [
-        {"@type": "Offer", "name": "Starter", "price": "99", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "Business", "price": "249", "priceCurrency": "USD"},
-        {"@type": "Offer", "name": "AI Agent", "price": "599", "priceCurrency": "USD"}
+        {"@type": "Offer", "name": "Starter", "price": "99", "priceCurrency": "CHF"},
+        {"@type": "Offer", "name": "Business", "price": "249", "priceCurrency": "CHF"},
+        {"@type": "Offer", "name": "AI Agent", "price": "599", "priceCurrency": "CHF"}
       ]
     }
   }
@@ -45,661 +43,767 @@
       --bg: #0a0e13;
       --bg-2: #0f1520;
       --surface: #121a26;
-      --surface-2: #141f2f;
+      --surface-2: #161e2e;
       --card: #101826;
-      --border: rgba(255, 255, 255, 0.08);
+      --border: rgba(255,255,255,0.07);
       --text: #e7eef6;
-      --muted: #a9b7c7;
-      --accent: #38e8ff;
-      --accent-2: #7b5cff;
-      --accent-3: #23d18b;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-      --glow: 0 0 40px rgba(56, 232, 255, 0.15);
-      --max: 1140px;
+      --muted: #8a99ab;
+      --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --accent-3: #34d399;
+      --gold: #c8a866;
+      --shadow: 0 12px 40px rgba(0,0,0,0.5);
+      --glow: 0 0 60px rgba(56,189,248,0.08);
+      --max: 1060px;
+      --radius: 14px;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: "Manrope", system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at top, #111b2c 0%, var(--bg) 45%, #07090d 100%);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── BG Gradient ── */
+    .bg-glow {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(56,189,248,0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(167,139,250,0.05), transparent),
+        var(--bg);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .page::before {
-      content: "";
-      position: absolute;
-      inset: -200px -100px auto -100px;
-      height: 480px;
-      background: radial-gradient(60% 60% at 50% 50%, rgba(123, 92, 255, 0.18), transparent 70%);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .page::after {
-      content: "";
-      position: absolute;
-      inset: auto -150px -120px -150px;
-      height: 360px;
-      background: radial-gradient(60% 60% at 50% 50%, rgba(35, 209, 139, 0.12), transparent 70%);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(10, 14, 19, 0.92), rgba(10, 14, 19, 0.65));
-      border-bottom: 1px solid var(--border);
-    }
-
+    /* ── NAV ── */
     .nav {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 18px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(16px) saturate(1.6);
+      -webkit-backdrop-filter: blur(16px) saturate(1.6);
+      background: rgba(10,14,19,0.82);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.4px;
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 58px; gap: 1rem;
     }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(56, 232, 255, 0.3), rgba(123, 92, 255, 0.35));
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: grid;
-      place-items: center;
-      box-shadow: var(--glow);
-      font-size: 18px;
+    .logo {
+      font-family: "Space Grotesk", monospace;
+      font-weight: 700; font-size: 1.1rem; color: var(--accent);
+      white-space: nowrap; letter-spacing: .3px;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-      color: var(--muted);
+    .logo span { color: var(--muted); font-weight: 400; font-size: .8rem; margin-left: .4rem; }
+    .nav-links { display: flex; gap: 1.2rem; align-items: center; }
+    .nav-links a { font-size: .82rem; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      font-size: .78rem; font-weight: 700; padding: 7px 16px;
+      border-radius: 8px; background: var(--accent); color: var(--bg);
+      transition: opacity .2s;
     }
+    .nav-cta:hover { opacity: .85; }
 
-    .nav-links a {
-      transition: color 0.2s ease;
+    /* ── LANG SWITCHER ── */
+    .lang-switch {
+      display: flex; gap: 2px; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--surface);
     }
-
-    .nav-links a:hover {
-      color: var(--text);
+    .lang-btn {
+      padding: 5px 10px; font-size: .72rem; font-weight: 600;
+      background: transparent; border: none; color: var(--muted);
+      cursor: pointer; transition: all .2s; letter-spacing: .5px;
     }
+    .lang-btn.active { background: var(--accent); color: var(--bg); }
+    .lang-btn:hover:not(.active) { color: var(--text); background: var(--surface-2); }
 
-    .cta {
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #05080e;
-      font-weight: 700;
-      box-shadow: 0 10px 30px rgba(56, 232, 255, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+    /* ── HAMBURGER ── */
+    .menu-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 4px; }
+    .menu-toggle svg { width: 22px; height: 22px; }
 
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(56, 232, 255, 0.35);
-    }
-
-    main {
-      position: relative;
-      z-index: 1;
-    }
-
-    section {
-      padding: 96px 28px;
-    }
-
-    .container {
-      max-width: var(--max);
-      margin: 0 auto;
-    }
-
+    /* ── HERO ── */
     .hero {
-      padding-top: 110px;
-      display: grid;
-      gap: 40px;
-      align-items: center;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      max-width: var(--max); margin: 0 auto;
+      padding: 5rem 1.5rem 3rem; text-align: center;
     }
-
+    .hero-badge {
+      display: inline-block; font-size: .78rem; font-weight: 600;
+      padding: 6px 18px; border-radius: 30px; margin-bottom: 1.5rem;
+      background: rgba(56,189,248,0.08); color: var(--accent);
+      border: 1px solid rgba(56,189,248,0.18);
+    }
     .hero h1 {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: clamp(2.6rem, 4.5vw, 4.4rem);
-      line-height: 1.05;
-      margin-bottom: 18px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
+      line-height: 1.15; margin-bottom: 1.2rem;
     }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin-bottom: 28px;
+    .hero h1 em {
+      font-style: normal; color: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 600px; margin: 0 auto 2rem; line-height: 1.75;
     }
-
-    .secondary-btn {
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
-      font-weight: 600;
-      transition: border 0.2s ease, transform 0.2s ease;
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem;
+      margin: 2.5rem 0; flex-wrap: wrap;
     }
-
-    .secondary-btn:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-2px);
+    .stat-num {
+      font-family: "Space Grotesk", monospace;
+      font-size: 2rem; font-weight: 800; color: var(--accent);
     }
+    .stat-label { font-size: .78rem; color: var(--muted); margin-top: 2px; }
 
-    .hero-card {
-      background: linear-gradient(160deg, rgba(18, 26, 38, 0.95), rgba(14, 20, 31, 0.85));
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      padding: 28px;
-      box-shadow: var(--shadow);
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: 13px 28px; border-radius: 10px; font-weight: 700;
+      font-size: .9rem; transition: all .25s; cursor: pointer; border: none;
     }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 18px;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #6bb8e8);
+      color: var(--bg); box-shadow: 0 4px 20px rgba(56,189,248,0.25);
     }
-
-    .stat {
-      padding: 18px;
-      border-radius: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-
-    .stat h3 {
-      font-size: 1.8rem;
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(56,189,248,0.35); }
+    .btn-outline {
+      background: transparent; border: 1.5px solid rgba(56,189,248,0.4);
       color: var(--accent);
     }
+    .btn-outline:hover { background: rgba(56,189,248,0.06); border-color: var(--accent); }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-    .stat span {
-      color: var(--muted);
-      font-size: 0.9rem;
+    /* ── SECTIONS ── */
+    .section { max-width: var(--max); margin: 0 auto; padding: 5rem 1.5rem; }
+    .section-overline {
+      font-size: .72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent); text-align: center;
+      margin-bottom: .5rem;
     }
-
     .section-title {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      margin-bottom: 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 700;
+      text-align: center; margin-bottom: .4rem;
+    }
+    .section-sub { color: var(--muted); text-align: center; margin-bottom: 3rem; font-size: .95rem; }
+    .divider {
+      width: 50px; height: 3px; border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      margin: 1rem auto 0;
     }
 
-    .section-subtitle {
-      color: var(--muted);
-      margin-bottom: 36px;
-      max-width: 700px;
+    /* ── CARDS GRID ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem 1.5rem;
+      transition: transform .25s, border-color .25s;
     }
+    .card:hover { transform: translateY(-4px); border-color: rgba(56,189,248,0.2); }
+    .card-icon { font-size: 1.6rem; margin-bottom: .8rem; }
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .card p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
 
-    .grid-3 {
-      display: grid;
-      gap: 22px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
-
-    .service-card {
-      padding: 28px;
-      border-radius: 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(56, 232, 255, 0.12), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .service-card:hover::after {
-      opacity: 1;
-    }
-
+    /* ── SERVICES / PRICING ── */
     .tier {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1.4px;
-      color: var(--accent-2);
-      font-weight: 700;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem 1.5rem;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .tier.featured { border-color: rgba(56,189,248,0.3); box-shadow: var(--glow); }
+    .tier-badge {
+      position: absolute; top: -10px; right: 20px;
+      background: var(--accent); color: var(--bg);
+      font-size: .65rem; font-weight: 700; padding: 3px 12px;
+      border-radius: 6px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tier-name { font-size: .85rem; font-weight: 700; color: var(--accent); margin-bottom: .3rem; text-transform: uppercase; letter-spacing: 1px; }
+    .tier-price { font-family: "Space Grotesk", monospace; font-size: 2.2rem; font-weight: 800; margin-bottom: .4rem; }
+    .tier-desc { font-size: .85rem; color: var(--muted); margin-bottom: 1.2rem; }
+    .tier-features { list-style: none; margin-bottom: 1.5rem; flex-grow: 1; }
+    .tier-features li {
+      font-size: .84rem; padding: .4rem 0; color: var(--muted);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .tier-features li::before { content: "✓"; color: var(--accent-3); font-weight: 700; font-size: .8rem; }
+    .tier-example { font-size: .78rem; color: var(--accent-2); font-style: italic; margin-top: auto; }
+
+    /* ── USE CASES ── */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .use-case { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem 1.5rem; }
+    .use-case h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .use-case p { font-size: .85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .tag {
+      font-size: .68rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; background: rgba(56,189,248,0.08);
+      color: var(--accent); border: 1px solid rgba(56,189,248,0.15);
     }
 
-    .price {
-      font-size: 2rem;
-      font-weight: 700;
+    /* ── STEPS ── */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; counter-reset: step; }
+    .step { text-align: center; position: relative; }
+    .step-num {
+      font-family: "Space Grotesk", monospace; font-size: 2.5rem;
+      font-weight: 800; color: rgba(56,189,248,0.15); margin-bottom: .5rem;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .step p { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--text);
+      font-family: inherit; font-size: .95rem; font-weight: 600;
+      text-align: left; padding: 1.2rem 2rem 1.2rem 0; cursor: pointer;
+      position: relative; transition: color .2s;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-q::after {
+      content: "+"; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%); font-size: 1.2rem; color: var(--accent);
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-q::after { transform: translateY(-50%) rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s;
+      font-size: .88rem; color: var(--muted); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.2rem; }
+
+    /* ── CONTACT ── */
+    .contact-wrap { max-width: 580px; margin: 0 auto; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-grid .full { grid-column: 1 / -1; }
+    .form-input, .form-textarea {
+      width: 100%; padding: 12px 16px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); font-family: inherit; font-size: .88rem;
+      transition: border-color .2s;
+    }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--accent); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      width: 100%; padding: 14px; border: none; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #6bb8e8);
+      color: var(--bg); font-family: inherit; font-size: .95rem;
+      font-weight: 700; cursor: pointer; transition: opacity .2s;
+      margin-top: .5rem;
+    }
+    .form-submit:hover { opacity: .88; }
+    .response-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .78rem; color: var(--accent-3); margin-top: 1rem;
+    }
+    .response-badge::before { content: "⚡"; }
+    .email-line { font-size: .85rem; color: var(--muted); margin-top: 1.5rem; text-align: center; }
+    .email-line a { color: var(--accent); text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center; padding: 2.5rem 1.5rem;
+      font-size: .78rem; color: var(--muted);
+      border-top: 1px solid var(--border); margin-top: 3rem;
     }
 
-    .service-card ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .service-card li::before {
-      content: "▹";
-      margin-right: 8px;
-      color: var(--accent);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(56, 232, 255, 0.08);
-      font-size: 0.85rem;
-      color: var(--text);
-    }
-
-    .portfolio-card {
-      padding: 28px;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(16, 24, 38, 0.95), rgba(11, 16, 26, 0.95));
-      display: grid;
-      gap: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .portfolio-card a {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .testimonial-grid {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .testimonial {
-      border-radius: 20px;
-      padding: 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    .faq-grid {
-      display: grid;
-      gap: 16px;
-      max-width: 860px;
-    }
-
-    details {
-      background: var(--surface-2);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 18px 20px;
-      transition: border 0.2s ease;
-    }
-
-    details[open] {
-      border-color: rgba(56, 232, 255, 0.4);
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    summary::after {
-      content: "+";
-      float: right;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    details[open] summary::after {
-      content: "–";
-    }
-
-    .contact-grid {
-      display: grid;
-      gap: 24px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      align-items: start;
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(8, 12, 18, 0.9);
-      color: var(--text);
-      font-family: inherit;
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    button {
-      border: none;
-      cursor: pointer;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px;
-      color: var(--muted);
-    }
-
-    .footer-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .scroll-reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 720px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 58px; left: 0; right: 0;
+        background: rgba(10,14,19,0.96); backdrop-filter: blur(16px);
+        padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border);
       }
-      .nav-links {
-        flex-wrap: wrap;
-      }
-      section {
-        padding: 80px 22px;
-      }
-      .hero {
-        padding-top: 90px;
-      }
+      .menu-toggle { display: block; }
+      .hero { padding: 3rem 1.25rem 2rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero-stats { gap: 1.5rem; }
+      .stat-num { font-size: 1.5rem; }
+      .grid-3, .steps { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .section { padding: 3rem 1.25rem; }
+      .btn { padding: 12px 22px; font-size: .85rem; }
     }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.5rem; }
+      .hero-sub { font-size: .92rem; }
+      .lang-btn { padding: 4px 8px; font-size: .68rem; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <nav class="nav">
-        <div class="brand">
-          <div class="brand-mark">⟁</div>
-          <span>Aura Automation</span>
-        </div>
-        <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="case-studies.html">Case Studies</a>
-          <a href="chatbot.html">AI Chatbot</a>
-          <a href="calculator.html">ROI Calculator</a>
-          <a href="validator.html">Validator</a>
-          <a href="optimizer.html">Optimizer</a>
-          <a href="quiz.html">Quiz</a>
-          <a href="hotel-assessment.html">Hotel Assessment</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <a class="cta" href="#contact">Book a Call</a>
-      </nav>
-    </header>
+  <div class="bg-glow"></div>
 
-    <main>
-      <section class="container hero" id="top">
-        <div class="scroll-reveal">
-          <span class="badge">n8n Specialist · AI-First Workflows</span>
-          <h1>AI-Powered Business Automation</h1>
-          <p>Save 10+ hours/week with custom n8n workflows that connect your tools, automate operations, and add AI to the repetitive work.</p>
-          <div class="hero-actions">
-            <a class="cta" href="#contact">Get a Free Automation Audit</a>
-            <a class="secondary-btn" href="calculator.html">📊 Calculate Your ROI</a>
-            <a class="secondary-btn" href="quiz.html">🎯 Find Your Automation</a>
-            <a class="secondary-btn" href="#portfolio">View Templates</a>
-          </div>
-        </div>
-        <div class="hero-card scroll-reveal">
-          <h2 style="font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; margin-bottom: 16px;">Results-focused automation</h2>
-          <div class="stat-grid">
-            <div class="stat">
-              <h3>13</h3>
-              <span>Workflow templates ready</span>
-            </div>
-            <div class="stat">
-              <h3>48h</h3>
-              <span>Typical delivery window</span>
-            </div>
-            <div class="stat">
-              <h3>100%</h3>
-              <span>Custom to your stack</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="container" id="services">
-        <div class="scroll-reveal">
-          <h2 class="section-title">Service Tiers</h2>
-          <p class="section-subtitle">From a single workflow to full AI-powered automation systems. Every tier includes clear documentation, testing, and handoff.</p>
-        </div>
-        <div class="grid-3">
-          <div class="service-card scroll-reveal">
-            <span class="tier">Starter</span>
-            <div class="price">$99</div>
-            <p class="section-subtitle" style="margin: 0;">One high-impact workflow for immediate time savings.</p>
-            <ul>
-              <li>1 automation workflow</li>
-              <li>Up to 3 integrations</li>
-              <li>Basic error handling</li>
-              <li>Deployment walkthrough</li>
-            </ul>
-          </div>
-          <div class="service-card scroll-reveal">
-            <span class="tier">Business</span>
-            <div class="price">$249</div>
-            <p class="section-subtitle" style="margin: 0;">Multi-step automation with AI enrichment and reporting.</p>
-            <ul>
-              <li>2-3 workflows, 8+ nodes each</li>
-              <li>AI logic + data enrichment</li>
-              <li>Centralized error alerts</li>
-              <li>Workflow documentation</li>
-            </ul>
-          </div>
-          <div class="service-card scroll-reveal">
-            <span class="tier">AI Agent</span>
-            <div class="price">$599</div>
-            <p class="section-subtitle" style="margin: 0;">End-to-end automation system with AI agents + dashboards.</p>
-            <ul>
-              <li>Advanced AI agent workflows</li>
-              <li>Multi-channel automations</li>
-              <li>Performance monitoring</li>
-              <li>Priority support</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="container" id="portfolio">
-        <div class="scroll-reveal">
-          <h2 class="section-title">Portfolio</h2>
-          <p class="section-subtitle">13 production-ready workflow templates built for real business use cases. Import, customize, and launch fast.</p>
-        </div>
-        <div class="portfolio-card scroll-reveal">
-          <strong>n8n Automation Templates</strong>
-          <p>Includes AI onboarding, lead capture, content repurposing, order processing, appointment booking, and more.</p>
-          <a href="https://github.com/DILOmcfly/n8n-automation-templates" target="_blank" rel="noreferrer">github.com/DILOmcfly/n8n-automation-templates</a>
-        </div>
-      </section>
-
-      <section class="container" id="testimonials">
-        <div class="scroll-reveal">
-          <h2 class="section-title">Testimonials</h2>
-          <p class="section-subtitle">Client stories are coming soon. For now, here are placeholders to show how the section will look.</p>
-        </div>
-        <div class="testimonial-grid">
-          <div class="testimonial scroll-reveal">“Placeholder testimonial about saving hours and flawless delivery.”</div>
-          <div class="testimonial scroll-reveal">“Placeholder testimonial about automation ROI and faster ops.”</div>
-          <div class="testimonial scroll-reveal">“Placeholder testimonial about AI agents and business growth.”</div>
-        </div>
-      </section>
-
-      <section class="container" id="faq">
-        <div class="scroll-reveal">
-          <h2 class="section-title">FAQ</h2>
-          <p class="section-subtitle">Common questions about n8n automation and AI workflows.</p>
-        </div>
-        <div class="faq-grid">
-          <details class="scroll-reveal">
-            <summary>What is n8n and why should I use it?</summary>
-            <p>n8n is a flexible automation platform that connects your apps and lets you build custom workflows without heavy engineering. It is powerful, transparent, and cost-effective.</p>
-          </details>
-          <details class="scroll-reveal">
-            <summary>How quickly can you deliver a workflow?</summary>
-            <p>Most single workflows are delivered within 48 hours. Larger systems depend on complexity, integrations, and testing requirements.</p>
-          </details>
-          <details class="scroll-reveal">
-            <summary>Can you work with my existing tools and data?</summary>
-            <p>Yes. I build automations around your current stack, and add AI steps only where they truly improve outcomes.</p>
-          </details>
-          <details class="scroll-reveal">
-            <summary>Do you provide documentation and support?</summary>
-            <p>Every delivery includes documentation and a walkthrough. Support is available for ongoing iteration or new features.</p>
-          </details>
-        </div>
-      </section>
-
-      <section class="container" id="contact">
-        <div class="scroll-reveal">
-          <h2 class="section-title">Let’s Automate Your Business</h2>
-          <p class="section-subtitle">Tell me what you want to automate and I will map out a fast, clear workflow plan.</p>
-        </div>
-        <div class="contact-grid">
-          <div class="scroll-reveal">
-            <h3 style="font-family: 'Space Grotesk', system-ui, sans-serif; margin-bottom: 12px;">Start with a quick brief</h3>
-            <p class="section-subtitle" style="margin-bottom: 18px;">Prefer email? Write directly to <strong>aurasamuraihub@gmail.com</strong>.</p>
-            <div class="badge">Typical response: under 24 hours</div>
-          </div>
-          <form class="scroll-reveal" id="contactForm" onsubmit="sendEmail(event)">
-            <input type="text" id="cName" placeholder="Your name" required />
-            <input type="email" id="cEmail" placeholder="Your email" required />
-            <input type="text" id="cCompany" placeholder="Company / Website" />
-            <textarea id="cMessage" placeholder="What do you want to automate?" required></textarea>
-            <button class="cta" type="submit">Send Request</button>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-inner">
-        <span>© 2026 Aura Automation. All rights reserved.</span>
-        <span>
-          <a href="https://github.com/DILOmcfly" target="_blank" rel="noreferrer">GitHub</a>
-          · <a href="mailto:aurasamuraihub@gmail.com">aurasamuraihub@gmail.com</a>
-        </span>
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">AuraHub<span>Digital</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#use-cases" data-i18n="nav.use_cases">Use Cases</a>
+        <a href="#how-it-works" data-i18n="nav.how_it_works">How It Works</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <a href="#contact" class="nav-cta" data-i18n="nav.cta">Book a Free Call</a>
       </div>
-    </footer>
-  </div>
+      <div style="display:flex;align-items:center;gap:.7rem;">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
 
+  <!-- ═══ HERO ═══ -->
+  <header class="hero fade-in">
+    <div class="hero-badge" data-i18n="hero.badge">n8n Specialist · Hospitality & Business Automation</div>
+    <h1 data-i18n="hero.title" data-i18n-html="1">Automate Your Hotel Operations with <em>AI</em></h1>
+    <p class="hero-sub" data-i18n="hero.subtitle">Custom n8n workflows that handle guest emails, review management, booking confirmations, and staff coordination — so your team can focus on what matters: the guest experience.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" data-i18n="hero.stat_1_value">10+</div><div class="stat-label" data-i18n="hero.stat_1_label">Hours saved per week</div></div>
+      <div class="stat"><div class="stat-num" data-i18n="hero.stat_2_value">48h</div><div class="stat-label" data-i18n="hero.stat_2_label">Typical delivery</div></div>
+      <div class="stat"><div class="stat-num" data-i18n="hero.stat_3_value">€99</div><div class="stat-label" data-i18n="hero.stat_3_label">Starting from</div></div>
+    </div>
+    <div class="btn-group">
+      <a href="#contact" class="btn btn-primary" data-i18n="hero.cta_primary">Get a Free Automation Audit</a>
+      <a href="calculator.html" class="btn btn-outline" data-i18n="hero.cta_secondary">Calculate Your ROI</a>
+    </div>
+  </header>
+
+  <!-- ═══ PROBLEMS ═══ -->
+  <section class="section fade-in">
+    <div class="section-overline" data-i18n="problems.overline">The Problem</div>
+    <h2 class="section-title" data-i18n="problems.title">Your Staff Is Drowning in Repetitive Tasks</h2>
+    <div class="divider"></div>
+    <div style="margin-top:2.5rem;">
+      <div class="grid-3" id="problemCards"></div>
+    </div>
+  </section>
+
+  <!-- ═══ SOLUTIONS ═══ -->
+  <section class="section fade-in">
+    <div class="section-overline" data-i18n="solutions.overline">The Solution</div>
+    <h2 class="section-title" data-i18n="solutions.title">AI-Powered Workflows That Run While You Sleep</h2>
+    <div class="divider"></div>
+    <div style="margin-top:2.5rem;">
+      <div class="grid-3" id="solutionCards"></div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section fade-in" id="services">
+    <div class="section-overline" data-i18n="services.overline">Service Tiers</div>
+    <h2 class="section-title" data-i18n="services.title">From a Single Workflow to Full Automation</h2>
+    <p class="section-sub" data-i18n="services.subtitle">Every tier includes documentation, testing, and a walkthrough. No hidden costs.</p>
+    <div class="grid-3" id="tierCards"></div>
+  </section>
+
+  <!-- ═══ USE CASES ═══ -->
+  <section class="section fade-in" id="use-cases">
+    <div class="section-overline" data-i18n="use_cases.overline">Use Cases</div>
+    <h2 class="section-title" data-i18n="use_cases.title">Built for Hotels, Restaurants & Hospitality</h2>
+    <div class="divider"></div>
+    <div style="margin-top:2.5rem;">
+      <div class="grid-2" id="useCaseCards"></div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="section fade-in" id="how-it-works">
+    <div class="section-overline" data-i18n="how_it_works.overline">How It Works</div>
+    <h2 class="section-title" data-i18n="how_it_works.title">Three Steps to Automation</h2>
+    <div class="divider"></div>
+    <div style="margin-top:2.5rem;">
+      <div class="steps" id="stepCards"></div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="section fade-in" id="faq">
+    <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+    <div class="divider"></div>
+    <div style="margin-top:2.5rem;">
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="section fade-in" id="contact">
+    <h2 class="section-title" data-i18n="contact.title">Let's Automate Your Business</h2>
+    <p class="section-sub" data-i18n="contact.subtitle">Describe what you want to automate. I'll respond within 24 hours with a concrete plan.</p>
+    <div class="contact-wrap">
+      <form action="https://formsubmit.co/aurasamuraihub@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="AuraHub Digital — New Automation Request" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://dilomcfly.github.io/automation-services/?thanks=1" />
+        <input type="text" name="_honey" style="display:none" />
+        <div class="form-grid">
+          <input class="form-input" type="text" name="name" required data-i18n-placeholder="contact.form.name" placeholder="Your name" />
+          <input class="form-input" type="email" name="email" required data-i18n-placeholder="contact.form.email" placeholder="Your email" />
+          <input class="form-input full" type="text" name="company" data-i18n-placeholder="contact.form.company" placeholder="Hotel / Restaurant / Company" />
+          <textarea class="form-textarea full" name="message" required data-i18n-placeholder="contact.form.message" placeholder="What repetitive task do you want to automate?"></textarea>
+          <button class="form-submit full" type="submit" data-i18n="contact.form.submit">Send Request</button>
+        </div>
+      </form>
+      <div style="text-align:center;">
+        <div class="response-badge" data-i18n="contact.response_badge">Typical response: under 24 hours</div>
+      </div>
+      <p class="email-line"><span data-i18n="contact.email_label">Or email directly:</span> <a href="mailto:aurasamuraihub@gmail.com">aurasamuraihub@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer class="footer" data-i18n="footer">© 2026 AuraHub Digital. All rights reserved.</footer>
+
+  <!-- ═══ I18N DATA + JS ═══ -->
   <script>
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
+  const I18N = {
+    en: {
+      nav: { services:"Services", use_cases:"Use Cases", how_it_works:"How It Works", faq:"FAQ", contact:"Contact", cta:"Book a Free Call" },
+      hero: {
+        badge:"n8n Specialist · Hospitality & Business Automation",
+        title:'Automate Your Hotel Operations with <em>AI</em>',
+        subtitle:"Custom n8n workflows that handle guest emails, review management, booking confirmations, and staff coordination — so your team can focus on what matters: the guest experience.",
+        cta_primary:"Get a Free Automation Audit", cta_secondary:"Calculate Your ROI",
+        stat_1_value:"10+", stat_1_label:"Hours saved per week",
+        stat_2_value:"48h", stat_2_label:"Typical delivery",
+        stat_3_value:"€99", stat_3_label:"Starting from"
       },
-      { threshold: 0.15 }
-    );
-
-    document.querySelectorAll(".scroll-reveal").forEach((el) => observer.observe(el));
-
-    function sendEmail(e) {
-      e.preventDefault();
-      const n = document.getElementById('cName').value;
-      const em = document.getElementById('cEmail').value;
-      const co = document.getElementById('cCompany').value;
-      const msg = document.getElementById('cMessage').value;
-      const subject = encodeURIComponent('Automation Request from ' + n);
-      const body = encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\nCompany: ' + co + '\n\n' + msg);
-      window.location.href = 'mailto:aurasamuraihub@gmail.com?subject=' + subject + '&body=' + body;
+      problems: {
+        overline:"The Problem", title:"Your Staff Is Drowning in Repetitive Tasks",
+        items: [
+          { icon:"📧", title:"Manual Email Responses", desc:"Your front desk spends 2+ hours daily answering the same booking questions, confirmation requests, and pre-arrival information emails." },
+          { icon:"⭐", title:"Unmanaged Guest Reviews", desc:"Reviews pile up on Google, Booking.com, and TripAdvisor. Responding manually takes time you don't have — and silence costs bookings." },
+          { icon:"📋", title:"Staff Coordination Chaos", desc:"Housekeeping, maintenance, and front desk rely on phone calls, paper notes, or WhatsApp groups. Things get lost. Guests notice." }
+        ]
+      },
+      solutions: {
+        overline:"The Solution", title:"AI-Powered Workflows That Run While You Sleep",
+        items: [
+          { icon:"⚡", title:"Automated Guest Communication", desc:"Pre-arrival emails, booking confirmations, and FAQ responses — all personalized and sent automatically based on booking data." },
+          { icon:"🤖", title:"Intelligent Review Management", desc:"AI reads each review, drafts a personalized response, and sends it for your approval — or publishes directly if you prefer." },
+          { icon:"🔄", title:"Operations Automation", desc:"Housekeeping schedules, maintenance tickets, inventory alerts — connected systems that update in real-time without manual input." }
+        ]
+      },
+      services: {
+        overline:"Service Tiers", title:"From a Single Workflow to Full Automation",
+        subtitle:"Every tier includes documentation, testing, and a walkthrough. No hidden costs.",
+        tiers: [
+          { name:"Starter", price:"€99", desc:"One high-impact workflow to save immediate time.", features:["1 automation workflow","Up to 3 app integrations","Error handling included","Deployment walkthrough"], example:"e.g., Auto-respond to booking emails" },
+          { name:"Business", price:"€249", desc:"Multi-step automation with AI intelligence.", features:["2–3 connected workflows","AI-powered decision logic","Real-time error alerts","Full documentation"], example:"e.g., Guest review pipeline + reporting", featured:true },
+          { name:"AI Agent", price:"€599", desc:"Complete automation system with AI agents.", features:["Advanced AI agent workflows","Multi-channel automation","Performance dashboards","Priority support + 30 days"], example:"e.g., Full guest lifecycle automation" }
+        ]
+      },
+      use_cases: {
+        overline:"Use Cases", title:"Built for Hotels, Restaurants & Hospitality",
+        items: [
+          { title:"Guest Email Automation", desc:"Booking confirmation → pre-arrival info → welcome message → post-stay thank you. All triggered automatically from your PMS.", tags:["Hotel","PMS Integration","Email"] },
+          { title:"Review Response Pipeline", desc:"New review detected → AI analyzes sentiment → drafts personalized reply → sends for approval or auto-publishes.", tags:["Hotel","Restaurant","AI","Reviews"] },
+          { title:"Restaurant Order Processing", desc:"Online order received → kitchen notified → prep timer started → customer updated → delivery coordinated. Zero manual steps.", tags:["Restaurant","Orders","Notifications"] },
+          { title:"Staff Schedule & Alerts", desc:"Shift changes, room ready notifications, maintenance requests — all routed to the right person via WhatsApp, SMS, or email.", tags:["Hotel","Operations","WhatsApp"] }
+        ]
+      },
+      how_it_works: {
+        overline:"How It Works", title:"Three Steps to Automation",
+        steps: [
+          { num:"01", title:"Tell Me What to Automate", desc:"15-minute call or email. You describe the repetitive task that wastes your team's time. I identify the automation opportunity." },
+          { num:"02", title:"I Build & Test It", desc:"Within 48 hours, your custom workflow is built, tested with real data, and ready to deploy." },
+          { num:"03", title:"Launch & Iterate", desc:"We deploy together, I train your team, and provide documentation. After 2 weeks, we review performance and optimize." }
+        ]
+      },
+      faq: {
+        title:"Frequently Asked Questions",
+        items: [
+          { q:"What is n8n and why do you use it?", a:"n8n is an open-source workflow automation platform. Unlike Zapier or Make, it gives you full control over your data, can run on your own servers, and is significantly more cost-effective at scale." },
+          { q:"How fast can you deliver?", a:"Single workflows: 24-48 hours. Multi-workflow systems: 3-5 business days. AI agent setups: 5-10 business days." },
+          { q:"Do I need technical knowledge?", a:"No. I handle everything: design, build, testing, deployment, and training. You just tell me what process you want automated." },
+          { q:"What happens if something breaks?", a:"Every workflow includes error handling and alerting. If something fails, you're notified immediately and the system recovers automatically." },
+          { q:"Can you integrate with my existing hotel software?", a:"Yes. n8n connects to 400+ apps including most PMS systems, booking platforms, CRMs, email providers, and communication tools." }
+        ]
+      },
+      contact: {
+        title:"Let's Automate Your Business",
+        subtitle:"Describe what you want to automate. I'll respond within 24 hours with a concrete plan.",
+        email_label:"Or email directly:", response_badge:"Typical response: under 24 hours",
+        form: { name:"Your name", email:"Your email", company:"Hotel / Restaurant / Company", message:"What repetitive task do you want to automate?", submit:"Send Request" }
+      },
+      footer:"© 2026 AuraHub Digital. All rights reserved."
+    },
+    de: {
+      nav: { services:"Leistungen", use_cases:"Anwendungsfälle", how_it_works:"So funktioniert's", faq:"FAQ", contact:"Kontakt", cta:"Kostenloses Gespräch" },
+      hero: {
+        badge:"n8n-Spezialist · Hotel- & Gastro-Automatisierung",
+        title:'Automatisieren Sie Ihren Hotelbetrieb mit <em>KI</em>',
+        subtitle:"Massgeschneiderte n8n-Workflows für Gäste-E-Mails, Bewertungsmanagement, Buchungsbestätigungen und Teamkoordination — damit sich Ihr Team auf das Wesentliche konzentrieren kann: das Gästeerlebnis.",
+        cta_primary:"Kostenloses Automatisierungs-Audit", cta_secondary:"ROI berechnen",
+        stat_1_value:"10+", stat_1_label:"Stunden gespart pro Woche",
+        stat_2_value:"48h", stat_2_label:"Typische Lieferzeit",
+        stat_3_value:"CHF 99", stat_3_label:"Ab"
+      },
+      problems: {
+        overline:"Das Problem", title:"Ihr Team ertrinkt in Routineaufgaben",
+        items: [
+          { icon:"📧", title:"Manuelle E-Mail-Beantwortung", desc:"Ihre Rezeption verbringt täglich 2+ Stunden mit denselben Buchungsanfragen, Bestätigungen und Vorab-Informationen." },
+          { icon:"⭐", title:"Unbeantwortete Gästebewertungen", desc:"Bewertungen häufen sich auf Google, Booking.com und TripAdvisor. Manuelles Antworten kostet Zeit — und Schweigen kostet Buchungen." },
+          { icon:"📋", title:"Chaotische Teamkoordination", desc:"Housekeeping, Technik und Rezeption kommunizieren über Telefon, Zettel oder WhatsApp-Gruppen. Informationen gehen verloren. Gäste merken es." }
+        ]
+      },
+      solutions: {
+        overline:"Die Lösung", title:"KI-gesteuerte Workflows, die rund um die Uhr arbeiten",
+        items: [
+          { icon:"⚡", title:"Automatische Gästekommunikation", desc:"Vorab-E-Mails, Buchungsbestätigungen und FAQ-Antworten — personalisiert und automatisch auf Basis Ihrer Buchungsdaten." },
+          { icon:"🤖", title:"Intelligentes Bewertungsmanagement", desc:"KI liest jede Bewertung, entwirft eine persönliche Antwort und sendet sie zur Freigabe — oder veröffentlicht direkt, wenn gewünscht." },
+          { icon:"🔄", title:"Betriebsautomatisierung", desc:"Housekeeping-Pläne, Wartungstickets, Lagerbestandswarnungen — vernetzte Systeme, die sich in Echtzeit aktualisieren." }
+        ]
+      },
+      services: {
+        overline:"Leistungspakete", title:"Vom einzelnen Workflow bis zur Vollautomatisierung",
+        subtitle:"Jedes Paket beinhaltet Dokumentation, Tests und eine persönliche Einführung. Keine versteckten Kosten.",
+        tiers: [
+          { name:"Starter", price:"CHF 99", desc:"Ein wirkungsvoller Workflow für sofortige Zeitersparnis.", features:["1 Automatisierungs-Workflow","Bis zu 3 App-Anbindungen","Fehlerbehandlung inklusive","Persönliche Einführung"], example:"z.B. Automatische Antwort auf Buchungsanfragen" },
+          { name:"Business", price:"CHF 249", desc:"Mehrstufige Automatisierung mit KI-Intelligenz.", features:["2–3 verknüpfte Workflows","KI-gestützte Entscheidungslogik","Echtzeit-Fehlermeldungen","Vollständige Dokumentation"], example:"z.B. Gästebewertungs-Pipeline mit Reporting", featured:true },
+          { name:"KI-Agent", price:"CHF 599", desc:"Komplettes Automatisierungssystem mit KI-Agenten.", features:["Fortgeschrittene KI-Agent-Workflows","Multi-Kanal-Automatisierung","Performance-Dashboards","Priority-Support + 30 Tage"], example:"z.B. Vollständige Gäste-Lifecycle-Automatisierung" }
+        ]
+      },
+      use_cases: {
+        overline:"Anwendungsfälle", title:"Speziell für Hotels, Restaurants & Gastronomie",
+        items: [
+          { title:"Gäste-E-Mail-Automatisierung", desc:"Buchungsbestätigung → Vorab-Informationen → Willkommensnachricht → Dankeschön nach dem Aufenthalt. Alles automatisch aus Ihrem PMS.", tags:["Hotel","PMS-Integration","E-Mail"] },
+          { title:"Bewertungs-Antwort-Pipeline", desc:"Neue Bewertung erkannt → KI analysiert Stimmung → entwirft persönliche Antwort → sendet zur Freigabe.", tags:["Hotel","Restaurant","KI","Bewertungen"] },
+          { title:"Restaurant-Bestellverarbeitung", desc:"Online-Bestellung → Küche benachrichtigt → Vorbereitungstimer → Kundenupdate → Lieferkoordination. Null manuelle Schritte.", tags:["Restaurant","Bestellungen","Benachrichtigungen"] },
+          { title:"Personal-Planung & Meldungen", desc:"Schichtwechsel, Zimmer-fertig-Meldungen, Wartungsanfragen — alles an die richtige Person via WhatsApp, SMS oder E-Mail.", tags:["Hotel","Betrieb","WhatsApp"] }
+        ]
+      },
+      how_it_works: {
+        overline:"So funktioniert's", title:"Drei Schritte zur Automatisierung",
+        steps: [
+          { num:"01", title:"Sagen Sie mir, was zu automatisieren ist", desc:"15-minütiges Gespräch oder E-Mail. Sie beschreiben die Routineaufgabe, die Ihr Team Zeit kostet." },
+          { num:"02", title:"Ich baue und teste es", desc:"Innerhalb von 48 Stunden ist Ihr massgeschneiderter Workflow gebaut, mit echten Daten getestet und einsatzbereit." },
+          { num:"03", title:"Go-Live & Optimierung", desc:"Wir deployen gemeinsam, ich schule Ihr Team und liefere Dokumentation. Nach 2 Wochen prüfen wir die Performance." }
+        ]
+      },
+      faq: {
+        title:"Häufig gestellte Fragen",
+        items: [
+          { q:"Was ist n8n und warum nutzen Sie es?", a:"n8n ist eine Open-Source-Workflow-Automatisierungsplattform. Anders als Zapier oder Make behalten Sie die volle Kontrolle über Ihre Daten und sparen bei Skalierung erheblich." },
+          { q:"Wie schnell können Sie liefern?", a:"Einzelne Workflows: 24–48 Stunden. Workflow-Systeme: 3–5 Werktage. KI-Agent-Setups: 5–10 Werktage." },
+          { q:"Brauche ich technisches Wissen?", a:"Nein. Ich kümmere mich um alles: Design, Entwicklung, Tests, Deployment und Schulung." },
+          { q:"Was passiert, wenn etwas nicht funktioniert?", a:"Jeder Workflow enthält Fehlerbehandlung und Benachrichtigungen. Bei Problemen werden Sie sofort informiert." },
+          { q:"Können Sie meine bestehende Hotelsoftware anbinden?", a:"Ja. n8n verbindet sich mit über 400 Apps, darunter die meisten PMS-Systeme, Buchungsplattformen und CRMs." }
+        ]
+      },
+      contact: {
+        title:"Lassen Sie uns Ihren Betrieb automatisieren",
+        subtitle:"Beschreiben Sie, was Sie automatisieren möchten. Ich antworte innerhalb von 24 Stunden mit einem konkreten Plan.",
+        email_label:"Oder direkt per E-Mail:", response_badge:"Antwortzeit: unter 24 Stunden",
+        form: { name:"Ihr Name", email:"Ihre E-Mail-Adresse", company:"Hotel / Restaurant / Unternehmen", message:"Welche Routineaufgabe möchten Sie automatisieren?", submit:"Anfrage senden" }
+      },
+      footer:"© 2026 AuraHub Digital. Alle Rechte vorbehalten."
+    },
+    es: {
+      nav: { services:"Servicios", use_cases:"Casos de Uso", how_it_works:"Cómo Funciona", faq:"Preguntas Frecuentes", contact:"Contacto", cta:"Llamada gratuita" },
+      hero: {
+        badge:"Especialista n8n · Automatización Hotelera & Empresarial",
+        title:'Automatiza las operaciones de tu hotel con <em>IA</em>',
+        subtitle:"Workflows personalizados en n8n que gestionan emails de huéspedes, reseñas, confirmaciones de reserva y coordinación del equipo — para que tu personal se concentre en lo importante: la experiencia del huésped.",
+        cta_primary:"Auditoría de automatización gratuita", cta_secondary:"Calcula tu ROI",
+        stat_1_value:"10+", stat_1_label:"Horas ahorradas por semana",
+        stat_2_value:"48h", stat_2_label:"Entrega típica",
+        stat_3_value:"€99", stat_3_label:"Desde"
+      },
+      problems: {
+        overline:"El Problema", title:"Tu equipo se ahoga en tareas repetitivas",
+        items: [
+          { icon:"📧", title:"Respuestas manuales a emails", desc:"Tu recepción pasa más de 2 horas diarias contestando las mismas preguntas de reserva, solicitudes de confirmación e información pre-estancia." },
+          { icon:"⭐", title:"Reseñas sin gestionar", desc:"Las reseñas se acumulan en Google, Booking.com y TripAdvisor. Responder manualmente lleva tiempo — y el silencio cuesta reservas." },
+          { icon:"📋", title:"Coordinación caótica del equipo", desc:"Housekeeping, mantenimiento y recepción se comunican por teléfono, notas de papel o grupos de WhatsApp. La información se pierde." }
+        ]
+      },
+      solutions: {
+        overline:"La Solución", title:"Workflows con IA que trabajan mientras duermes",
+        items: [
+          { icon:"⚡", title:"Comunicación automática con huéspedes", desc:"Emails pre-estancia, confirmaciones de reserva y respuestas a FAQ — todo personalizado y enviado automáticamente según los datos de reserva." },
+          { icon:"🤖", title:"Gestión inteligente de reseñas", desc:"La IA lee cada reseña, redacta una respuesta personalizada y la envía para tu aprobación — o la publica directamente si lo prefieres." },
+          { icon:"🔄", title:"Automatización operativa", desc:"Horarios de limpieza, tickets de mantenimiento, alertas de inventario — sistemas conectados que se actualizan en tiempo real." }
+        ]
+      },
+      services: {
+        overline:"Paquetes de Servicio", title:"Desde un workflow hasta automatización completa",
+        subtitle:"Cada paquete incluye documentación, pruebas y capacitación personalizada. Sin costos ocultos.",
+        tiers: [
+          { name:"Starter", price:"€99", desc:"Un workflow de alto impacto para ahorro inmediato.", features:["1 workflow de automatización","Hasta 3 integraciones","Manejo de errores incluido","Capacitación personalizada"], example:"p.ej. Respuesta automática a emails de reserva" },
+          { name:"Business", price:"€249", desc:"Automatización multi-paso con inteligencia artificial.", features:["2–3 workflows conectados","Lógica de decisión con IA","Alertas de error en tiempo real","Documentación completa"], example:"p.ej. Pipeline de reseñas con reportes", featured:true },
+          { name:"Agente IA", price:"€599", desc:"Sistema completo de automatización con agentes IA.", features:["Workflows avanzados con agentes IA","Automatización multi-canal","Dashboards de rendimiento","Soporte prioritario + 30 días"], example:"p.ej. Automatización del ciclo completo del huésped" }
+        ]
+      },
+      use_cases: {
+        overline:"Casos de Uso", title:"Diseñado para Hoteles, Restaurantes & Hostelería",
+        items: [
+          { title:"Automatización de emails para huéspedes", desc:"Confirmación de reserva → info pre-estancia → mensaje de bienvenida → agradecimiento post-estancia. Todo automático desde tu PMS.", tags:["Hotel","Integración PMS","Email"] },
+          { title:"Pipeline de respuesta a reseñas", desc:"Nueva reseña detectada → IA analiza sentimiento → redacta respuesta personalizada → envía para aprobación.", tags:["Hotel","Restaurante","IA","Reseñas"] },
+          { title:"Procesamiento de pedidos en restaurante", desc:"Pedido online recibido → cocina notificada → temporizador de preparación → cliente actualizado → entrega coordinada.", tags:["Restaurante","Pedidos","Notificaciones"] },
+          { title:"Planificación de personal y alertas", desc:"Cambios de turno, notificaciones de habitación lista, solicitudes de mantenimiento — todo dirigido a la persona correcta.", tags:["Hotel","Operaciones","WhatsApp"] }
+        ]
+      },
+      how_it_works: {
+        overline:"Cómo Funciona", title:"Tres pasos hacia la automatización",
+        steps: [
+          { num:"01", title:"Cuéntame qué quieres automatizar", desc:"Llamada de 15 minutos o email. Describes la tarea repetitiva que le roba tiempo a tu equipo." },
+          { num:"02", title:"Lo construyo y lo pruebo", desc:"En 48 horas, tu workflow personalizado está construido, probado con datos reales y listo para implementar." },
+          { num:"03", title:"Lanzamiento y optimización", desc:"Implementamos juntos, capacito a tu equipo y entrego documentación. Después de 2 semanas, revisamos el rendimiento." }
+        ]
+      },
+      faq: {
+        title:"Preguntas Frecuentes",
+        items: [
+          { q:"¿Qué es n8n y por qué lo usas?", a:"n8n es una plataforma open-source de automatización. A diferencia de Zapier o Make, tienes control total sobre tus datos y es más económico a escala." },
+          { q:"¿Qué tan rápido puedes entregar?", a:"Workflows individuales: 24–48 horas. Sistemas multi-workflow: 3–5 días hábiles. Agentes IA: 5–10 días hábiles." },
+          { q:"¿Necesito conocimientos técnicos?", a:"No. Yo me encargo de todo: diseño, desarrollo, pruebas, implementación y capacitación." },
+          { q:"¿Qué pasa si algo falla?", a:"Cada workflow incluye manejo de errores y alertas. Si algo falla, recibes notificación inmediata y el sistema se recupera automáticamente." },
+          { q:"¿Puedes integrar mi software hotelero actual?", a:"Sí. n8n se conecta con más de 400 apps incluyendo la mayoría de sistemas PMS, plataformas de reserva y CRMs." }
+        ]
+      },
+      contact: {
+        title:"Automaticemos tu negocio",
+        subtitle:"Describe qué quieres automatizar. Respondo en menos de 24 horas con un plan concreto.",
+        email_label:"O escribe directamente a:", response_badge:"Tiempo de respuesta: menos de 24 horas",
+        form: { name:"Tu nombre", email:"Tu email", company:"Hotel / Restaurante / Empresa", message:"¿Qué tarea repetitiva quieres automatizar?", submit:"Enviar solicitud" }
+      },
+      footer:"© 2026 AuraHub Digital. Todos los derechos reservados."
     }
+  };
+
+  // ── State ──
+  let currentLang = localStorage.getItem('aura-lang') || (navigator.language.startsWith('de') ? 'de' : navigator.language.startsWith('es') ? 'es' : 'en');
+
+  // ── Helpers ──
+  function get(obj, path) {
+    return path.split('.').reduce((o, k) => o && o[k], obj);
+  }
+
+  function renderCards(containerId, items, type) {
+    const c = document.getElementById(containerId);
+    if (!c || !items) return;
+    c.innerHTML = '';
+    items.forEach((item, i) => {
+      if (type === 'problem' || type === 'solution') {
+        c.innerHTML += `<div class="card"><div class="card-icon">${item.icon}</div><h3>${item.title}</h3><p>${item.desc}</p></div>`;
+      } else if (type === 'tier') {
+        const featured = item.featured ? ' featured' : '';
+        const badge = item.featured ? '<div class="tier-badge">Popular</div>' : '';
+        c.innerHTML += `<div class="tier${featured}">${badge}<div class="tier-name">${item.name}</div><div class="tier-price">${item.price}</div><p class="tier-desc">${item.desc}</p><ul class="tier-features">${item.features.map(f => `<li>${f}</li>`).join('')}</ul><p class="tier-example">${item.example}</p></div>`;
+      } else if (type === 'usecase') {
+        c.innerHTML += `<div class="use-case"><h3>${item.title}</h3><p>${item.desc}</p><div class="tags">${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>`;
+      } else if (type === 'step') {
+        c.innerHTML += `<div class="step"><div class="step-num">${item.num}</div><h3>${item.title}</h3><p>${item.desc}</p></div>`;
+      }
+    });
+  }
+
+  function renderFaq(items) {
+    const c = document.getElementById('faqList');
+    if (!c) return;
+    c.innerHTML = '';
+    items.forEach(item => {
+      c.innerHTML += `<div class="faq-item"><button class="faq-q">${item.q}</button><div class="faq-a">${item.a}</div></div>`;
+    });
+    c.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
+    });
+  }
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('aura-lang', lang);
+    const t = I18N[lang];
+
+    // Static text nodes
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = get(t, key);
+      if (val) {
+        if (el.hasAttribute('data-i18n-html')) el.innerHTML = val;
+        else el.textContent = val;
+      }
+    });
+
+    // Placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const val = get(t, key);
+      if (val) el.placeholder = val;
+    });
+
+    // Dynamic sections
+    renderCards('problemCards', t.problems.items, 'problem');
+    renderCards('solutionCards', t.solutions.items, 'solution');
+    renderCards('tierCards', t.services.tiers, 'tier');
+    renderCards('useCaseCards', t.use_cases.items, 'usecase');
+    renderCards('stepCards', t.how_it_works.steps, 'step');
+    renderFaq(t.faq.items);
+
+    // Active button
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+
+    // HTML lang
+    document.documentElement.lang = lang;
+  }
+
+  // ── Init ──
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Thank you redirect check
+  if (new URLSearchParams(location.search).has('thanks')) {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      const msg = document.createElement('div');
+      msg.style.cssText = 'background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:2rem;color:#34d399;font-weight:600;text-align:center;';
+      msg.textContent = currentLang === 'de' ? '✓ Nachricht gesendet! Wir melden uns innerhalb von 24h.' : currentLang === 'es' ? '✓ ¡Mensaje enviado! Respondemos en menos de 24 horas.' : '✓ Message sent! We will respond within 24 hours.';
+      hero.prepend(msg);
+    }
+  }
+
+  applyLang(currentLang);
   </script>
 </body>
 </html>
