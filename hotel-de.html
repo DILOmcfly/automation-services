@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KI-Automatisierung für Hotels | Zermatt & Schweiz</title>
+  <meta name="description" content="Sparen Sie 15+ Stunden pro Woche mit intelligenter Automatisierung für Ihr Hotel. Kostenlose Analyse in 2 Minuten. Spezialisiert auf Zermatter Hotellerie." />
+  <meta name="keywords" content="Hotel Automatisierung, KI Hotel, Zermatt Hotel Technologie, Hotellerie Effizienz, n8n Hotel, PMS Automatisierung" />
+  <meta name="author" content="Diego — AuraHub" />
+  <meta property="og:title" content="KI-Automatisierung für Hotels in Zermatt" />
+  <meta property="og:description" content="15+ Stunden/Woche sparen. Kostenlose Hotel-Analyse. Von einem Insider der Zermatter Hotellerie." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dilomcfly.github.io/automation-services/hotel-de.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://dilomcfly.github.io/automation-services/hotel-de.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13;
+      --bg-2: #0f1520;
+      --surface: #121a26;
+      --surface-2: #141f2f;
+      --card: #101826;
+      --border: rgba(255,255,255,0.08);
+      --text: #e7eef6;
+      --muted: #a9b7c7;
+      --accent: #c8a866;
+      --accent-2: #f0d79b;
+      --accent-dim: rgba(200,168,102,0.15);
+      --green: #23d18b;
+      --blue: #38e8ff;
+      --red: #ff6b6b;
+      --orange: #ffa94d;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --glow: 0 0 40px rgba(200,168,102,0.18);
+      --max: 980px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Manrope",system-ui,-apple-system,sans-serif;background:radial-gradient(circle at top,#111b2c 0%,var(--bg) 45%,#07090d 100%);color:var(--text);line-height:1.6;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(10,14,19,.85);border-bottom:1px solid var(--border);padding:0 2rem}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .logo{font-family:"Space Grotesk",monospace;font-weight:700;font-size:1.15rem;color:var(--accent);letter-spacing:.5px}
+    .logo span{color:var(--muted);font-weight:400;font-size:.85rem;margin-left:.5rem}
+    .nav-links{display:flex;gap:1.5rem;align-items:center}
+    .nav-links a{font-size:.85rem;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .lang-badge{font-size:.7rem;background:var(--accent-dim);color:var(--accent);padding:2px 8px;border-radius:20px;border:1px solid rgba(200,168,102,.3)}
+
+    /* HERO */
+    .hero{max-width:var(--max);margin:0 auto;padding:5rem 2rem 3rem;text-align:center}
+    .hero-badge{display:inline-block;background:var(--accent-dim);color:var(--accent);font-size:.8rem;font-weight:600;padding:6px 18px;border-radius:30px;margin-bottom:1.5rem;border:1px solid rgba(200,168,102,.25)}
+    .hero h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+    .hero h1 em{font-style:normal;color:var(--accent);position:relative}
+    .hero h1 em::after{content:"";position:absolute;bottom:2px;left:0;right:0;height:3px;background:var(--accent);opacity:.4;border-radius:2px}
+    .hero-sub{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 2rem;line-height:1.7}
+    .hero-stats{display:flex;justify-content:center;gap:3rem;margin:2.5rem 0;flex-wrap:wrap}
+    .stat{text-align:center}
+    .stat-num{font-family:"Space Grotesk",monospace;font-size:2.2rem;font-weight:800;color:var(--accent)}
+    .stat-label{font-size:.8rem;color:var(--muted);margin-top:2px}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:14px 32px;border-radius:12px;font-weight:700;font-size:.95rem;transition:all .3s;cursor:pointer;border:none}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),#d4a94a);color:#0a0e13;box-shadow:0 4px 20px rgba(200,168,102,.35)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,168,102,.5)}
+    .btn-outline{background:transparent;border:1.5px solid var(--accent);color:var(--accent)}
+    .btn-outline:hover{background:var(--accent-dim)}
+    .btn-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+    /* SECTIONS */
+    .section{max-width:var(--max);margin:0 auto;padding:4rem 2rem}
+    .section-title{font-family:"Space Grotesk",sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:.5rem;text-align:center}
+    .section-sub{color:var(--muted);text-align:center;margin-bottom:3rem;font-size:1rem}
+
+    /* PAIN POINTS */
+    .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .pain-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.8rem;transition:all .3s}
+    .pain-card:hover{border-color:rgba(200,168,102,.3);box-shadow:var(--glow)}
+    .pain-icon{font-size:2rem;margin-bottom:1rem}
+    .pain-card h3{font-size:1.05rem;margin-bottom:.5rem;color:var(--accent-2)}
+    .pain-card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+    .pain-card .pain-cost{margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border);font-family:"Space Grotesk",monospace;color:var(--red);font-size:.85rem;font-weight:600}
+
+    /* SOLUTION */
+    .solution-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+    .sol-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;position:relative;overflow:hidden}
+    .sol-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green))}
+    .sol-num{font-family:"Space Grotesk",monospace;font-size:3rem;font-weight:800;color:var(--accent);opacity:.3;margin-bottom:.5rem}
+    .sol-card h3{font-size:1.1rem;margin-bottom:.5rem}
+    .sol-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+    .sol-result{margin-top:1rem;background:rgba(35,209,139,.1);color:var(--green);padding:6px 14px;border-radius:8px;font-size:.8rem;font-weight:600;display:inline-block}
+
+    /* QUICK CALC */
+    .calc-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.5rem;max-width:600px;margin:0 auto;box-shadow:var(--shadow)}
+    .calc-row{margin-bottom:1.5rem}
+    .calc-row label{display:block;font-size:.9rem;color:var(--muted);margin-bottom:.5rem}
+    .calc-row input[type=range]{width:100%;accent-color:var(--accent);height:6px;cursor:pointer}
+    .calc-val{font-family:"Space Grotesk",monospace;font-size:1.3rem;font-weight:700;color:var(--accent);float:right}
+    .calc-result{background:linear-gradient(135deg,rgba(200,168,102,.08),rgba(35,209,139,.08));border:1px solid rgba(200,168,102,.2);border-radius:16px;padding:2rem;text-align:center;margin-top:1.5rem}
+    .calc-savings{font-family:"Space Grotesk",monospace;font-size:2.5rem;font-weight:800;color:var(--green)}
+    .calc-savings-label{font-size:.85rem;color:var(--muted);margin-top:.3rem}
+    .calc-hours{font-family:"Space Grotesk",monospace;font-size:1.5rem;font-weight:700;color:var(--accent);margin-top:.5rem}
+
+    /* PACKAGES */
+    .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .pkg{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;transition:all .3s}
+    .pkg:hover{border-color:rgba(200,168,102,.3);transform:translateY(-4px)}
+    .pkg.featured{border-color:var(--accent);box-shadow:var(--glow)}
+    .pkg.featured::before{content:"BELIEBT";position:absolute;top:-12px;right:20px;background:var(--accent);color:#0a0e13;font-size:.7rem;font-weight:800;padding:4px 12px;border-radius:6px}
+    .pkg-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem}
+    .pkg-price{font-family:"Space Grotesk",monospace;font-size:2rem;font-weight:800;color:var(--accent);margin-bottom:.3rem}
+    .pkg-price span{font-size:.85rem;color:var(--muted);font-weight:400}
+    .pkg-desc{font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.5}
+    .pkg-features{list-style:none;margin-bottom:1.5rem}
+    .pkg-features li{font-size:.85rem;color:var(--text);padding:.4rem 0;padding-left:1.5rem;position:relative}
+    .pkg-features li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+
+    /* TRUST */
+    .trust-bar{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding:2rem;opacity:.7}
+    .trust-item{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+
+    /* INSIDER */
+    .insider{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.5rem;max-width:700px;margin:0 auto;position:relative}
+    .insider::before{content:'"';font-size:5rem;color:var(--accent);opacity:.2;position:absolute;top:10px;left:20px;font-family:Georgia,serif}
+    .insider-text{font-size:1.05rem;line-height:1.8;color:var(--text);padding-left:1rem;border-left:3px solid var(--accent);margin-bottom:1.5rem}
+    .insider-author{display:flex;align-items:center;gap:1rem}
+    .insider-avatar{width:48px;height:48px;border-radius:50%;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:1.2rem}
+    .insider-name{font-weight:700;font-size:.95rem}
+    .insider-role{font-size:.8rem;color:var(--muted)}
+
+    /* CTA */
+    .cta-section{text-align:center;padding:4rem 2rem;max-width:var(--max);margin:0 auto}
+    .cta-section h2{font-family:"Space Grotesk",sans-serif;font-size:2rem;font-weight:800;margin-bottom:.8rem}
+    .cta-section p{color:var(--muted);margin-bottom:2rem;font-size:1.05rem}
+
+    /* FOOTER */
+    .footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.8rem;max-width:var(--max);margin:0 auto}
+    .footer a{color:var(--accent)}
+
+    /* DIVIDER */
+    .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--accent),transparent);margin:3rem auto;border-radius:2px}
+
+    @media(max-width:640px){
+      .hero{padding:3rem 1.2rem 2rem}
+      .hero-stats{gap:1.5rem}
+      .stat-num{font-size:1.6rem}
+      .section{padding:2.5rem 1.2rem}
+      .nav{padding:0 1rem}
+      .calc-box{padding:1.5rem}
+      .insider{padding:1.5rem}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">AuraHub <span>Hotel Automation</span></a>
+      <div class="nav-links">
+        <a href="#probleme">Probleme</a>
+        <a href="#loesung">Lösung</a>
+        <a href="#pakete">Pakete</a>
+        <a href="#kontakt">Kontakt</a>
+        <span class="lang-badge">🇩🇪 DE</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🏔️ Spezialisiert auf Zermatter Hotellerie</div>
+    <h1>Ihr Hotel verliert <em>15+ Stunden/Woche</em> an repetitive Aufgaben</h1>
+    <p class="hero-sub">
+      Ich arbeite als Chef de Rang im CERVO und kenne die Realität der Hotellerie von innen. 
+      Die meisten Hotels in Zermatt verschwenden hunderte Stunden pro Saison mit Aufgaben, 
+      die sich in Minuten automatisieren lassen.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">15h+</div>
+        <div class="stat-label">Stunden/Woche gespart</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">85%</div>
+        <div class="stat-label">Schnellere Antwortzeit</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2 Min</div>
+        <div class="stat-label">Kostenlose Analyse</div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <a href="#rechner" class="btn btn-primary">💡 Kostenlose Analyse starten</a>
+      <a href="#kontakt" class="btn btn-outline">Gespräch buchen</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PAIN POINTS -->
+  <section class="section" id="probleme">
+    <h2 class="section-title">Kennen Sie diese Probleme?</h2>
+    <p class="section-sub">Die tägliche Realität in der Zermatter Hotellerie — und was sie kostet</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">📧</div>
+        <h3>Email-Flut ohne Ende</h3>
+        <p>Buchungsbestätigungen, Check-in-Infos, Stornierungen, Review-Anfragen — jede Email wird manuell bearbeitet. Ihr Team tippt die gleichen Antworten hunderte Male pro Saison.</p>
+        <div class="pain-cost">⏱ ~8 Stunden/Woche · CHF 1'200+/Monat</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">⭐</div>
+        <h3>Verpasste Bewertungen</h3>
+        <p>Zufriedene Gäste vergessen, eine Bewertung zu schreiben. Unzufriedene tun es sofort. Ohne systematisches Follow-up verlieren Sie die positiven Stimmen an Google und Booking.</p>
+        <div class="pain-cost">⏱ ~3 Stunden/Woche · Verpasster Umsatz</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📋</div>
+        <h3>Personalplanung als Puzzle</h3>
+        <p>Schichtpläne per WhatsApp, Excel oder auf Papier. Änderungen kommunizieren sich nicht automatisch. Krankheitsvertretung ist Chaos. Das Team ist frustriert.</p>
+        <div class="pain-cost">⏱ ~4 Stunden/Woche · Personalfluktuation</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💬</div>
+        <h3>Gäste warten auf Antworten</h3>
+        <p>WhatsApp-Nachrichten um 23 Uhr, Booking.com-Anfragen am Wochenende, E-Mails in 5 Sprachen. Die Antwortzeit liegt bei Stunden — und jede Minute zählt für die Buchung.</p>
+        <div class="pain-cost">⏱ ~5 Stunden/Woche · Verlorene Buchungen</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📊</div>
+        <h3>Kein Überblick über Kennzahlen</h3>
+        <p>RevPAR, ADR, Belegungsrate — alles in verschiedenen Systemen. Monatliche Reports dauern Stunden und sind nie aktuell genug für schnelle Entscheidungen.</p>
+        <div class="pain-cost">⏱ ~3 Stunden/Woche · Suboptimale Preise</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔗</div>
+        <h3>Systeme, die nicht miteinander reden</h3>
+        <p>PMS, Channel Manager, Buchhaltung, CRM — alles isoliert. Daten werden doppelt eingegeben. Fehler sind vorprogrammiert. Integration scheint zu teuer und zu kompliziert.</p>
+        <div class="pain-cost">⏱ ~5 Stunden/Woche · Datenfehler</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOLUTION -->
+  <section class="section" id="loesung">
+    <h2 class="section-title">So funktioniert es</h2>
+    <p class="section-sub">In drei einfachen Schritten zu mehr Effizienz</p>
+    <div class="solution-grid">
+      <div class="sol-card">
+        <div class="sol-num">01</div>
+        <h3>Kostenlose Analyse</h3>
+        <p>In einem kurzen Gespräch (10 Min) oder mit unserer Online-Analyse identifizieren wir, wo Ihr Hotel am meisten Zeit und Geld verliert.</p>
+        <div class="sol-result">→ Personalisierter Report</div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-num">02</div>
+        <h3>Massgeschneiderte Lösung</h3>
+        <p>Wir bauen KI-gestützte Automatisierungen, die genau zu Ihrem Hotel passen. Keine Standard-Software — jede Lösung wird auf Ihre Prozesse zugeschnitten.</p>
+        <div class="sol-result">→ Fertig in 1-2 Wochen</div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-num">03</div>
+        <h3>Laufende Betreuung</h3>
+        <p>Wir lassen Sie nicht allein. Regelmässige Optimierung, neue Features bei Bedarf, und Support wenn etwas nicht funktioniert. Ihr Team wird es lieben.</p>
+        <div class="sol-result">→ 15+ Stunden/Woche gespart</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- QUICK CALCULATOR -->
+  <section class="section" id="rechner">
+    <h2 class="section-title">💡 Was können Sie sparen?</h2>
+    <p class="section-sub">Schnelle Berechnung basierend auf der Grösse Ihres Hotels</p>
+    <div class="calc-box">
+      <div class="calc-row">
+        <label>Zimmeranzahl <span class="calc-val" id="rooms-val">30</span></label>
+        <input type="range" id="rooms" min="5" max="150" value="30" step="5" oninput="calcSavings()">
+      </div>
+      <div class="calc-row">
+        <label>Mitarbeiter an der Rezeption <span class="calc-val" id="staff-val">3</span></label>
+        <input type="range" id="staff" min="1" max="15" value="3" oninput="calcSavings()">
+      </div>
+      <div class="calc-row">
+        <label>Emails pro Tag (geschätzt) <span class="calc-val" id="emails-val">40</span></label>
+        <input type="range" id="emails" min="5" max="200" value="40" step="5" oninput="calcSavings()">
+      </div>
+      <div class="calc-result">
+        <div class="calc-savings" id="savings">CHF 2'400</div>
+        <div class="calc-savings-label">Geschätzte monatliche Einsparung</div>
+        <div class="calc-hours" id="hours-saved">~18 Stunden/Woche gespart</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PACKAGES -->
+  <section class="section" id="pakete">
+    <h2 class="section-title">Unsere Pakete</h2>
+    <p class="section-sub">Transparente Preise. Kein Kleingedrucktes. Ergebnisse garantiert.</p>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <div class="pkg-name">Starter</div>
+        <div class="pkg-price">CHF 199 <span>einmalig</span></div>
+        <p class="pkg-desc">Perfekt für den Einstieg. Ein Workflow, der sofort Ergebnisse liefert.</p>
+        <ul class="pkg-features">
+          <li>1 automatisierter Workflow</li>
+          <li>z.B. Email-Autoresponder oder Review-Follow-up</li>
+          <li>Einrichtung & Test inklusive</li>
+          <li>30 Tage Support</li>
+          <li>Dokumentation auf Deutsch</li>
+        </ul>
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Starter%20Paket%20-%20Hotel%20Automatisierung&body=Hallo%20Diego%2C%0A%0AIch%20interessiere%20mich%20f%C3%BCr%20das%20Starter%20Paket.%0A%0AHotel%3A%20%0AZimmer%3A%20%0AGr%C3%B6sstes%20Problem%3A%20%0A%0ABeste%20Gr%C3%BCsse" class="btn btn-outline" style="width:100%;justify-content:center">Anfragen →</a>
+      </div>
+      <div class="pkg featured">
+        <div class="pkg-name">Business</div>
+        <div class="pkg-price">CHF 499 <span>einmalig + CHF 99/Mt</span></div>
+        <p class="pkg-desc">Für Hotels, die es ernst meinen. Mehrere Workflows, die zusammenarbeiten.</p>
+        <ul class="pkg-features">
+          <li>3 automatisierte Workflows</li>
+          <li>KI-gestützter Email-Responder (mehrsprachig)</li>
+          <li>Review-Management Automatisierung</li>
+          <li>Dashboard mit Echtzeit-Kennzahlen</li>
+          <li>Monatliche Optimierung</li>
+          <li>Prioritäts-Support</li>
+        </ul>
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Business%20Paket%20-%20Hotel%20Automatisierung&body=Hallo%20Diego%2C%0A%0AIch%20interessiere%20mich%20f%C3%BCr%20das%20Business%20Paket.%0A%0AHotel%3A%20%0AZimmer%3A%20%0AWelche%20Probleme%20m%C3%B6chten%20Sie%20l%C3%B6sen%3F%0A%0ABeste%20Gr%C3%BCsse" class="btn btn-primary" style="width:100%;justify-content:center">Anfragen →</a>
+      </div>
+      <div class="pkg">
+        <div class="pkg-name">Enterprise</div>
+        <div class="pkg-price">CHF 999+ <span>einmalig + CHF 199/Mt</span></div>
+        <p class="pkg-desc">Komplettlösung für anspruchsvolle Hotels. Alles verbunden, alles automatisiert.</p>
+        <ul class="pkg-features">
+          <li>Unbegrenzte Workflows</li>
+          <li>KI-Chatbot für Gästekommunikation</li>
+          <li>PMS/Channel Manager Integration</li>
+          <li>Personalplanung-Assistent</li>
+          <li>Revenue Management Dashboard</li>
+          <li>Dedizierter Ansprechpartner</li>
+          <li>SLA mit garantierter Reaktionszeit</li>
+        </ul>
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Enterprise%20Paket%20-%20Hotel%20Automatisierung&body=Hallo%20Diego%2C%0A%0AIch%20interessiere%20mich%20f%C3%BCr%20das%20Enterprise%20Paket.%0A%0AHotel%3A%20%0AZimmer%3A%20%0AAnzahl%20Mitarbeiter%3A%20%0AKurze%20Beschreibung%20der%20aktuellen%20Systeme%3A%0A%0ABeste%20Gr%C3%BCsse" class="btn btn-outline" style="width:100%;justify-content:center">Anfragen →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- INSIDER SECTION -->
+  <section class="section">
+    <h2 class="section-title">Warum wir?</h2>
+    <p class="section-sub">Insider-Wissen trifft auf modernste Technologie</p>
+    <div class="insider">
+      <div class="insider-text">
+        Ich arbeite seit Jahren in der Zermatter Hotellerie. Ich kenne die Herausforderungen — die Hochsaison, 
+        wenn alles gleichzeitig passiert. Die Nachtschicht, wenn 30 Emails unbeantwortet bleiben. 
+        Den Frust, wenn das PMS nicht mit der Buchhaltung redet.<br><br>
+        Ich habe angefangen, diese Probleme mit KI-Automatisierung zu lösen — zuerst für mein eigenes Team. 
+        Die Ergebnisse waren so gut, dass ich beschlossen habe, anderen Hotels in Zermatt zu helfen.
+        Keine generische Software. Massgeschneidert für die Realität der Schweizer Hotellerie.
+      </div>
+      <div class="insider-author">
+        <div class="insider-avatar">D</div>
+        <div>
+          <div class="insider-name">Diego</div>
+          <div class="insider-role">Chef de Rang, CERVO Mountain Resort · KI-Automatisierung</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">🔒 Schweizer Datenschutz</div>
+    <div class="trust-item">🏔️ Lokal in Zermatt</div>
+    <div class="trust-item">⚡ n8n Open-Source Technologie</div>
+    <div class="trust-item">🤝 Persönliche Betreuung</div>
+    <div class="trust-item">💰 Ergebnisse oder Geld zurück</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <section class="cta-section" id="kontakt">
+    <h2>Bereit, 15+ Stunden pro Woche zu sparen?</h2>
+    <p>Kostenlose Analyse. Kein Risiko. 10 Minuten Ihrer Zeit könnten Ihrem Team hunderte Stunden pro Saison zurückgeben.</p>
+    <div class="btn-group">
+      <a href="mailto:aurasamuraihub@gmail.com?subject=Kostenlose%20Hotel-Analyse%20-%20Zermatt&body=Hallo%20Diego%2C%0A%0AIch%20w%C3%BCrde%20gerne%20eine%20kostenlose%20Analyse%20f%C3%BCr%20unser%20Hotel%20machen.%0A%0AHotel%3A%20%0AZimmer%3A%20%0ATelefon%3A%20%0A%0ABeste%20Gr%C3%BCsse" class="btn btn-primary">📧 Kostenlose Analyse anfordern</a>
+      <a href="hotel-assessment.html" class="btn btn-outline">🔍 Online-Assessment (EN)</a>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.85rem;color:var(--muted)">
+      Oder direkt: <a href="mailto:aurasamuraihub@gmail.com" style="color:var(--accent)">aurasamuraihub@gmail.com</a>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 AuraHub · <a href="index.html">English</a> · Diego · Zermatt, Schweiz</p>
+    <p style="margin-top:.3rem">Automatisierung mit ❤️ und KI</p>
+  </footer>
+
+  <script>
+    function calcSavings() {
+      const rooms = parseInt(document.getElementById('rooms').value);
+      const staff = parseInt(document.getElementById('staff').value);
+      const emails = parseInt(document.getElementById('emails').value);
+
+      document.getElementById('rooms-val').textContent = rooms;
+      document.getElementById('staff-val').textContent = staff;
+      document.getElementById('emails-val').textContent = emails;
+
+      // Cost model: avg CHF 35/hr for hotel admin staff in Switzerland
+      const hourlyRate = 35;
+      // Email handling: ~3 min per email * automation saves 70%
+      const emailHoursSaved = (emails * 3 / 60) * 0.7 * 5; // per week (5 working days)
+      // Staff coordination: ~1h per staff member per week * 50% automatable
+      const coordHoursSaved = staff * 1 * 0.5;
+      // Reporting: scales with rooms
+      const reportHoursSaved = Math.min(rooms * 0.05, 5);
+      // Review follow-up: ~2h/week for any hotel
+      const reviewHoursSaved = 2;
+
+      const totalHours = Math.round(emailHoursSaved + coordHoursSaved + reportHoursSaved + reviewHoursSaved);
+      const monthlySavings = Math.round(totalHours * hourlyRate * 4.33); // weeks per month
+
+      document.getElementById('savings').textContent = "CHF " + monthlySavings.toLocaleString('de-CH').replace(',', "'");
+      document.getElementById('hours-saved').textContent = "~" + totalHours + " Stunden/Woche gespart";
+    }
+
+    // Init
+    calcSavings();
+  </script>
+</body>
+</html>
