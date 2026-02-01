@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Chatbot for Your Website | Custom Business Chatbot</title>
+  <meta name="description" content="Get a professional AI chatbot for your business website. Answers customer questions 24/7, captures leads, and integrates with your tools. From $149." />
+  <meta name="keywords" content="AI chatbot, business chatbot, website chatbot, customer service bot, lead capture chatbot" />
+  <link rel="canonical" href="https://dilomcfly.github.io/automation-services/chatbot.html" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --card: #12121a;
+      --accent: #6366f1;
+      --accent2: #8b5cf6;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #1e1e2e;
+      --success: #22c55e;
+      --warning: #f59e0b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Nav */
+    nav { background: rgba(10,10,15,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+    nav .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .logo { font-size: 1.2rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    
+    /* Hero */
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 700px; margin: 0 auto 30px; }
+    .hero-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.85rem; color: var(--muted); }
+    
+    /* CTA */
+    .cta-btn { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.05rem; transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.3); }
+    .cta-secondary { background: transparent; border: 2px solid var(--accent); color: var(--accent); margin-left: 12px; }
+    .cta-secondary:hover { background: rgba(99,102,241,0.1); }
+    
+    /* Features */
+    .features { padding: 60px 0; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: transform 0.2s, border-color 0.2s; }
+    .feature-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .feature-card p { color: var(--muted); font-size: 0.95rem; }
+    
+    /* How it works */
+    .how-it-works { padding: 60px 0; }
+    .how-it-works h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .step { text-align: center; padding: 24px; }
+    .step-num { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; margin: 0 auto 16px; }
+    .step h3 { margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 0.9rem; }
+    
+    /* Pricing */
+    .pricing { padding: 60px 0; }
+    .pricing h2 { text-align: center; font-size: 2rem; margin-bottom: 12px; }
+    .pricing-subtitle { text-align: center; color: var(--muted); margin-bottom: 40px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .price-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; position: relative; }
+    .price-card.popular { border-color: var(--accent); }
+    .price-card.popular::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .price-name { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .price-amount { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+    .price-period { color: var(--muted); font-size: 0.85rem; margin-bottom: 20px; }
+    .price-features { list-style: none; margin-bottom: 24px; }
+    .price-features li { padding: 6px 0; color: var(--muted); font-size: 0.9rem; }
+    .price-features li::before { content: '✓ '; color: var(--success); font-weight: 700; }
+    
+    /* Use Cases */
+    .use-cases { padding: 60px 0; }
+    .use-cases h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; }
+    .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .case-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+    .case-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .case-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .case-card p { color: var(--muted); font-size: 0.85rem; }
+    
+    /* FAQ */
+    .faq { padding: 60px 0; }
+    .faq h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+    .faq-q { padding: 18px 24px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    .faq-q:hover { background: rgba(99,102,241,0.05); }
+    .faq-a { padding: 0 24px 18px; color: var(--muted); display: none; }
+    .faq-item.active .faq-a { display: block; }
+    .faq-item.active .faq-arrow { transform: rotate(180deg); }
+    .faq-arrow { transition: transform 0.2s; }
+    
+    /* CTA Section */
+    .cta-section { padding: 80px 0; text-align: center; background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.05)); border-radius: 16px; margin: 40px 0; }
+    .cta-section h2 { font-size: 2rem; margin-bottom: 16px; }
+    .cta-section p { color: var(--muted); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    
+    /* Footer */
+    footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.85rem; }
+    
+    @media (max-width: 768px) {
+      .hero { padding: 50px 0 40px; }
+      .hero-stats { gap: 24px; }
+      .cta-secondary { margin-left: 0; margin-top: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo">⚡ AuraSamuraiHub</a>
+    <div class="nav-links">
+      <a href="index.html">Automation</a>
+      <a href="chatbot.html" style="color:var(--accent)">AI Chatbot</a>
+      <a href="calculator.html">ROI Calculator</a>
+      <a href="validator.html">Validator</a>
+      <a href="quiz.html">Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>AI Chatbot for Your Business Website</h1>
+    <p>Answer customer questions 24/7, capture leads automatically, and never miss a potential client again. No coding required.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always Online</div></div>
+      <div class="stat"><div class="stat-num">3x</div><div class="stat-label">More Leads Captured</div></div>
+      <div class="stat"><div class="stat-num">&lt;2s</div><div class="stat-label">Response Time</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Coding Required</div></div>
+    </div>
+    <a href="mailto:aurasamuraihub@gmail.com?subject=AI%20Chatbot%20for%20My%20Website&body=Hi!%20I'm%20interested%20in%20getting%20an%20AI%20chatbot%20for%20my%20business%20website.%0A%0AMy%20business:%20%0AWebsite:%20%0AWhat%20I%20need:%20" class="cta-btn">Get Your Chatbot →</a>
+    <a href="#demo" class="cta-btn cta-secondary">See Live Demo ↓</a>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2>Why Your Business Needs an AI Chatbot</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>Instant Customer Support</h3>
+        <p>Answer common questions about hours, services, pricing, and booking instantly. No waiting, no hold music.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📧</div>
+        <h3>Automatic Lead Capture</h3>
+        <p>Collect visitor name and email before the conversation starts. Every chat is a potential customer in your pipeline.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Custom Branding</h3>
+        <p>Match your website's look and feel. Custom colors, logo, welcome message, and personality. It feels like YOUR team.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Works Everywhere</h3>
+        <p>WordPress, Shopify, Squarespace, Wix, custom HTML — one line of code and it works on any platform.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>n8n Integration</h3>
+        <p>Connect to your CRM, email marketing, Slack, or any tool via webhook. Automate the entire customer journey.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>No Subscription Fees</h3>
+        <p>One-time setup. No monthly charges. No per-message costs. You own it completely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="container">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Tell Us About Your Business</h3>
+        <p>Share your FAQs, services, hours, and brand style. We handle everything else.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Build Your Chatbot</h3>
+        <p>Custom-configured with your brand colors, responses, and lead capture flow. Ready in 24-48 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>One-Line Installation</h3>
+        <p>Copy-paste a single script tag into your website. Works instantly on any platform.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Start Capturing Leads</h3>
+        <p>Your chatbot answers questions and collects emails 24/7 while you focus on your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2>Simple, Transparent Pricing</h2>
+    <p class="pricing-subtitle">One-time setup fee. No monthly charges. No hidden costs.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Starter</div>
+        <div class="price-amount">$149</div>
+        <div class="price-period">one-time setup</div>
+        <ul class="price-features">
+          <li>AI chatbot widget for your website</li>
+          <li>Up to 20 FAQ responses</li>
+          <li>Lead capture (name + email)</li>
+          <li>Custom brand colors</li>
+          <li>Mobile responsive</li>
+          <li>Installation guide included</li>
+        </ul>
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Chatbot%20Starter%20Package&body=Hi!%20I'd%20like%20the%20Starter%20chatbot%20package%20($149).%0A%0AMy%20business:%20%0AWebsite:%20" class="cta-btn" style="width:100%;text-align:center;">Get Started →</a>
+      </div>
+      <div class="price-card popular">
+        <div class="price-name">Business</div>
+        <div class="price-amount">$299</div>
+        <div class="price-period">one-time setup</div>
+        <ul class="price-features">
+          <li>Everything in Starter</li>
+          <li>Up to 50 FAQ responses</li>
+          <li>Custom welcome message flow</li>
+          <li>Webhook integration (CRM/email)</li>
+          <li>Multi-language support</li>
+          <li>Priority setup (24h delivery)</li>
+        </ul>
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Chatbot%20Business%20Package&body=Hi!%20I'd%20like%20the%20Business%20chatbot%20package%20($299).%0A%0AMy%20business:%20%0AWebsite:%20" class="cta-btn" style="width:100%;text-align:center;">Get Started →</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Premium</div>
+        <div class="price-amount">$499</div>
+        <div class="price-period">one-time setup</div>
+        <ul class="price-features">
+          <li>Everything in Business</li>
+          <li>Unlimited FAQ responses</li>
+          <li>Full n8n workflow integration</li>
+          <li>Appointment booking flow</li>
+          <li>Custom chatbot personality</li>
+          <li>3 months of free updates</li>
+        </ul>
+        <a href="mailto:aurasamuraihub@gmail.com?subject=Chatbot%20Premium%20Package&body=Hi!%20I'd%20like%20the%20Premium%20chatbot%20package%20($499).%0A%0AMy%20business:%20%0AWebsite:%20" class="cta-btn" style="width:100%;text-align:center;">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="use-cases">
+  <div class="container">
+    <h2>Perfect For Any Business</h2>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-icon">🦷</div>
+        <h3>Dental Offices</h3>
+        <p>Answer insurance questions, book appointments, share office hours automatically.</p>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">🏠</div>
+        <h3>Real Estate</h3>
+        <p>Qualify leads, share property details, schedule viewings 24/7.</p>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">🍕</div>
+        <h3>Restaurants</h3>
+        <p>Take reservations, share menu, handle dietary questions, collect feedback.</p>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">💇</div>
+        <h3>Salons & Spas</h3>
+        <p>Book appointments, show service menu, answer pricing questions.</p>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">⚖️</div>
+        <h3>Law Firms</h3>
+        <p>Pre-qualify cases, collect intake info, schedule consultations.</p>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">🏋️</div>
+        <h3>Fitness Studios</h3>
+        <p>Share class schedules, handle memberships, answer common questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+        How long does setup take?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Starter packages are ready in 48 hours. Business and Premium packages in 24 hours with priority delivery.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+        Do I need technical skills to install it?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Not at all. You copy one line of code and paste it into your website. We provide step-by-step instructions, and we can do it for you if needed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+        Are there monthly fees?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">No. It's a one-time setup fee. The chatbot runs on your website with zero recurring costs. No per-message charges either.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+        Can I update the FAQ responses myself?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Yes! The responses are stored in a simple configuration file. We'll show you how to edit them, or we can handle updates for you.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+        Does it work with my website platform?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">Yes. WordPress, Shopify, Squarespace, Wix, Webflow, custom HTML — it works everywhere. If your site can load a script tag, it works.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+        What about GDPR compliance?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">The chatbot runs entirely on the visitor's browser. No data is sent to external servers unless you configure a webhook. You have full control over data handling.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Never Miss a Lead Again?</h2>
+    <p>Get your custom AI chatbot up and running in 24-48 hours. No monthly fees, no coding, no hassle.</p>
+    <a href="mailto:aurasamuraihub@gmail.com?subject=I%20Want%20an%20AI%20Chatbot&body=Hi!%20I'm%20interested%20in%20an%20AI%20chatbot%20for%20my%20website.%0A%0AMy%20business:%20%0AWebsite:%20%0APackage%20I'm%20interested%20in:%20" class="cta-btn">Get Your Chatbot Now →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 AuraSamuraiHub · AI Automation & Chatbot Services</p>
+    <p style="margin-top:8px;"><a href="index.html" style="color:var(--accent);text-decoration:none;">Automation Services</a> · <a href="chatbot.html" style="color:var(--accent);text-decoration:none;">AI Chatbot</a> · <a href="calculator.html" style="color:var(--accent);text-decoration:none;">ROI Calculator</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
