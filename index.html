@@ -497,6 +497,7 @@
           <p>Save 10+ hours/week with custom n8n workflows that connect your tools, automate operations, and add AI to the repetitive work.</p>
           <div class="hero-actions">
             <a class="cta" href="#contact">Get a Free Automation Audit</a>
+            <a class="secondary-btn" href="calculator.html">📊 Calculate Your ROI</a>
             <a class="secondary-btn" href="#portfolio">View Templates</a>
           </div>
         </div>
@@ -621,11 +622,11 @@
             <p class="section-subtitle" style="margin-bottom: 18px;">Prefer email? Write directly to <strong>aurasamuraihub@gmail.com</strong>.</p>
             <div class="badge">Typical response: under 24 hours</div>
           </div>
-          <form class="scroll-reveal" action="https://formspree.io/f/YOUR_ID" method="POST">
-            <input type="text" name="name" placeholder="Your name" required />
-            <input type="email" name="email" placeholder="Your email" required />
-            <input type="text" name="company" placeholder="Company / Website" />
-            <textarea name="message" placeholder="What do you want to automate?" required></textarea>
+          <form class="scroll-reveal" id="contactForm" onsubmit="sendEmail(event)">
+            <input type="text" id="cName" placeholder="Your name" required />
+            <input type="email" id="cEmail" placeholder="Your email" required />
+            <input type="text" id="cCompany" placeholder="Company / Website" />
+            <textarea id="cMessage" placeholder="What do you want to automate?" required></textarea>
             <button class="cta" type="submit">Send Request</button>
           </form>
         </div>
@@ -657,6 +658,17 @@
     );
 
     document.querySelectorAll(".scroll-reveal").forEach((el) => observer.observe(el));
+
+    function sendEmail(e) {
+      e.preventDefault();
+      const n = document.getElementById('cName').value;
+      const em = document.getElementById('cEmail').value;
+      const co = document.getElementById('cCompany').value;
+      const msg = document.getElementById('cMessage').value;
+      const subject = encodeURIComponent('Automation Request from ' + n);
+      const body = encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\nCompany: ' + co + '\n\n' + msg);
+      window.location.href = 'mailto:aurasamuraihub@gmail.com?subject=' + subject + '&body=' + body;
+    }
   </script>
 </body>
 </html>
