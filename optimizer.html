@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>n8n Workflow Optimizer — Free AI Analysis | AuraSamuraiHub</title>
+  <meta name="description" content="Free n8n workflow optimizer. Paste your workflow JSON and get instant analysis: performance, error handling, security, and best practices. 15+ automated checks." />
+  <meta name="keywords" content="n8n workflow optimizer, n8n best practices, n8n performance, workflow analysis, n8n audit" />
+  <meta name="author" content="AuraSamuraiHub" />
+  <meta property="og:title" content="n8n Workflow Optimizer — Free Analysis Tool" />
+  <meta property="og:description" content="15+ automated checks for your n8n workflows. Get optimization recommendations in seconds." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dilomcfly.github.io/automation-services/optimizer.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://dilomcfly.github.io/automation-services/optimizer.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e13;
+      --bg-2: #0f1520;
+      --surface: #121a26;
+      --surface-2: #141f2f;
+      --card: #101826;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e7eef6;
+      --muted: #a9b7c7;
+      --accent: #38e8ff;
+      --accent-2: #7b5cff;
+      --accent-3: #23d18b;
+      --red: #ff4d6a;
+      --orange: #ff9f43;
+      --yellow: #ffd93d;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --glow: 0 0 40px rgba(56, 232, 255, 0.15);
+      --max: 1140px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Manrope',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; min-height:100vh; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:100; background:rgba(10,14,19,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0.75rem 1.5rem; }
+    nav .inner { max-width:var(--max); margin:auto; display:flex; align-items:center; justify-content:space-between; }
+    nav .brand { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.1rem; color:var(--text); }
+    nav .brand span { color:var(--accent); }
+    nav .links { display:flex; gap:1.25rem; font-size:0.85rem; flex-wrap:wrap; }
+    nav .links a { color:var(--muted); transition:color .2s; }
+    nav .links a:hover { color:var(--accent); text-decoration:none; }
+
+    /* HERO */
+    .hero { text-align:center; padding:4rem 1.5rem 2rem; max-width:800px; margin:auto; }
+    .hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; margin-bottom:0.5rem; }
+    .hero h1 span { background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero p { color:var(--muted); font-size:1.05rem; max-width:600px; margin:0.5rem auto 0; }
+    .badge-row { display:flex; gap:0.75rem; justify-content:center; margin-top:1.25rem; flex-wrap:wrap; }
+    .badge { display:inline-flex; align-items:center; gap:0.4rem; background:var(--surface); border:1px solid var(--border); border-radius:50px; padding:0.35rem 0.85rem; font-size:0.78rem; color:var(--muted); }
+    .badge .dot { width:6px; height:6px; border-radius:50%; }
+    .badge .dot.green { background:var(--accent-3); }
+    .badge .dot.blue { background:var(--accent); }
+    .badge .dot.purple { background:var(--accent-2); }
+
+    /* MAIN */
+    .container { max-width:var(--max); margin:auto; padding:0 1.5rem 4rem; }
+
+    /* INPUT SECTION */
+    .input-section { display:grid; grid-template-columns:1fr; gap:1.5rem; margin-bottom:2rem; }
+    textarea { width:100%; height:280px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.25rem; color:var(--text); font-family:'Fira Code','Consolas',monospace; font-size:0.82rem; resize:vertical; transition:border-color .3s; outline:none; }
+    textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(56,232,255,0.1); }
+    textarea::placeholder { color:rgba(169,183,199,0.4); }
+
+    .actions { display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; }
+    .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.7rem 1.5rem; border-radius:8px; border:none; cursor:pointer; font-family:inherit; font-size:0.9rem; font-weight:600; transition:all .2s; }
+    .btn-primary { background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#000; }
+    .btn-primary:hover { transform:translateY(-1px); box-shadow:var(--glow); }
+    .btn-secondary { background:var(--surface-2); color:var(--muted); border:1px solid var(--border); }
+    .btn-secondary:hover { border-color:var(--accent); color:var(--text); }
+    .btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+    /* SCORE DASHBOARD */
+    .score-dashboard { display:none; margin-bottom:2rem; }
+    .score-dashboard.visible { display:block; }
+    .score-header { display:flex; align-items:center; gap:2rem; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+    .score-circle { position:relative; width:120px; height:120px; flex-shrink:0; }
+    .score-circle svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .score-circle circle { fill:none; stroke-width:8; stroke-linecap:round; }
+    .score-circle .bg { stroke:var(--border); }
+    .score-circle .fg { transition:stroke-dashoffset 1s ease; }
+    .score-value { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .score-value .num { font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:800; }
+    .score-value .label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+    .score-meta { flex:1; min-width:200px; }
+    .score-meta h2 { font-family:'Space Grotesk',sans-serif; font-size:1.3rem; margin-bottom:0.5rem; }
+    .score-meta p { color:var(--muted); font-size:0.9rem; margin-bottom:1rem; }
+    .score-bars { display:flex; flex-direction:column; gap:0.6rem; }
+    .score-bar-item { display:flex; align-items:center; gap:0.75rem; }
+    .score-bar-label { font-size:0.78rem; color:var(--muted); min-width:120px; }
+    .score-bar { flex:1; height:6px; background:var(--bg); border-radius:3px; overflow:hidden; }
+    .score-bar-fill { height:100%; border-radius:3px; transition:width 0.8s ease; }
+
+    /* STATS ROW */
+    .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin-bottom:2rem; }
+    .stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.25rem; text-align:center; }
+    .stat-card .val { font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:700; }
+    .stat-card .lbl { font-size:0.75rem; color:var(--muted); margin-top:0.25rem; text-transform:uppercase; letter-spacing:0.5px; }
+
+    /* FINDINGS */
+    .findings { display:flex; flex-direction:column; gap:1rem; }
+    .finding { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.25rem 1.5rem; transition:border-color .2s; }
+    .finding:hover { border-color:rgba(56,232,255,0.2); }
+    .finding-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem; }
+    .finding-icon { width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+    .finding-icon.critical { background:rgba(255,77,106,0.15); color:var(--red); }
+    .finding-icon.warning { background:rgba(255,159,67,0.15); color:var(--orange); }
+    .finding-icon.info { background:rgba(56,232,255,0.15); color:var(--accent); }
+    .finding-icon.pass { background:rgba(35,209,139,0.15); color:var(--accent-3); }
+    .finding-title { font-weight:600; font-size:0.95rem; }
+    .finding-severity { font-size:0.7rem; padding:0.15rem 0.5rem; border-radius:50px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-left:auto; }
+    .finding-severity.critical { background:rgba(255,77,106,0.15); color:var(--red); }
+    .finding-severity.warning { background:rgba(255,159,67,0.15); color:var(--orange); }
+    .finding-severity.info { background:rgba(56,232,255,0.15); color:var(--accent); }
+    .finding-severity.pass { background:rgba(35,209,139,0.15); color:var(--accent-3); }
+    .finding-desc { color:var(--muted); font-size:0.85rem; line-height:1.6; }
+    .finding-fix { margin-top:0.6rem; padding:0.6rem 0.8rem; background:var(--bg); border-radius:8px; font-size:0.8rem; color:var(--accent-3); }
+    .finding-fix strong { color:var(--text); }
+
+    /* CTA */
+    .cta-box { background:linear-gradient(135deg,rgba(56,232,255,0.08),rgba(123,92,255,0.08)); border:1px solid rgba(56,232,255,0.2); border-radius:16px; padding:2.5rem; text-align:center; margin-top:2.5rem; }
+    .cta-box h3 { font-family:'Space Grotesk',sans-serif; font-size:1.4rem; margin-bottom:0.5rem; }
+    .cta-box p { color:var(--muted); font-size:0.95rem; max-width:500px; margin:0 auto 1.25rem; }
+    .cta-box .btn-primary { font-size:1rem; padding:0.85rem 2rem; }
+
+    /* FOOTER */
+    footer { text-align:center; padding:2rem; color:var(--muted); font-size:0.8rem; border-top:1px solid var(--border); }
+
+    @media(max-width:640px) {
+      .score-header { flex-direction:column; align-items:stretch; text-align:center; }
+      .score-circle { margin:0 auto; }
+      textarea { height:200px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="inner">
+      <div class="brand">Aura<span>Hub</span> ✦</div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="calculator.html">ROI Calc</a>
+        <a href="templates.html">Templates</a>
+        <a href="validator.html">Validator</a>
+        <a href="visualizer.html">Visualizer</a>
+        <a href="optimizer.html" style="color:var(--accent)">Optimizer</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>n8n Workflow <span>Optimizer</span></h1>
+    <p>Paste your workflow JSON and get an instant audit with 15+ automated checks covering performance, error handling, security, and best practices.</p>
+    <div class="badge-row">
+      <span class="badge"><span class="dot green"></span> 15+ Checks</span>
+      <span class="badge"><span class="dot blue"></span> Instant Analysis</span>
+      <span class="badge"><span class="dot purple"></span> Actionable Fixes</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="input-section">
+      <textarea id="jsonInput" placeholder='Paste your n8n workflow JSON here...
+
+Export from n8n: Menu → Workflows → Export → Copy to clipboard
+
+Example: {"name":"My Workflow","nodes":[...],"connections":{...}}'></textarea>
+      <div class="actions">
+        <button class="btn btn-primary" id="analyzeBtn" onclick="analyze()">⚡ Analyze Workflow</button>
+        <button class="btn btn-secondary" onclick="loadSample()">📋 Load Sample</button>
+        <button class="btn btn-secondary" onclick="clearAll()">✕ Clear</button>
+        <span id="parseStatus" style="font-size:0.82rem;color:var(--muted);margin-left:0.5rem;"></span>
+      </div>
+    </div>
+
+    <div class="score-dashboard" id="dashboard">
+      <!-- Score Header -->
+      <div class="score-header">
+        <div class="score-circle">
+          <svg viewBox="0 0 120 120">
+            <circle class="bg" cx="60" cy="60" r="52" />
+            <circle class="fg" id="scoreArc" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73" />
+          </svg>
+          <div class="score-value">
+            <div class="num" id="scoreNum">0</div>
+            <div class="label">Score</div>
+          </div>
+        </div>
+        <div class="score-meta">
+          <h2 id="scoreTitle">Workflow Analysis</h2>
+          <p id="scoreSummary">Analyzing...</p>
+          <div class="score-bars">
+            <div class="score-bar-item">
+              <span class="score-bar-label">Error Handling</span>
+              <div class="score-bar"><div class="score-bar-fill" id="barErrors" style="width:0%;background:var(--red);"></div></div>
+            </div>
+            <div class="score-bar-item">
+              <span class="score-bar-label">Performance</span>
+              <div class="score-bar"><div class="score-bar-fill" id="barPerf" style="width:0%;background:var(--accent);"></div></div>
+            </div>
+            <div class="score-bar-item">
+              <span class="score-bar-label">Security</span>
+              <div class="score-bar"><div class="score-bar-fill" id="barSec" style="width:0%;background:var(--accent-2);"></div></div>
+            </div>
+            <div class="score-bar-item">
+              <span class="score-bar-label">Best Practices</span>
+              <div class="score-bar"><div class="score-bar-fill" id="barBP" style="width:0%;background:var(--accent-3);"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" id="statsRow"></div>
+
+      <!-- Findings -->
+      <h3 style="font-family:'Space Grotesk',sans-serif;margin-bottom:1rem;font-size:1.1rem;">Detailed Findings</h3>
+      <div class="findings" id="findings"></div>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>Want Expert Optimization?</h3>
+        <p>Our team can implement all recommendations, add error handling, and optimize your workflows for production.</p>
+        <a class="btn btn-primary" id="ctaLink" href="#">📩 Get a Free Consultation</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>AuraHub ✦ — AI-Powered Automation Services · <a href="index.html">Home</a> · <a href="https://github.com/DILOmcfly/n8n-automation-templates">GitHub</a></p>
+  </footer>
+
+<script>
+const SAMPLE = {
+  "name": "Lead Capture to CRM",
+  "nodes": [
+    {"id":"1","name":"Webhook","type":"n8n-nodes-base.webhook","typeVersion":2,"position":[240,300],"parameters":{"httpMethod":"POST","path":"lead","options":{}}},
+    {"id":"2","name":"Has Email?","type":"n8n-nodes-base.if","typeVersion":2,"position":[460,300],"parameters":{"conditions":{"string":[{"value1":"={{$json.email}}","operation":"isNotEmpty"}]}}},
+    {"id":"3","name":"Create Contact","type":"n8n-nodes-base.hubspot","typeVersion":2,"position":[680,200],"parameters":{"resource":"contact","operation":"create","email":"={{$json.email}}"}},
+    {"id":"4","name":"Send Welcome Email","type":"n8n-nodes-base.gmail","typeVersion":2,"position":[900,200],"parameters":{"resource":"message","operation":"send","toEmail":"={{$json.email}}","subject":"Welcome!","message":"Thanks for signing up"}},
+    {"id":"5","name":"Log to Sheet","type":"n8n-nodes-base.googleSheets","typeVersion":4,"position":[680,400],"parameters":{"operation":"appendOrUpdate","sheetName":"Leads"}},
+    {"id":"6","name":"Slack Notify","type":"n8n-nodes-base.slack","typeVersion":2,"position":[900,400],"parameters":{"channel":"#leads","text":"New lead"}}
+  ],
+  "connections": {
+    "Webhook":{"main":[[{"node":"Has Email?","type":"main","index":0}]]},
+    "Has Email?":{"main":[[{"node":"Create Contact","type":"main","index":0}],[{"node":"Log to Sheet","type":"main","index":0}]]},
+    "Create Contact":{"main":[[{"node":"Send Welcome Email","type":"main","index":0}]]},
+    "Log to Sheet":{"main":[[{"node":"Slack Notify","type":"main","index":0}]]}
+  }
+};
+
+function loadSample() {
+  document.getElementById('jsonInput').value = JSON.stringify(SAMPLE, null, 2);
+  document.getElementById('parseStatus').textContent = '✓ Sample loaded';
+}
+
+function clearAll() {
+  document.getElementById('jsonInput').value = '';
+  document.getElementById('dashboard').classList.remove('visible');
+  document.getElementById('parseStatus').textContent = '';
+}
+
+function analyze() {
+  const raw = document.getElementById('jsonInput').value.trim();
+  const status = document.getElementById('parseStatus');
+  if (!raw) { status.textContent = '⚠ Paste a workflow JSON first'; status.style.color = 'var(--orange)'; return; }
+
+  let wf;
+  try { wf = JSON.parse(raw); } catch(e) { status.textContent = '✕ Invalid JSON: ' + e.message; status.style.color = 'var(--red)'; return; }
+
+  if (!wf.nodes || !Array.isArray(wf.nodes)) { status.textContent = '✕ No nodes array found'; status.style.color = 'var(--red)'; return; }
+
+  status.textContent = '⚡ Analyzing...'; status.style.color = 'var(--accent)';
+
+  setTimeout(() => {
+    const results = runChecks(wf);
+    renderResults(results, wf);
+    status.textContent = '✓ Analysis complete'; status.style.color = 'var(--accent-3)';
+  }, 400);
+}
+
+function runChecks(wf) {
+  const nodes = wf.nodes || [];
+  const conns = wf.connections || {};
+  const findings = [];
+  const scores = { errors: 100, perf: 100, security: 100, bp: 100 };
+
+  // 1. Error handling check
+  const hasErrorTrigger = nodes.some(n => n.type === 'n8n-nodes-base.errorTrigger');
+  const nodesWithRetry = nodes.filter(n => n.parameters?.options?.retry || n.retryOnFail);
+  if (!hasErrorTrigger) {
+    findings.push({ cat: 'errors', severity: 'critical', icon: '⚠', title: 'No Error Trigger Node', desc: 'Your workflow has no error handling. If any node fails, the execution silently stops with no notification.', fix: 'Add an Error Trigger node connected to a notification (Slack, Email) to catch failures in production.' });
+    scores.errors -= 30;
+  }
+  if (nodesWithRetry.length === 0 && nodes.length > 3) {
+    findings.push({ cat: 'errors', severity: 'warning', icon: '🔄', title: 'No Retry Logic', desc: `None of your ${nodes.length} nodes have retry-on-fail enabled. External API calls can fail temporarily.`, fix: 'Enable "Retry On Fail" on HTTP Request, API, and webhook response nodes. Set 2-3 retries with 1-2s delay.' });
+    scores.errors -= 20;
+  }
+
+  // 2. Webhook security
+  const webhooks = nodes.filter(n => n.type?.includes('webhook'));
+  webhooks.forEach(wh => {
+    const opts = wh.parameters?.options || {};
+    const hasAuth = opts.authentication || opts.headerAuth || wh.parameters?.authentication;
+    if (!hasAuth) {
+      findings.push({ cat: 'security', severity: 'critical', icon: '🔓', title: `Unprotected Webhook: "${wh.name}"`, desc: 'This webhook endpoint has no authentication. Anyone with the URL can trigger your workflow and inject data.', fix: 'Add Header Auth or Basic Auth in webhook options. Alternatively, validate a secret token in an IF node after the webhook.' });
+      scores.security -= 25;
+    }
+  });
+
+  // 3. Hardcoded credentials
+  const sensitivePatterns = /api[_-]?key|password|secret|token|bearer/i;
+  nodes.forEach(n => {
+    const paramStr = JSON.stringify(n.parameters || {});
+    const matches = paramStr.match(sensitivePatterns);
+    if (matches && paramStr.match(/["\'][\w-]{20,}["\']/)) {
+      findings.push({ cat: 'security', severity: 'critical', icon: '🔑', title: `Possible Hardcoded Secret in "${n.name}"`, desc: 'Parameters contain what appears to be a hardcoded API key or token. These are exposed in workflow exports.', fix: 'Move secrets to n8n Credentials. Go to the node → Credential section → Create New Credential.' });
+      scores.security -= 30;
+    }
+  });
+
+  // 4. Large data handling
+  const httpNodes = nodes.filter(n => n.type?.includes('httpRequest') || n.type?.includes('http'));
+  httpNodes.forEach(h => {
+    const opts = h.parameters?.options || {};
+    if (!opts.batching && !opts.pagination) {
+      findings.push({ cat: 'perf', severity: 'info', icon: '📦', title: `No Pagination on "${h.name}"`, desc: 'HTTP requests without pagination may fetch incomplete data or hit API rate limits on large datasets.', fix: 'Enable pagination in Options → Pagination. Set appropriate page size and max pages for your API.' });
+      scores.perf -= 10;
+    }
+  });
+
+  // 5. Function nodes (code quality)
+  const codeNodes = nodes.filter(n => n.type?.includes('function') || n.type?.includes('code'));
+  codeNodes.forEach(cn => {
+    const code = cn.parameters?.jsCode || cn.parameters?.functionCode || '';
+    if (code && !code.includes('try') && code.length > 50) {
+      findings.push({ cat: 'errors', severity: 'warning', icon: '💻', title: `No try/catch in "${cn.name}"`, desc: 'Code node has no error handling. Unhandled exceptions will crash the entire workflow execution.', fix: 'Wrap your code in try/catch. Return helpful error messages to debug issues in production.' });
+      scores.errors -= 15;
+    }
+    if (code && code.includes('console.log')) {
+      findings.push({ cat: 'perf', severity: 'info', icon: '📝', title: `Console.log in "${cn.name}"`, desc: 'Console.log statements add overhead in production. They\'re useful for debugging but should be removed.', fix: 'Remove or comment out console.log statements before deploying to production.' });
+      scores.perf -= 5;
+    }
+  });
+
+  // 6. Trigger check
+  const triggers = nodes.filter(n => n.type?.toLowerCase().includes('trigger') || n.type?.includes('webhook') || n.type?.includes('cron') || n.type?.includes('schedule'));
+  if (triggers.length === 0) {
+    findings.push({ cat: 'bp', severity: 'warning', icon: '▶', title: 'No Trigger Node Found', desc: 'Workflow has no trigger. It can only run manually, which means no automation benefit.', fix: 'Add a trigger node: Webhook (for external events), Schedule (for recurring), or app-specific triggers.' });
+    scores.bp -= 20;
+  }
+  if (triggers.length > 1) {
+    findings.push({ cat: 'bp', severity: 'info', icon: '⚡', title: `Multiple Triggers (${triggers.length})`, desc: 'Having multiple triggers can cause the workflow to execute unexpectedly from different sources.', fix: 'Consider splitting into separate workflows — one per trigger — for clearer execution flow.' });
+    scores.bp -= 10;
+  }
+
+  // 7. Orphan nodes
+  const connectedNodes = new Set();
+  Object.values(conns).forEach(c => {
+    (c.main || []).forEach(arr => {
+      (arr || []).forEach(link => connectedNodes.add(link.node));
+    });
+  });
+  Object.keys(conns).forEach(k => connectedNodes.add(k));
+  // Also add by id
+  nodes.forEach(n => { if (conns[n.name] || connectedNodes.has(n.name) || connectedNodes.has(n.id)) return; });
+  const orphans = nodes.filter(n => !connectedNodes.has(n.name) && !connectedNodes.has(n.id) && !conns[n.name] && nodes.length > 1);
+  if (orphans.length > 0) {
+    findings.push({ cat: 'bp', severity: 'warning', icon: '🔗', title: `${orphans.length} Disconnected Node(s)`, desc: `These nodes aren't connected to any flow: ${orphans.map(n => '"'+n.name+'"').join(', ')}. They won't execute.`, fix: 'Connect orphan nodes to the workflow or remove them to keep the canvas clean.' });
+    scores.bp -= orphans.length * 5;
+  }
+
+  // 8. Naming convention
+  const defaultNames = nodes.filter(n => /^(Node|Node\d+|Unnamed|n8n-nodes)/.test(n.name) || !n.name);
+  if (defaultNames.length > 0) {
+    findings.push({ cat: 'bp', severity: 'info', icon: '🏷', title: `${defaultNames.length} Node(s) with Default Names`, desc: 'Default node names make workflows hard to maintain. Clear names help you and your team understand the flow at a glance.', fix: 'Rename nodes to describe their action: "Validate Email" instead of "IF", "Save to CRM" instead of "HTTP Request".' });
+    scores.bp -= defaultNames.length * 3;
+  }
+
+  // 9. Workflow complexity
+  if (nodes.length > 20) {
+    findings.push({ cat: 'perf', severity: 'warning', icon: '🧩', title: `Complex Workflow (${nodes.length} nodes)`, desc: 'Large workflows are harder to maintain, debug, and can hit execution timeouts. Consider splitting into sub-workflows.', fix: 'Use n8n\'s Execute Workflow node to split into logical sub-workflows. Each sub-workflow handles one concern.' });
+    scores.perf -= 15;
+  }
+
+  // 10. Wait nodes
+  const waitNodes = nodes.filter(n => n.type?.includes('wait'));
+  if (waitNodes.length > 0) {
+    findings.push({ cat: 'perf', severity: 'info', icon: '⏳', title: `${waitNodes.length} Wait Node(s) Found`, desc: 'Wait nodes hold executions open, consuming memory. Many concurrent waits can slow your n8n instance.', fix: 'For long delays, consider using a Schedule trigger on a separate workflow instead of Wait nodes.' });
+    scores.perf -= waitNodes.length * 5;
+  }
+
+  // 11. Duplicate node types
+  const typeCounts = {};
+  nodes.forEach(n => { typeCounts[n.type] = (typeCounts[n.type] || 0) + 1; });
+  Object.entries(typeCounts).forEach(([type, count]) => {
+    if (count > 3 && !type.includes('if') && !type.includes('set') && !type.includes('function') && !type.includes('code')) {
+      const shortType = type.replace('n8n-nodes-base.', '');
+      findings.push({ cat: 'perf', severity: 'info', icon: '♻', title: `${count}x ${shortType} Nodes`, desc: `You have ${count} instances of the same node type. This might indicate a pattern that could be consolidated.`, fix: `Consider using a Loop/SplitInBatches node to process items through a single ${shortType} node instead of duplicating.` });
+      scores.perf -= 5;
+    }
+  });
+
+  // 12. Sticky notes / documentation
+  const stickyNotes = nodes.filter(n => n.type?.includes('stickyNote') || n.type?.includes('sticky'));
+  if (nodes.length > 5 && stickyNotes.length === 0) {
+    findings.push({ cat: 'bp', severity: 'info', icon: '📌', title: 'No Documentation (Sticky Notes)', desc: 'Complex workflows benefit from sticky notes explaining business logic, assumptions, and edge cases.', fix: 'Add sticky notes to document: workflow purpose, trigger conditions, expected data format, and known limitations.' });
+    scores.bp -= 5;
+  }
+
+  // 13. Set node usage
+  const setNodes = nodes.filter(n => n.type?.includes('.set'));
+  if (setNodes.length > 5) {
+    findings.push({ cat: 'perf', severity: 'info', icon: '📋', title: `Excessive Set Nodes (${setNodes.length})`, desc: 'Many Set nodes suggest data is being transformed repeatedly. This can be consolidated.', fix: 'Use a single Code node to transform data in one step, or restructure to minimize intermediate transformations.' });
+    scores.perf -= 5;
+  }
+
+  // 14. Response node for webhooks
+  if (webhooks.length > 0) {
+    const responseNodes = nodes.filter(n => n.type?.includes('respondToWebhook') || n.type?.includes('response'));
+    const needsResponse = webhooks.some(w => w.parameters?.responseMode === 'responseNode');
+    if (needsResponse && responseNodes.length === 0) {
+      findings.push({ cat: 'errors', severity: 'critical', icon: '↩', title: 'Missing Webhook Response', desc: 'Webhook is set to "Response Node" mode but no Respond to Webhook node exists. Callers will timeout.', fix: 'Add a "Respond to Webhook" node at the end of your webhook flow, or change the response mode to "Immediately".' });
+      scores.errors -= 25;
+    }
+  }
+
+  // 15. Empty workflow
+  if (nodes.length === 0) {
+    findings.push({ cat: 'bp', severity: 'critical', icon: '📭', title: 'Empty Workflow', desc: 'This workflow has no nodes. It doesn\'t do anything yet.', fix: 'Start by adding a trigger node and at least one action node.' });
+    scores.bp -= 50;
+  }
+
+  // PASSES
+  if (hasErrorTrigger) findings.push({ cat: 'errors', severity: 'pass', icon: '✓', title: 'Error Trigger Present', desc: 'Workflow has error handling with an Error Trigger node.' });
+  if (webhooks.length > 0 && findings.filter(f => f.title.includes('Unprotected')).length === 0) findings.push({ cat: 'security', severity: 'pass', icon: '✓', title: 'Webhooks Secured', desc: 'All webhook endpoints have authentication configured.' });
+  if (stickyNotes.length > 0) findings.push({ cat: 'bp', severity: 'pass', icon: '✓', title: 'Documented with Sticky Notes', desc: `Workflow has ${stickyNotes.length} sticky note(s) for documentation.` });
+  if (nodes.length > 0 && nodes.length <= 20) findings.push({ cat: 'perf', severity: 'pass', icon: '✓', title: 'Manageable Complexity', desc: `${nodes.length} nodes — well within maintainable range.` });
+  if (defaultNames.length === 0 && nodes.length > 0) findings.push({ cat: 'bp', severity: 'pass', icon: '✓', title: 'All Nodes Named', desc: 'Every node has a custom, descriptive name.' });
+
+  // Clamp scores
+  Object.keys(scores).forEach(k => { scores[k] = Math.max(0, Math.min(100, scores[k])); });
+
+  return { findings, scores, nodeCount: nodes.length, webhookCount: webhooks.length, triggerCount: triggers.length, codeNodeCount: codeNodes.length, connectionCount: Object.keys(conns).length };
+}
+
+function renderResults(results, wf) {
+  const { findings, scores, nodeCount, webhookCount, triggerCount, codeNodeCount, connectionCount } = results;
+  const overall = Math.round((scores.errors + scores.perf + scores.security + scores.bp) / 4);
+  const dashboard = document.getElementById('dashboard');
+  dashboard.classList.add('visible');
+
+  // Animate score
+  const arc = document.getElementById('scoreArc');
+  const num = document.getElementById('scoreNum');
+  const circumference = 326.73;
+  const color = overall >= 80 ? 'var(--accent-3)' : overall >= 60 ? 'var(--accent)' : overall >= 40 ? 'var(--orange)' : 'var(--red)';
+  arc.style.stroke = color;
+  num.style.color = color;
+  setTimeout(() => {
+    arc.style.strokeDashoffset = circumference - (circumference * overall / 100);
+    num.textContent = overall;
+  }, 100);
+
+  // Title & summary
+  const title = document.getElementById('scoreTitle');
+  const summary = document.getElementById('scoreSummary');
+  title.textContent = wf.name || 'Unnamed Workflow';
+  const critCount = findings.filter(f => f.severity === 'critical').length;
+  const warnCount = findings.filter(f => f.severity === 'warning').length;
+  const passCount = findings.filter(f => f.severity === 'pass').length;
+  if (critCount > 0) summary.textContent = `${critCount} critical issue(s) found. Fix these before deploying to production.`;
+  else if (warnCount > 0) summary.textContent = `No critical issues! ${warnCount} warning(s) to consider for better reliability.`;
+  else summary.textContent = 'Excellent! Your workflow follows best practices. Minor improvements available.';
+
+  // Score bars
+  document.getElementById('barErrors').style.width = scores.errors + '%';
+  document.getElementById('barErrors').style.background = scores.errors >= 70 ? 'var(--accent-3)' : scores.errors >= 40 ? 'var(--orange)' : 'var(--red)';
+  document.getElementById('barPerf').style.width = scores.perf + '%';
+  document.getElementById('barPerf').style.background = scores.perf >= 70 ? 'var(--accent)' : 'var(--orange)';
+  document.getElementById('barSec').style.width = scores.security + '%';
+  document.getElementById('barSec').style.background = scores.security >= 70 ? 'var(--accent-2)' : scores.security >= 40 ? 'var(--orange)' : 'var(--red)';
+  document.getElementById('barBP').style.width = scores.bp + '%';
+  document.getElementById('barBP').style.background = scores.bp >= 70 ? 'var(--accent-3)' : 'var(--orange)';
+
+  // Stats
+  const statsRow = document.getElementById('statsRow');
+  statsRow.innerHTML = `
+    <div class="stat-card"><div class="val" style="color:${color}">${overall}/100</div><div class="lbl">Overall Score</div></div>
+    <div class="stat-card"><div class="val">${nodeCount}</div><div class="lbl">Nodes</div></div>
+    <div class="stat-card"><div class="val">${triggerCount}</div><div class="lbl">Triggers</div></div>
+    <div class="stat-card"><div class="val">${webhookCount}</div><div class="lbl">Webhooks</div></div>
+    <div class="stat-card"><div class="val">${connectionCount}</div><div class="lbl">Connections</div></div>
+    <div class="stat-card"><div class="val" style="color:${critCount?'var(--red)':'var(--accent-3)'}">${critCount}</div><div class="lbl">Critical</div></div>
+  `;
+
+  // Findings — sort: critical > warning > info > pass
+  const order = { critical: 0, warning: 1, info: 2, pass: 3 };
+  findings.sort((a, b) => order[a.severity] - order[b.severity]);
+
+  const container = document.getElementById('findings');
+  container.innerHTML = findings.map(f => `
+    <div class="finding">
+      <div class="finding-header">
+        <div class="finding-icon ${f.severity}">${f.icon}</div>
+        <span class="finding-title">${f.title}</span>
+        <span class="finding-severity ${f.severity}">${f.severity}</span>
+      </div>
+      <div class="finding-desc">${f.desc}</div>
+      ${f.fix ? `<div class="finding-fix"><strong>Fix:</strong> ${f.fix}</div>` : ''}
+    </div>
+  `).join('');
+
+  // CTA mailto
+  const subj = encodeURIComponent(`Workflow Optimization: ${wf.name || 'My Workflow'} (Score: ${overall}/100)`);
+  const body = encodeURIComponent(`Hi,\n\nI ran the n8n Workflow Optimizer on my "${wf.name || 'workflow'}" and got a score of ${overall}/100.\n\nI'd like help optimizing it — specifically:\n- ${critCount} critical issues\n- ${warnCount} warnings\n\nCan we schedule a quick call?\n\nWorkflow: ${nodeCount} nodes, ${triggerCount} trigger(s)\n\nThanks!`);
+  document.getElementById('ctaLink').href = `mailto:aurasamuraihub@gmail.com?subject=${subj}&body=${body}`;
+
+  // Scroll to results
+  dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
